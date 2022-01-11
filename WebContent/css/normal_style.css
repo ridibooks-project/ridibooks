@@ -1,0 +1,70 @@
+
+.normal_cg{
+    font-weight: 600;
+    color: #0077D9;
+}
+
+/* 이벤트 슬라이드 */
+.event_slide_tab{
+    padding-top: 30px;
+}
+.ev_b_wrapper{
+    opacity: 0.5;
+}
+/* 이벤트 슬라이드 */
+
+
+/* 새로나온책 탭 */
+.newBook_tab{
+    padding-top: 31px;
+    padding-bottom: 36px;
+}   
+
+.tr_text h3, .tr_text p{
+    color: #ffffff;;
+}
+/* 책제목 저자 */
+/* 새로나온책 탭 */
+
+
+/* 오늘의 리디 */
+.todayRidi_tab{
+    padding-top: 50px;
+    padding-bottom: 56px;
+}
+/* 오늘의 리디 */
+
+/* 금주의 신간 */
+.weeklyNew_tab{
+    padding-top: 50px;
+    padding-bottom: 56px;
+}
+
+.wn_text{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+.weight_lite{
+    font-weight: 100;
+}
+/* 금주의 신간 */
+/* 인스타 추천도서 */
+.instagram_tab{
+    padding-top: 50px;
+    padding-bottom: 56px;
+}
+.i_text{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+.i_star_box{
+    justify-content: center
+}
+/* 인스타 추천도서 */
+/* 컨텐츠 */
+
+
+
+

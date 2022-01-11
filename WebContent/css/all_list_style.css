@@ -1,0 +1,14 @@
+.homeTab{
+    border-bottom: none;
+}
+
+section{
+    width: 100%;
+}
+
+.all_wrapper{
+    width: 1112px;
+    margin: 30px auto;
+    border-radius: 3px;
+    border: 1px solid #e6e8eb;
+}

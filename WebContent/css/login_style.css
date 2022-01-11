@@ -1,0 +1,318 @@
+body{
+    background: #EBF6FF;
+}
+nav{
+    padding: 0;
+    display: block;
+}
+/* 헤더 */
+.login_hd_wrap{
+    border-bottom: 1px solid #d6deeb;
+}
+.login_logo_wrap{
+    text-align: center;
+}
+.login_logo_wrap a{
+    display: inline-block;
+    padding: 15px 14px 12px;
+}
+.login_hd_logo{
+    width: 84px;
+    height: 13px;
+    fill: #1f8ce6;
+}
+/* 헤더 */
+/* 컨텐츠 */
+section{
+    margin-top: 22px;
+    width: 100%;
+}
+.login_wrap{
+    text-align: center;
+    width: 360px;
+    margin: 0 auto;
+    padding: 60px 0 70px;
+}
+.login_wrap form{
+    padding: 0 10px;
+}
+.ip_box{
+    width: 100%;
+    position: relative;
+}
+.ip_label{
+    display: block;
+}
+.ip_box>.ip_label:first-child>.idpw_ip {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-width: 0px;
+}
+.idpw_ip{
+    width: 100%;
+    background-color: #ffffff;
+    height: 30px;
+    border: 1px solid #d6deeb;
+    height: 50px;
+    padding: 13px 17px;
+    overflow: hidden;
+    border-radius: 0px;
+    background: #fff;
+    color: #313538;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+}
+.idpw_ip:focus{
+    outline: none;
+}
+.idpw_ip:hover{
+    outline: 1px solid #9EA7AD;
+}
+.ip_btn_box{
+    display: flex;
+    justify-content: space-between;
+    margin-top: -1px;
+    padding: 13px 8px 13px 16px;
+    overflow: hidden;
+    border: 1px solid #d6deeb;
+    border-radius: 0 0 4px 4px;
+    background: #f7fbff;
+    z-index: 1;
+}
+.ch_wrap{
+    cursor: pointer;
+}
+.ch_ip{
+    width: 17px;
+    height: 17px;
+    float: left;
+    overflow: hidden;
+    border: 1px solid #b6c1cb;
+    box-shadow: inset 0 1px 2px 0 rgb(115 128 150 / 20%);
+    border-radius: 3px;
+    background: #fff;
+    cursor: pointer;
+}
+.ch_wrap span{
+    color: #738096;
+    font-size: .9em;
+    padding-left: 5px;
+}
+.ch_wrap span:hover{
+    color: #1f8ce6;
+}
+
+.findidpw_box a{
+    color: #738096;
+    font-size: .9em;
+}
+.findidpw_box a:hover{
+    color: #1f8ce6;
+}
+
+.fd_id + .fd_pw::before{
+    display: inline-block;
+    content: '';
+    width: .5px;
+    margin-right: 5px;
+    height: 11px;
+    background-color: #738096;
+    opacity: 0.3;
+}
+
+.msg_box{
+    display: none;
+    text-align: left;
+    padding: 10px 0 0 0;
+}
+.msg_box span{
+    color: rgb(255, 47, 47);
+    font-size: .85em;
+    font-weight: 800;
+}
+
+.login_btn_box, .join_btn_box{
+    padding-bottom: 10px;
+}
+
+.login_btn_box{
+    padding-top: 10px;
+}
+.btn_ap{
+    width: 100%;
+    height: 50px;
+    font-size: 15px;    
+    font-weight: 700;
+    border-radius: 3px;
+    border: 1px solid #D1D5D9;
+    cursor: pointer;
+}
+.login_btn{
+    background-color: #1F8CE6;
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgb(31 140 230 / 30%);
+
+}
+.join_btn{
+    background-color: #ffffff;
+    color: #8089AE;
+    box-shadow: 0 2px 4px 0 rgb(209 213 217 / 30%);
+}
+/* 컨텐츠 */
+
+
+/* 아이디 찾기 */
+.findID_wrap{
+    text-align: center;
+    width: 360px;
+    margin: 0 auto;
+    padding: 60px 0 70px;
+}
+.findID_ip_box{
+    margin-top: 10px;
+}
+.findID_hd_text{
+    line-height: 1em;
+    margin: 0;
+    margin-bottom: 12px;
+    color: #0077d9;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-align: center;
+}
+
+.findID_ip{
+    width: 100%;
+    background-color: #ffffff;
+    height: 30px;
+    border: 1px solid #d6deeb;
+    height: 50px;
+    padding: 13px 17px;
+    overflow: hidden;
+    background: #fff;
+    color: #313538;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 4px;
+}
+.findID_ip:hover{
+    border: 1px solid #9EA7AD;
+}
+.findID_ip:focus{
+    outline: 1px solid #1F8CE6;
+}
+.findID_btn_box{
+    padding-top: 10px;
+}
+.findID_btn{
+    background-color: #1F8CE6;
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgb(31 140 230 / 30%);
+}
+.findID_guideText{
+    padding-top: 10px;
+}
+
+.findID_guideText span, .findID_guideText span a{
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.findID_guideText span a:hover{
+    background-color: #cccccc;
+}
+/* 아이디 찾기 */
+
+/* 비밀번호 찾기 */
+
+.findPW_wrap{
+    text-align: center;
+    width: 360px;
+    margin: 0 auto;
+    padding: 60px 0 70px;
+}
+.findID_ip_box{
+    margin-top: 10px;
+}
+.findPW_hd_text{
+    line-height: 1em;
+    margin: 0;
+    margin-bottom: 12px;
+    color: #0077d9;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-align: center;
+}
+
+.findPW_ip{
+    width: 100%;
+    background-color: #ffffff;
+    height: 30px;
+    border: 1px solid #d6deeb;
+    height: 50px;
+    padding: 13px 17px;
+    overflow: hidden;
+    background: #fff;
+    color: #313538;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 4px;
+}
+
+.findPW_ip:focus{
+    outline:none
+}
+
+.fp_ip_id{
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.fp_ip_em{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.fp_ip_id:hover{
+    border: 1px solid #9EA7AD;
+}
+.fp_ip_id:focus{
+    outline: 1px solid #1F8CE6;
+    border-bottom: 1px solid #1F8CE6;
+}
+
+.fp_ip_em:hover{
+    border: 1px solid #9EA7AD;
+}
+.fp_ip_em:focus{
+    outline: 1px solid #1F8CE6;
+}
+
+
+
+.findPW_btn_box{
+    padding-top: 10px;
+}
+.findPW_btn{
+    background-color: #1F8CE6;
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgb(31 140 230 / 30%);
+}
+.findPW_guideText{
+    padding-top: 10px;
+}
+
+.findPW_guideText span, .findPW_guideText span a{
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.findPW_guideText span a:hover{
+    background-color: #cccccc;
+}
+/* 비밀번호 찾기 */

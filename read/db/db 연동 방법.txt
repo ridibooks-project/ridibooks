@@ -1,0 +1,19 @@
+Servers -> Tomcat -> context.xml ->
+
+    <Resource
+    	driverClassName="org.mariadb.jdbc.Driver"
+    	maxActive="4"
+    	maxIdle="4"
+    	maxWait="5000"
+    	name="maria/rdbooks"
+    	url="jdbc:mariadb://localhost:3306/rdbooks"
+    	username="root"
+    	password="0000"
+    	type="javax.sql.DataSource"
+    />
+추가
+</Context> 
+
+===
+
+sql 파일 db프로그램에서 불러오기(SQL실행)

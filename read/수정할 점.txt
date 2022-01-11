@@ -1,0 +1,7 @@
+* 왜 html에서 전달 하는 파라미터 중 이름과 성별이 깨져서 보내지는지
+
+1. head에 meta http-equiv랑 name 뭔지
+
+2. findID 에서 join_step.jsp 로 이동하는 스크립트 왜있는지 - 아마 로그인에서의 복붙같음
+3. findPW 상동
+4. 회원가입할 때 gender(성별) value값 전달하는 법

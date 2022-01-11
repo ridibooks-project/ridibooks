@@ -1,0 +1,34 @@
+.fan_cg{
+    font-weight: 600;
+    color: #0077D9;
+}
+
+.sub_web{
+    font-weight: 600;
+    color: #0077D9;
+}
+
+.ev_b_wrapper{
+    opacity: .5;
+}
+
+/* 이벤트 카드뉴스 이미지 */
+/* 실시간 랭킹 탭 */
+.rb_li_wrapper li{
+    display: flex;
+    margin: auto;
+    padding: 10px;
+    width: 274.700px;
+    height: 87.800;
+}
+/* 실시간 랭킹 탭 */
+.newEBook_tab{
+    padding: 50px 0 56px 0;
+}
+.re_ws{
+    padding: 50px 0 56px 0;
+}
+
+.p1000_tab{
+    padding: 50px 0 56px 0;
+}

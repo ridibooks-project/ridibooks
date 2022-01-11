@@ -1,0 +1,343 @@
+body{
+    background: #EBF6FF;
+}
+section{
+    margin-top: 22px;
+    width: 100%;
+}
+nav{
+    padding: 0;
+    display: block;
+}
+/* 헤더 */
+.join_hd_wrap{
+    border-bottom: 1px solid #d6deeb;
+}
+.join_logo_wrap{
+    text-align: center;
+}
+.join_logo_wrap a{
+    display: inline-block;
+    padding: 15px 14px 12px;
+}
+.join_hd_logo{
+    width: 84px;
+    height: 13px;
+    fill: #1f8ce6;
+}
+/* 헤더 */
+
+/* 컨텐츠 */
+.join_wrap{
+    text-align: center;
+    width: 360px;
+    margin: 0 auto;
+    padding: 60px 0 70px;
+}
+.join_img_box{
+    margin-top: 11px;
+    padding: 12px;
+}
+.join_img_box img{
+    width: 314px;
+}
+.jns_btn_box{
+    padding-top: 10px;
+}
+.jns_btn_box, .lo_btn_box{
+    padding: 0 10px 10px 10px;
+}
+
+.btn_ap{
+    width: 100%;
+    height: 50px;
+    font-size: 15px;    
+    font-weight: 700;
+    border-radius: 3px;
+    border: 1px solid #D1D5D9;
+    cursor: pointer;
+}
+
+.join_nextStep_btn{
+    background-color: #1F8CE6;
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgb(31 140 230 / 30%);
+
+}
+.gotoLogin_btn{
+    background-color: #ffffff;
+    color: #8089AE;
+    box-shadow: 0 2px 4px 0 rgb(209 213 217 / 30%);
+}
+
+.minor_join{
+    margin-top: 20px;
+}
+
+.minor_join a{
+    color: #84808F;
+    font-size: .85em;
+    font-weight: 800;
+    opacity: 0.7;
+}
+
+.minor_join a:hover{
+    opacity: 1;
+}
+/* 회원가입 최종 단계 */
+.join_form{
+    margin-top: -18px;
+    padding: 0 10px;
+}
+
+/* input all style */
+.ji_style{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 48px;
+    padding: 9px 10px 7px;
+    overflow: hidden;
+    border: 1px solid #D6DEEB;
+    border-style: solid;
+    background: white;
+    color: rgb(48, 53, 56);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 0;
+    box-shadow: none;
+    appearance: none;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.redLinePlaceholder::placeholder{
+    color: #E64938!important;
+    font-weight: 500;
+}
+.ji_style::placeholder{
+    color: #738096;
+}
+.ji_style:focus{
+    outline: none;
+}
+.success_mes:first-of-type{
+    top: 19px
+}
+.success_mes{
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    color: #63C21C;
+    font-size: .8em;
+    display: none;
+}
+
+.input_guide{
+    position: absolute;
+    z-index: 3;
+    font-size: .8em;
+    top: 4px;
+    left: 10px;
+    color: #1f8ce6;
+    display: none;
+}
+.er_ms_box{
+    font-size: .8em;
+    text-align: left;
+    color: #E64938;
+    padding-left: 5px;
+}
+.error_m_i{display: none;}
+.error_require{display: none;}
+.error_wrong{display: none;}
+.error_unequal{display: none;}
+.error_special{display: none;}
+.error_alreadyUse{display: none;}
+.error_sameIdPw{display: none;}
+.error_useUpperance{display: none;}
+.error_lenght{display: none;}
+
+/* input all style */
+
+/* input id*/
+.join_id_wrapper{
+    padding: 2px 0;
+    position: relative;
+    margin-bottom: 6px;
+}
+
+/* input pw */
+.join_pw_wrapper{
+    margin-bottom: 8px;
+}
+.join_pw_wrapper div label div{
+    position: relative;
+}
+.join_pw_input{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: 0;
+}
+.join_rpw_input{
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+/* input email */
+.join_em_wrapper{
+    margin-bottom: 10px;
+}
+.join_em_wrapper div{position: relative;}
+
+/* input name */
+.join_name_wrapper{
+    margin-bottom: 13px;
+}
+.join_name_wrapper div{position: relative;}
+
+/* input birth & input gender */
+input[type = number]::-webkit-outer-spin-button,
+input[type = number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.sel_in{
+    text-align: left;
+    font-size: .85em;
+    margin: 6px 0;
+    color: #94A2B8;
+}
+.join_bg_wrapper{
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.half_sm{
+    right: 175px;
+    z-index: 2;
+}
+
+.join_gender_wrapper{
+    width: 50%;
+}
+.join_gender_wrapper div{
+    display: flex;
+    flex: auto;
+}
+.gen_btn_style{
+    margin-left: 2px;
+}
+.gen_btn_style label{
+    width: 100%;
+    
+}
+.gender_ipm{
+    font-weight: 400;
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0;
+    border-right: 0;
+    cursor: pointer;
+}
+.gender_ipw{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.gender_input{
+    display: none;
+}
+
+/* input checkbox */
+.join_checkbox_wrapper{
+    position: relative;
+    border: 1px solid #D6DEEB;
+    background-color: white;
+    border-radius: 4px;
+    text-align: left;
+    color: black;
+    padding: 0px 5px;
+}
+.join_ac_wrapper{
+    width: 100%;
+    border-bottom: 1px solid #D6DEEB;
+    padding: 10px 5px;
+    font-weight: 700;
+    font-size: 1.125em;
+}
+
+.join_ec_wrapper{
+    width: 100%;
+    padding: 10px 5px 10px 20px;
+    
+}
+.ec_style{
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+.ec_style:last-child{
+    margin-bottom:0;
+}
+.join_nc_wrapper{
+    width: 100%;
+    padding: 10px 5px 15px 5px;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+
+.join_ac_wrapper i, .join_ec_wrapper div i, .join_nc_wrapper div i{
+    font-size: 1.2em;
+}
+
+.joinEcFlex{
+    display: flex;
+    justify-content: space-between;
+}
+.checkText{
+    font-size: .9em;
+    opacity: 0.6;
+}
+.sm_text{
+    font-size: .8em;
+    opacity: 0.5;
+}
+input[type="checkbox"]{
+    display: none;
+}
+
+.check_blue{
+    display: none;
+    cursor: pointer;
+}
+.check_gray{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.opacity_mo_event{
+    cursor: pointer;
+}
+
+/* btn */
+.jc_btn_box{
+    margin-top: 10px;
+    padding: 10px 0;
+}
+.join_complete_btn{
+    background-color: #1F8CE6;
+    color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgb(31 140 230 / 30%);
+}
+/* 회원가입 최종 단계 */
+/* 컨텐츠 */
+
+
+
+
