@@ -15,11 +15,11 @@
 	
 		<section>
         	<div class="findPW_wrap">
-            	<form action="/find/controller" method="post">
+            	<form action="/ridibooks/find/controller" method="post">
                 	<span class="findPW_hd_text">비밀번호 재설정</span>
                 	<div class="ip_box findPW_ip_box">
                     	<label class="findPW_ip_label" for="">
-                        	<input class="findPW_ip fp_ip_id" name="find_id" type="email" maxlength="20"
+                        	<input class="findPW_ip fp_ip_id" name="find_id" type="text" maxlength="20"
                             placeholder="아이디">
                     	</label>
                     	<label class="findPW_ip_label" for="">

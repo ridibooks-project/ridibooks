@@ -13,7 +13,7 @@
 	
 		<section>
             <div class="join_wrap">
-                <form action="/ridibooksProject/signup/controller" method="post" class="join_form">
+                <form action="/ridibooks/signup/controller" method="post" class="join_form">
                     <div class="join_ip_wrapper">
                         <div class="join_id_wrapper">
                             <div>

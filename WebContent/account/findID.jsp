@@ -15,7 +15,7 @@
 	
 		<section>
 	        <div class="findID_wrap">
-	            <form action="/ridibooksProject/find/controller" method="get">
+	            <form action="/ridibooks/find/controller" method="get">
 	                <span class="findID_hd_text">아이디 찾기</span>
 	                <div class="ip_box findID_ip_box">
 	                    <label class="findID_ip_label" for="">

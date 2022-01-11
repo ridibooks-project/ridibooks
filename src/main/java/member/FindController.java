@@ -30,5 +30,9 @@ public class FindController extends HttpServlet {
 		int statusCode = service.findPw(request, response);
 		
 		System.out.println(statusCode);
+		
+		HttpSession session = request.getSession();
+		
+		System.out.println(session.getAttribute("findPw"));
 	}
 }

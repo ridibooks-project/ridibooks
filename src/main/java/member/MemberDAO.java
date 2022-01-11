@@ -269,12 +269,13 @@ public class MemberDAO {
 	}
 	
 	// db - pw찾기-1 (아이디, 이메일로 회원가입 여부 확인)
-	public boolean findPw(MemberDTO member) {
+	public String findPw(MemberDTO member) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String db_status = "";
+		String newPw = "";
 		
 		try {
 			conn = getConnection();
@@ -318,7 +319,7 @@ public class MemberDAO {
 							}
 						}
 						
-						String newPw = tempPw.toString();
+						newPw = tempPw.toString();
 						member.setPw(newPw);
 						
 						sql = "UPDATE memberinfo SET member_pw VALUES ?";
@@ -355,7 +356,6 @@ public class MemberDAO {
 			}
 		}
 		
-		
-		return false;
+		return newPw;
 	}
 }

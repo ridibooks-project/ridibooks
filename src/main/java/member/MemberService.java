@@ -245,27 +245,35 @@ public class MemberService {
 	}
 	
 	// 비밀번호 찾기
-//	public int findPw(HttpServletRequest request, HttpServletResponse response) {
-//		String id = request.getParameter("find_id");
-//		String email = request.getParameter("find_email");
-//		
-//		// 전달 받은 값이 공백이거나 null일 경우
-//		if( (id.isEmpty() || id == null) || (email.isEmpty() || email == null) ) {
-//			statusCode = HttpServletResponse.SC_BAD_REQUEST;
-//			
-//			return statusCode;
-//		}
-//		
-//		MemberDTO member = new MemberDTO();
-//		member.setId(id);
-//		member.setEmail(email);
-//		
-//		MemberDAO dao = new MemberDAO();
-//		boolean findPw = dao.findPw(member);
-//		
-//		
-//	
-//		return 0;
-//	}
+	public int findPw(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("find_id");
+		String email = request.getParameter("find_email");
+		
+		// 전달 받은 값이 공백이거나 null일 경우
+		if( (id.isEmpty() || id == null) || (email.isEmpty() || email == null) ) {
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+			
+			return statusCode;
+		}
+		
+		MemberDTO member = new MemberDTO();
+		member.setId(id);
+		member.setEmail(email);
+		
+		MemberDAO dao = new MemberDAO();
+		String findPw = dao.findPw(member);
+		
+		if(findPw.isEmpty() || findPw == null) {
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
+		} else {
+			statusCode = HttpServletResponse.SC_OK;
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("findPw", findPw);
+		}
+	
+		return statusCode;
+	}
 
 }
