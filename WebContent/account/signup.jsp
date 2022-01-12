@@ -134,7 +134,7 @@
                                         <input oninput="maxLengthCheck(this)" autocapitalize="off" autocomplete="off"
                                             autocorrect="off" inputmode="numeric" type="number" maxlength="4"
                                             class="ji_style join_birth_input" placeholder="출생년도">
-                                        <input type="hidden" name="sign_year" class="hi_ip" value="null">
+                                        <input type="hidden" name="sign_year" class="hi_ip" value="">
                                         <span class="success_mes half_sm"><i class="fas fa-check"></i></span>
                                     </label>
                                 </div>
@@ -152,7 +152,7 @@
                                         <button type="button" class="gender_ipw ji_style">여</button>
                                     </div>
                                 </div>
-                                <input type="text" class="gender_input" name="sign_gender" value="null">
+                                <input type="text" class="gender_input" name="sign_gender" value="">
                             </div>
                         </div>
                         <div class="join_checkbox_wrapper">
