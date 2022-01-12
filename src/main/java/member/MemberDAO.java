@@ -322,14 +322,15 @@ public class MemberDAO {
 						newPw = tempPw.toString();
 						member.setPw(newPw);
 						
-						sql = "UPDATE memberinfo SET member_pw VALUES ?";
+						sql = "UPDATE memberinfo SET member_pw = ? WHERE member_id = ?";
 						PreparedStatement pstmt2 = conn.prepareStatement(sql);
 						pstmt2.setString(1, member.getPw());
+						pstmt2.setString(2, member.getId());
+						
+						pstmt2.executeUpdate();
 						
 						pstmt2.close();
 						
-						
-						// 불린 값을 할지 뭘할지 정하고 완성시키기
 					}
 					
 				}
@@ -358,4 +359,105 @@ public class MemberDAO {
 		
 		return newPw;
 	}
+	
+	// 아이디 중복 확인
+	public boolean checkId(MemberDTO member) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String db_id = "";
+		boolean checkId = false;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "SELECT member_id FROM memberinfo WHERE member_id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				db_id = rs.getString("member_id");
+				
+				if(db_id.equals(member.getId())) {
+					// db에 입력한 아이디와 같은 값이 있다면 true 반환
+					checkId = true;
+				}
+			}
+			rs.close();
+			
+		} catch(SQLException e) {
+//			e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return checkId;
+	}
+	
+	// 이메일 중복 확인
+		public boolean checkEmail(MemberDTO member) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String db_email = "";
+			boolean checkEmail = false;
+			
+			try {
+				conn = getConnection();
+				
+				String sql = "SELECT member_email FROM memberinfo WHERE member_email = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, member.getEmail());
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					db_email = rs.getString("member_email");
+					
+					if(db_email.equals(member.getEmail())) {
+						// db에 입력한 아이디와 같은 값이 있다면 true 반환
+						checkEmail = true;
+					}
+				}
+				rs.close();
+				
+			} catch(SQLException e) {
+//				e.printStackTrace();
+				System.out.println("SQL 예외");
+			} finally {
+				if(pstmt != null) {
+					try {
+						pstmt.close();
+					} catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+				if(conn != null) {
+					try {
+						conn.close();
+					} catch(SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return checkEmail;
+		}
+	
 }

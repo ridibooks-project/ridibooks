@@ -246,11 +246,13 @@ public class MemberService {
 	
 	// 비밀번호 찾기
 	public int findPw(HttpServletRequest request, HttpServletResponse response) {
+		// 비밀번호를 찾기 위한 파라미터 id, email
 		String id = request.getParameter("find_id");
 		String email = request.getParameter("find_email");
 		
 		// 전달 받은 값이 공백이거나 null일 경우
 		if( (id.isEmpty() || id == null) || (email.isEmpty() || email == null) ) {
+			// 400 반환
 			statusCode = HttpServletResponse.SC_BAD_REQUEST;
 			
 			return statusCode;
@@ -264,10 +266,14 @@ public class MemberService {
 		String findPw = dao.findPw(member);
 		
 		if(findPw.isEmpty() || findPw == null) {
+			// findPw가 없는 경우 -> 전달 받은 id,email에 해당하는 데이터가 DB에 없는 경우 / 회원상태1(탈퇴)인 경우
+			// 404 반환
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		} else {
+			// 찾은 경우 200 반환
 			statusCode = HttpServletResponse.SC_OK;
 			
+			// 이메일로 임시 비밀번호 전달이 불가능하니 id찾기 처럼 값을 보여줄 예정
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("findPw", findPw);
@@ -275,5 +281,65 @@ public class MemberService {
 	
 		return statusCode;
 	}
+	
+	// 아이디 중복 확인
+	public int checkId (HttpServletRequest request, HttpServletResponse response) {
+		
+		String id = request.getParameter("login_id");
+		
+		// 아이디 또는 비밀번호가 null이거나 공백일경우
+		if( (id.isEmpty() || id == null) ) {
+			
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+			
+			return statusCode;
+		}
+		
+		MemberDTO member = new MemberDTO();
+		member.setId(id);
+		
+		MemberDAO dao = new MemberDAO();
+		
+		boolean checkId = dao.checkId(member);
+		
+		if(checkId) {
+			// checkId가 true -> 아이디가 중복 됨
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
+		} else {
+			statusCode = HttpServletResponse.SC_OK;
+		}
+		
+		return statusCode;
+	}
+	
+	// 이메일 중복 확인
+		public int checkEmail (HttpServletRequest request, HttpServletResponse response) {
+			
+			String email = request.getParameter("login_email");
+			
+			// 아이디 또는 비밀번호가 null이거나 공백일경우
+			if( (email.isEmpty() || email == null) ) {
+				
+				statusCode = HttpServletResponse.SC_BAD_REQUEST;
+				
+				return statusCode;
+			}
+			
+			MemberDTO member = new MemberDTO();
+			member.setEmail(email);
+			
+			MemberDAO dao = new MemberDAO();
+			
+			boolean checkEmail = dao.checkEmail(member);
+			
+			if(checkEmail) {
+				// checkId가 true -> 아이디가 중복 됨
+				statusCode = HttpServletResponse.SC_NOT_FOUND;
+			} else {
+				statusCode = HttpServletResponse.SC_OK;
+			}
+			
+			return statusCode;
+		}
 
 }
