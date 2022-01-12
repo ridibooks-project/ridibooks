@@ -9,6 +9,8 @@
 </head>
 <body>
 	<div class="container">
+		<script src="../js/jquery-3.6.0.min.js"></script>
+		
 		<%@ include file="./header.jsp" %>
 	
 		<section>
@@ -131,7 +133,8 @@
                                         <span class="input_guide">예: 1995</span>
                                         <input oninput="maxLengthCheck(this)" autocapitalize="off" autocomplete="off"
                                             autocorrect="off" inputmode="numeric" type="number" maxlength="4"
-                                            name="sign_year" class="ji_style join_birth_input" placeholder="출생년도">
+                                            class="ji_style join_birth_input" placeholder="출생년도">
+                                        <input type="hidden" name="sign_year" class="hi_ip" value="null">
                                         <span class="success_mes half_sm"><i class="fas fa-check"></i></span>
                                     </label>
                                 </div>
@@ -149,12 +152,12 @@
                                         <button type="button" class="gender_ipw ji_style">여</button>
                                     </div>
                                 </div>
-                                <input type="text" class="gender_input" name="sign_gender" value="">
+                                <input type="text" class="gender_input" name="sign_gender" value="null">
                             </div>
                         </div>
                         <div class="join_checkbox_wrapper">
                             <div class="join_ac_wrapper">
-                                <input type="checkbox" value="off" name="all_agree" class="all_checkbox checkbox_style">
+                                <input type="checkbox" value="N" name="all_agree" class="all_checkbox checkbox_style">
                                 <span class="check_blue">
                                     <i class="far fa-check-circle" style="color: #1F8CE6;"></i>
                                 </span>
@@ -166,7 +169,7 @@
                             <div class="join_ec_wrapper">
                                 <div class="joinEcFlex ec_style">
                                     <div>
-                                        <input type="checkbox" name="terms_agree" value="off"
+                                        <input type="checkbox" name="terms_agree" value="N"
                                             class="eo_checkbox eo1 checkbox_style" required>
                                         <span class="check_blue">
                                             <i class="far fa-check-circle" style="color: #1F8CE6;"></i>
@@ -180,7 +183,7 @@
                                 </div>
                                 <div class="ec_style">
                                     <div>
-                                        <input type="checkbox" value="off" name="marketing_agree"
+                                        <input type="checkbox" value="N" name="marketing_agree"
                                             class="eo_checkbox eo2 checkbox_style">
                                         <span class="check_blue">
                                             <i class="far fa-check-circle" style="color: #1F8CE6;"></i>
@@ -193,7 +196,7 @@
                                 </div>
                                 <div class="joinEcFlex ec_style">
                                     <div>
-                                        <input type="checkbox" value="off" name="select_agree"
+                                        <input type="checkbox" value="N" name="select_agree"
                                             class="eo_checkbox eo3 checkbox_style">
                                         <span class="check_blue">
                                             <i class="far fa-check-circle" style="color: #1F8CE6;"></i>
@@ -209,7 +212,7 @@
                             </div>
                             <div class="join_nc_wrapper joinEcFlex">
                                 <div>
-                                    <input type="checkbox" value="off" name="privacy_agree"
+                                    <input type="checkbox" value="N" name="privacy_agree"
                                         class="n_checkbox checkbox_style" required>
                                     <span class="check_blue">
                                         <i class="far fa-check-circle" style="color: #1F8CE6;"></i>
@@ -222,6 +225,11 @@
                                 <div><a href="" class="checkText sm_text">내용확인 ></a></div>
                             </div>
                         </div>
+                        <div class="er_ms_box">
+                            <span class="error_m_i"><i class="fas fa-exclamation-circle"></i></span>
+                            <span class="error_require">이용약관에 동의해주세요.</span>
+                            <span class="error_wrong">개인 정보 수집 및 이용에 동의해주세요.</span>
+                        </div>
                     </div>
                     <div class="join_btn_wrapper">
                         <div class="jc_btn_box">
@@ -231,8 +239,8 @@
                 </form>
             </div>
         </section>
-	</div>
-	<script src="../js/fontawesome.js"></script>
+    </div>
+    <script src="../js/fontawesome.js"></script>
     <script src="../js/join_event.js"></script>
 
 </body>

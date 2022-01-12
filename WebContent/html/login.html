@@ -30,7 +30,7 @@
         </div>
         <section>
             <div class="login_wrap">
-                <form action="../../src/main/java/member/" method="post">
+                <form action="/ridibooks/member/controller" method="post">
                     <div class="ip_box">
                         <label class="ip_label" for="">
                             <input class="idpw_ip id_ip" name="login_id" type="text" maxlength="20" placeholder="아이디">
@@ -45,8 +45,8 @@
                                 <span>로그인 상태 유지</span>
                             </div>
                             <div class="findidpw_box">
-                                <a class="fd_id" href="./findID.html">아이디 찾기</a>
-                                <a class="fd_pw" href="./findPW.html">비밀번호 재설정</a>
+                                <a class="fd_id" href="./findID.jsp">아이디 찾기</a>
+                                <a class="fd_pw" href="./findPW.jsp">비밀번호 재설정</a>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
             </div>
             <script>
                 document.querySelector('.join_btn').onclick = () => {
-                    window.location = "./join_step.html";
+                    window.location = "./join_step.jsp";
                 }
             </script>
         </section>
