@@ -1,13 +1,13 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	<link rel="stylesheet" href="../css/swiper-bundle.min.css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link href="../css/normal_style.css" rel="stylesheet" type="text/css">
-</head>
+
+<%
+	Map<String, String> activeMap = new HashMap<>();
+	activeMap.put("main", "main");
+	activeMap.put("")
+%>
+
 <body>
 		<div class="hd_wrap">
             <header>
@@ -84,53 +84,52 @@
                 </ul>
             </header>
         </div>
-        <div class="sub_menu">
-            <div class="hd_sub_menu">
-                <ul class="hd_sm_wrap">
-                    <li>
-                        <ul class="hd_sm_top">
-                            <li>
-                                <div class="cg_menu">
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="filter_icon">
-                                            <path d="M2 7.001h20V5H2v2.001zm3 6h14v-2H5v2zm3.999 6h6v-2h-6v2z"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cg_menu cg_menu_text normal_cg">
-                                    <a href="./main.jsp">일반</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cg_menu cg_menu_text rom_cg">
-                                    <a href="./romance.jsp">로맨스</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cg_menu cg_menu_text fan_cg">
-                                    <a href="./fantasy.jsp">판타지</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cg_menu cg_menu_text car_cg">
-                                    <a href="./cartoon.jsp">만화</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cg_menu cg_menu_text bl_cg">
-                                    <a href="./bl.jsp">BL</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <hr class="hd_line_style">
-                    </li>
-                    <!-- 메인을 제외한 각 분류마다 세부 메뉴가 있음 -->
-                </ul>
-            </div>
+    <div class="sub_menu">
+        <div class="hd_sub_menu">
+            <ul class="hd_sm_wrap">
+                <li>
+                    <ul class="hd_sm_top">
+                        <li>
+                            <div class="cg_menu">
+                                <a href="#">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="filter_icon">
+                                        <path d="M2 7.001h20V5H2v2.001zm3 6h14v-2H5v2zm3.999 6h6v-2h-6v2z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cg_menu cg_menu_text normal_cg">
+                                <a href="./main.jsp">일반</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cg_menu cg_menu_text rom_cg">
+                                <a href="./romance.jsp">로맨스</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cg_menu cg_menu_text fan_cg">
+                                <a href="./fantasy.jsp">판타지</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cg_menu cg_menu_text car_cg">
+                                <a href="./cartoon.jsp">만화</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="cg_menu cg_menu_text bl_cg">
+                                <a href="./bl.jsp">BL</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <hr class="hd_line_style">
+                </li>
+            </ul>
         </div>
+    </div>
 </body>
 </html>

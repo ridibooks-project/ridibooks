@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>일반도서 - 리디북스</title>
-	<link rel="stylesheet" href="../css/swiper-bundle.min.css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <link href="../css/normal_style.css" rel="stylesheet" type="text/css">
-</head>
+
 <body>
+	
 	<section class="event_slide_tab">
        	<div class="ev_sw_wrapper">
            	<div class="event_box swiper-container">
@@ -1574,13 +1567,13 @@
            	</div>
        	</div>
    	</section>
-    <script src="../js/swiper-bundle.min.js"></script>
-    <script src="../js/swiper-bundle.js"></script>
-    <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
-    <script src="../js/notPosition.js"></script>
-    <script src="../js/slide_tab.js"></script>
-    <script src="../js/starPoint.js"></script>
-    <script src="../js/rem_recent_search.js"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/swiper-bundle.js"></script>
+    <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="./js/notPosition.js"></script>
+    <script src="./js/slide_tab.js"></script>
+    <script src="./js/starPoint.js"></script>
+    <script src="./js/rem_recent_search.js"></script>
 
 </body>
 </html>
