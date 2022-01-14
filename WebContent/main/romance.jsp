@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%
-	String currentURI = request.getRequestURI();
-	System.out.print("currentURI = " + currentURI);
-%>
-
 <!DOCTYPE html>
 <html>
 <head>

@@ -25,28 +25,28 @@
 			<c:import url="main/main.jsp"></c:import>
 		
 			<!-- 각 페이지에 맞는 컨텐츠를 출력 -->
-<%-- 			<c:choose> --%>
+ 			<c:choose>
 					<!-- 메인 -->
-<%-- 				<c:when test="${empty param.active or param.active eq 'main' }"> --%>
-<%-- 					<c:import url="main/main.jsp" /> --%>
-<%-- 				</c:when> --%>
-<!-- 					로맨스 -->
-<%-- 				<c:when test="${param.active eq 'normal_cg' }"> --%>
-<%-- 					<c:import url="main/romance.jsp" /> --%>
-<%-- 				</c:when> --%>
-<!-- 				판타지 -->
-<%-- 				<c:when test="${param. eq '' }"> --%>
-<%-- 					<c:import url="main/fantasy.jsp" /> --%>
-<%-- 				</c:when> --%>
-<!-- 				만화 -->
-<%-- 				<c:when test="${param. eq '' }"> --%>
-<%-- 					<c:import url="main/cartoon.jsp" /> --%>
-<%-- 				</c:when> --%>
-<!-- 				bl -->
-<%-- 				<c:when test="${param. eq '' }"> --%>
-<%-- 					<c:import url="main/bl.jsp" /> --%>
-<%-- 				</c:when> --%>
-<%-- 			</c:choose> --%>
+ 				<c:when test="${empty param.active or param.active eq 'main' }">
+ 					<c:import url="main/main.jsp" />
+ 				</c:when>
+					<!-- 로맨스 -->
+ 				<c:when test="${param.active eq 'romance' }">
+ 					<c:import url="main/romance.jsp" />
+ 				</c:when>
+				<!-- 판타지 -->
+				<c:when test="${param.active eq 'fantasy' }">
+					<c:import url="main/fantasy.jsp" />
+				</c:when>
+				<!-- 만화 -->
+				<c:when test="${param.active eq 'cartoon' }">
+					<c:import url="main/cartoon.jsp" />
+				</c:when>
+				<!-- bl -->
+				<c:when test="${param.active eq 'bl' }">
+					<c:import url="main/bl.jsp" />
+				</c:when>
+ 			</c:choose>
 			
 		</main>
 	

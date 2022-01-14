@@ -3,9 +3,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
+	String currentURI = request.getRequestURI();
+
 	Map<String, String> activeMap = new HashMap<>();
 	activeMap.put("main", "main");
-	activeMap.put("")
+	activeMap.put("romance", "romance");
+	activeMap.put("fantasy", "fantasy");
+	activeMap.put("cartoon", "cartoon");
+	activeMap.put("bl", "bl");
+	
+	boolean isMain = activeMap.get("main").equals(currentURI);
+	boolean isRomance = activeMap.get("romance").equals(currentURI);
+	boolean isFantasy = activeMap.get("fantasy").equals(currentURI);
+	boolean isCartoon = activeMap.get("cartoon").equals(currentURI);
+	boolean isBl = activeMap.get("bl").equals(currentURI);
+	
+	String[] subMenuList = {
+			"<li {here}> <div class=\"cg_menu cg_menu_text normal_cg\"> <a href=\"./main.jsp\">일반</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text rom_cg\"> <a href=\"./main.jsp\">로맨스</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text fan_cg\"> <a href=\"./main.jsp\">판타지</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text car_cg\"> <a href=\"./main.jsp\">만화</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text bl_cg\"> <a href=\"./main.jsp\">BL</a> </div> </li>"
+	};
+	
+	if(isMain) {
+		subMenuList[0] = subMenuList[0].replace("{here}", "class=\"active\"");
+		subMenuList[1] = subMenuList[1].replace("{here}", "");
+		subMenuList[2] = subMenuList[2].replace("{here}", "");
+		subMenuList[3] = subMenuList[3].replace("{here}", "");
+		subMenuList[4] = subMenuList[4].replace("{here}", "");
+	} else if(isRomance) {
+		subMenuList[0] = subMenuList[0].replace("{here}", "");
+		subMenuList[1] = subMenuList[1].replace("{here}", "class=\"active\"");
+		subMenuList[2] = subMenuList[2].replace("{here}", "");
+		subMenuList[3] = subMenuList[3].replace("{here}", "");
+		subMenuList[4] = subMenuList[4].replace("{here}", "");
+	} else if(isFantasy) {
+		subMenuList[0] = subMenuList[0].replace("{here}", "");
+		subMenuList[1] = subMenuList[1].replace("{here}", "");
+		subMenuList[2] = subMenuList[2].replace("{here}", "class=\"active\"");
+		subMenuList[3] = subMenuList[3].replace("{here}", "");
+		subMenuList[4] = subMenuList[4].replace("{here}", "");
+	} else if(isCartoon) {
+		subMenuList[0] = subMenuList[0].replace("{here}", "");
+		subMenuList[1] = subMenuList[1].replace("{here}", "");
+		subMenuList[2] = subMenuList[2].replace("{here}", "");
+		subMenuList[3] = subMenuList[3].replace("{here}", "class=\"active\"");
+		subMenuList[4] = subMenuList[4].replace("{here}", "");
+	} else if(isBl) {
+		subMenuList[0] = subMenuList[0].replace("{here}", "");
+		subMenuList[1] = subMenuList[1].replace("{here}", "");
+		subMenuList[2] = subMenuList[2].replace("{here}", "");
+		subMenuList[3] = subMenuList[3].replace("{here}", "");
+		subMenuList[4] = subMenuList[4].replace("{here}", "class=\"active\"");
+	}
 %>
 
 <body>
@@ -98,31 +149,38 @@
                                 </a>
                             </div>
                         </li>
-                        <li>
-                            <div class="cg_menu cg_menu_text normal_cg">
-                                <a href="./main.jsp">일반</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cg_menu cg_menu_text rom_cg">
-                                <a href="./romance.jsp">로맨스</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cg_menu cg_menu_text fan_cg">
-                                <a href="./fantasy.jsp">판타지</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cg_menu cg_menu_text car_cg">
-                                <a href="./cartoon.jsp">만화</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cg_menu cg_menu_text bl_cg">
-                                <a href="./bl.jsp">BL</a>
-                            </div>
-                        </li>
+                        
+                        <%
+                        	for(String menuBtn: subMenuList) {
+                        		out.print(menuBtn);
+                        	}
+                        
+                        %>
+<!--                         <li> -->
+<!--                             <div class="cg_menu cg_menu_text normal_cg"> -->
+<!--                                 <a href="./main.jsp">일반</a> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="cg_menu cg_menu_text rom_cg"> -->
+<!--                                 <a href="./romance.jsp">로맨스</a> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="cg_menu cg_menu_text fan_cg"> -->
+<!--                                 <a href="./fantasy.jsp">판타지</a> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="cg_menu cg_menu_text car_cg"> -->
+<!--                                 <a href="./cartoon.jsp">만화</a> -->
+<!--                             </div> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="cg_menu cg_menu_text bl_cg"> -->
+<!--                                 <a href="./bl.jsp">BL</a> -->
+<!--                             </div> -->
+<!--                         </li> -->
                     </ul>
                 </li>
                 <li>
