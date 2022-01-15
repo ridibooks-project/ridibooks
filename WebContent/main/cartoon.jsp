@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+<link href="./css/cartoon_style.css" rel="stylesheet" type="text/css">
+
 <title>만화 e북 - 리디북스</title>
-</head>
+
 <body>
 	<section class="event_slide_tab">
         <div class="ev_sw_wrapper">
@@ -1790,13 +1789,13 @@
             </div>
         </div>
     </section>
-    <script src="../js/swiper-bundle.min.js"></script>
-    <script src="../js/swiper-bundle.js"></script>
-    <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
-    <script src="../js/notPosition.js"></script>
-    <script src="../js/starPoint.js"></script>
-    <script src="../js/slide_tab.js"></script>
-    <script src="../js/web_romance_event.js"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/swiper-bundle.js"></script>
+    <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="./js/notPosition.js"></script>
+    <script src="./js/starPoint.js"></script>
+    <script src="./js/slide_tab.js"></script>
+    <script src="./js/web_romance_event.js"></script>
 
 </body>
 </html>

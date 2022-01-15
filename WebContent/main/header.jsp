@@ -1,9 +1,13 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Param"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
 	String currentURI = request.getRequestURI();
+	String active = request.getParameter("active");
+	System.out.print("currentURI = " + currentURI + " || active = " + active + "\n");
 
 	Map<String, String> activeMap = new HashMap<>();
 	activeMap.put("main", "main");
@@ -11,6 +15,12 @@
 	activeMap.put("fantasy", "fantasy");
 	activeMap.put("cartoon", "cartoon");
 	activeMap.put("bl", "bl");
+	activeMap.put("romance_novel", "romance_novel");
+	activeMap.put("fantasy_novel", "fantasy_novel");
+	activeMap.put("cartoon_webtoon", "cartoon_webtoon");
+	activeMap.put("bl_novel", "bl_novel");
+	activeMap.put("bl_webtoon", "bl_webtoon");
+	activeMap.put("bl_cartoon", "bl_cartoon");
 	
 	boolean isMain = activeMap.get("main").equals(currentURI);
 	boolean isRomance = activeMap.get("romance").equals(currentURI);
@@ -19,11 +29,11 @@
 	boolean isBl = activeMap.get("bl").equals(currentURI);
 	
 	String[] subMenuList = {
-			"<li {here}> <div class=\"cg_menu cg_menu_text normal_cg\"> <a href=\"./main.jsp\">일반</a> </div> </li>",
-			"<li {here}> <div class=\"cg_menu cg_menu_text rom_cg\"> <a href=\"./main.jsp\">로맨스</a> </div> </li>",
-			"<li {here}> <div class=\"cg_menu cg_menu_text fan_cg\"> <a href=\"./main.jsp\">판타지</a> </div> </li>",
-			"<li {here}> <div class=\"cg_menu cg_menu_text car_cg\"> <a href=\"./main.jsp\">만화</a> </div> </li>",
-			"<li {here}> <div class=\"cg_menu cg_menu_text bl_cg\"> <a href=\"./main.jsp\">BL</a> </div> </li>"
+			"<li {here}> <div class=\"cg_menu cg_menu_text normal_cg\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=main\">일반</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text rom_cg\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=romance\">로맨스</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text fan_cg\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=fantasy\">판타지</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text car_cg\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=cartoon\">만화</a> </div> </li>",
+			"<li {here}> <div class=\"cg_menu cg_menu_text bl_cg\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl\">BL</a> </div> </li>"
 	};
 	
 	if(isMain) {
@@ -57,6 +67,8 @@
 		subMenuList[3] = subMenuList[3].replace("{here}", "");
 		subMenuList[4] = subMenuList[4].replace("{here}", "class=\"active\"");
 	}
+	
+	
 %>
 
 <body>
@@ -66,7 +78,7 @@
                     <div class="hd_nav_box">
                         <ul class="logo_box">
                             <li class="rb_logo">
-                                <a aria-label="리디북스 홈으로 이동" href="index.html">
+                                <a aria-label="리디북스 홈으로 이동" href="http://localhost/ridibooks.com">
                                     <svg viewBox="0 0 316 49" class="rb_logo_text">
                                         <title>리디북스</title>
                                         <path
@@ -76,7 +88,7 @@
                                 </a>
                             </li>
                             <li class="rs_logo">
-                                <a href="#" aria-label="리디셀렉트 홈으로 이동">
+                                <a href="http://localhost/ridibooks.com" aria-label="리디셀렉트 홈으로 이동">
                                     <svg viewBox="0 0 299 48" class="rs_logo_text">
                                         <title>리디셀렉트</title>
                                         <path
@@ -88,10 +100,10 @@
                         </ul>
                         <ul class="h_btn_box">
                             <li>
-                                <a class="join_btn" href="../account/join_step.jsp">회원가입</a>
+                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
                             </li>
                             <li>
-                                <a class="login_btn" href="../account/login.jsp">로그인</a>
+                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
                             </li>
                         </ul>
                         <form class="h_ip_box" action="./search.html" method="get">
@@ -149,43 +161,341 @@
                                 </a>
                             </div>
                         </li>
-                        
                         <%
-                        	for(String menuBtn: subMenuList) {
-                        		out.print(menuBtn);
+                        	for(String subMenuBtn: subMenuList) {
+                        		out.print(subMenuBtn);
                         	}
                         
                         %>
-<!--                         <li> -->
-<!--                             <div class="cg_menu cg_menu_text normal_cg"> -->
-<!--                                 <a href="./main.jsp">일반</a> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="cg_menu cg_menu_text rom_cg"> -->
-<!--                                 <a href="./romance.jsp">로맨스</a> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="cg_menu cg_menu_text fan_cg"> -->
-<!--                                 <a href="./fantasy.jsp">판타지</a> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="cg_menu cg_menu_text car_cg"> -->
-<!--                                 <a href="./cartoon.jsp">만화</a> -->
-<!--                             </div> -->
-<!--                         </li> -->
-<!--                         <li> -->
-<!--                             <div class="cg_menu cg_menu_text bl_cg"> -->
-<!--                                 <a href="./bl.jsp">BL</a> -->
-<!--                             </div> -->
-<!--                         </li> -->
                     </ul>
                 </li>
                 <li>
                     <hr class="hd_line_style">
                 </li>
+                <c:choose>
+ 				<c:when test="${param.active eq 'romance' }">
+ 					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+                               	boolean isRomance_novel = activeMap.get("romance_novel").equals(currentURI);
+                               	
+                               	String[] romance_type = {
+                               			"<li class=\"sub_web {here2}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=romance_novel\">웹소설</a> </div> </li>",
+                               			"<li class=\"sub_e {here2}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=romance\">e북</a> </div> </li>"
+                               	};
+                               	if(isRomance_novel) {
+                               		romance_type[0] = romance_type[0].replace("{here2}", "");
+                               		romance_type[1] = romance_type[1].replace("{here2}", "active");
+                       			}else{
+                       				romance_type[0] = romance_type[0].replace("{here2}", "active");
+                       				romance_type[1] = romance_type[1].replace("{here2}", "");
+                       			}
+                               	
+                               	for(String typeBtn: romance_type) {
+                               		out.print(typeBtn);
+                               	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+ 				</c:when>
+ 				<c:when test="${param.active eq 'romance_novel' }">
+ 					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+                               	boolean isRomance_novel = activeMap.get("romance_novel").equals(currentURI);
+                               	
+                               	String[] romance_type = {
+                               			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=romance_novel\">웹소설</a> </div> </li>",
+                               			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=romance\">e북</a> </div> </li>"
+                               	};
+                               	if(isRomance_novel) {
+                               		romance_type[0] = romance_type[0].replace("{here}", "");
+                               		romance_type[1] = romance_type[1].replace("{here}", "active");
+                       			}else{
+                       				romance_type[0] = romance_type[0].replace("{here}", "active");
+                       				romance_type[1] = romance_type[1].replace("{here}", "");
+                       			}
+                               	
+                               	for(String typeBtn: romance_type) {
+                               		out.print(typeBtn);
+                               	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+ 				</c:when>
+				<c:when test="${param.active eq 'fantasy' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+   	                        	boolean isFantasy_novel = activeMap.get("fantasy_novel").equals(currentURI);
+   	                        	
+   	                        	String[] fantasy_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=fantasy_novel\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=fantasy\">e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isFantasy_novel) {
+   	                        		fantasy_type[0] = fantasy_type[0].replace("{here}", "");
+   	                        		fantasy_type[1] = fantasy_type[1].replace("{here}", "active");
+   	                			}else{
+   	                				fantasy_type[0] = fantasy_type[0].replace("{here}", "active");
+   	                				fantasy_type[1] = fantasy_type[1].replace("{here}", "");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: fantasy_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'fantasy_novel' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+   	                        	boolean isFantasy_novel = activeMap.get("fantasy_novel").equals(currentURI);
+   	                        	
+   	                        	String[] fantasy_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=fantasy_novel\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=fantasy\">e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isFantasy_novel) {
+   	                        		fantasy_type[0] = fantasy_type[0].replace("{here}", "");
+   	                        		fantasy_type[1] = fantasy_type[1].replace("{here}", "active");
+   	                			}else{
+   	                				fantasy_type[0] = fantasy_type[0].replace("{here}", "active");
+   	                				fantasy_type[1] = fantasy_type[1].replace("{here}", "");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: fantasy_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'cartoon' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                           	<%
+   	                        	boolean isCartoon_webtoon = activeMap.get("cartoon_webtoon").equals(currentURI);
+   	                        	
+   	                        	String[] cartoon_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=cartoon_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=cartoon\">e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isCartoon_webtoon) {
+   	                        		cartoon_type[0] = cartoon_type[0].replace("{here}", "");
+   	                        		cartoon_type[1] = cartoon_type[1].replace("{here}", "active");
+   	                			}else{
+   	                				cartoon_type[0] = cartoon_type[0].replace("{here}", "active");
+   	                				cartoon_type[1] = cartoon_type[1].replace("{here}", "");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: cartoon_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'cartoon_webtoon' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                           	<%
+   	                        	boolean isCartoon_webtoon = activeMap.get("cartoon_webtoon").equals(currentURI);
+   	                        	
+   	                        	String[] cartoon_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=cartoon_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=cartoon\">e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isCartoon_webtoon) {
+   	                        		cartoon_type[0] = cartoon_type[0].replace("{here}", "");
+   	                        		cartoon_type[1] = cartoon_type[1].replace("{here}", "active");
+   	                			}else{
+   	                				cartoon_type[0] = cartoon_type[0].replace("{here}", "active");
+   	                				cartoon_type[1] = cartoon_type[1].replace("{here}", "");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: cartoon_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'bl' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+	                            boolean isBl_novel = activeMap.get("bl_novel").equals(currentURI);
+   	                        	boolean isBl_webtoon = activeMap.get("bl_webtoon").equals(currentURI);
+                            	boolean isBl_cartoon = activeMap.get("bl_cartoon").equals(currentURI);
+   	                        	
+   	                        	String[] bl_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_novel\">소설 e북</a> </div> </li>",
+   	                        			"<li class=\"sub_webtoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_cartoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_cartoon\">만화 e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isBl_novel) {
+   	                        		bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "active");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_webtoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "active");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_cartoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "active");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: bl_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'bl_novel' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+	                            boolean isBl_novel = activeMap.get("bl_novel").equals(currentURI);
+   	                        	boolean isBl_webtoon = activeMap.get("bl_webtoon").equals(currentURI);
+                            	boolean isBl_cartoon = activeMap.get("bl_cartoon").equals(currentURI);
+   	                        	
+   	                        	String[] bl_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_novel\">소설 e북</a> </div> </li>",
+   	                        			"<li class=\"sub_webtoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_cartoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_cartoon\">만화 e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isBl_novel) {
+   	                        		bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "active");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_webtoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "active");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_cartoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "active");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: bl_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'bl_webtoon' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+	                            boolean isBl_novel = activeMap.get("bl_novel").equals(currentURI);
+   	                        	boolean isBl_webtoon = activeMap.get("bl_webtoon").equals(currentURI);
+                            	boolean isBl_cartoon = activeMap.get("bl_cartoon").equals(currentURI);
+   	                        	
+   	                        	String[] bl_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_novel\">소설 e북</a> </div> </li>",
+   	                        			"<li class=\"sub_webtoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_cartoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_cartoon\">만화 e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isBl_novel) {
+   	                        		bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "active");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                        	}else if(isBl_webtoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "active");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_cartoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "active");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: bl_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+				<c:when test="${param.active eq 'bl_cartoon' }">
+					<li class="sub_sb_menu">
+                        <div>
+                            <ul>
+                            <%
+	                            boolean isBl_novel = activeMap.get("bl_novel").equals(currentURI);
+   	                        	boolean isBl_webtoon = activeMap.get("bl_webtoon").equals(currentURI);
+                            	boolean isBl_cartoon = activeMap.get("bl_cartoon").equals(currentURI);
+   	                        	
+   	                        	String[] bl_type = {
+   	                        			"<li class=\"sub_web {here}\"> <div class=\"right_border_line\"> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl\">웹소설</a> </div> </li>",
+   	                        			"<li class=\"sub_e {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_novel\">소설 e북</a> </div> </li>",
+   	                        			"<li class=\"sub_webtoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_webtoon\">웹툰</a> </div> </li>",
+   	                        			"<li class=\"sub_cartoon {here}\"> <div> <a href=\"http://localhost/ridibooks.com/frontController.jsp?active=bl_cartoon\">만화 e북</a> </div> </li>"
+   	                        	};
+   	                        	if(isBl_novel) {
+   	                        		bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "active");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_webtoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "active");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "");
+   	                			}else if(isBl_cartoon) {
+   	                				bl_type[0] = bl_type[0].replace("{here}", "");
+   	                        		bl_type[1] = bl_type[1].replace("{here}", "");
+   	                        		bl_type[2] = bl_type[2].replace("{here}", "");
+   	                        		bl_type[3] = bl_type[3].replace("{here}", "active");
+   	                			}
+   	                        	
+   	                        	for(String typeBtn: bl_type) {
+   	                        		out.print(typeBtn);
+   	                        	}
+                            %>
+                            </ul>
+                        </div>
+                    </li>
+				</c:when>
+ 			</c:choose>
             </ul>
         </div>
     </div>

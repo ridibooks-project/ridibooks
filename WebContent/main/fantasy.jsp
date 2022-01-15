@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+<link href="./css/fantasy_style.css" rel="stylesheet" type="text/css">
+
 <title>판타지 e북 - 리디북스</title>
-</head>
+
 <body>
 	<section class="darkSlideTab todayRidiTab">
         <div class="dark_sw_wrapper">

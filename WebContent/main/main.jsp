@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<link href="./css/normal_style.css" rel="stylesheet" type="text/css">
+
+<title>일반도서 - 리디북스</title>
+
 <body>
 	
 	<section class="event_slide_tab">
