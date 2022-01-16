@@ -25,9 +25,12 @@ public class MemberService {
 			return statusCode;
 		}
 		
+		LocalDateTime ldt = LocalDateTime.now();
+		
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
 		member.setPw(pw);
+		member.setLogin_date(ldt);
 		
 		MemberDAO dao = new MemberDAO();
 		boolean login = dao.selectMember(member);

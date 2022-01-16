@@ -6,8 +6,8 @@
 
 <%
 	String currentURI = request.getRequestURI();
-	String active = request.getParameter("active");
-	System.out.print("currentURI = " + currentURI + " || active = " + active + "\n");
+//	String active = request.getParameter("active");
+// 	System.out.print("currentURI = " + currentURI + " || active = " + active + "\n");
 
 	Map<String, String> activeMap = new HashMap<>();
 	activeMap.put("main", "main");
@@ -99,12 +99,48 @@
                             </li>
                         </ul>
                         <ul class="h_btn_box">
-                            <li>
-                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
-                            </li>
-                            <li>
-                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
-                            </li>
+<!--                         	<li> -->
+<!--                                 <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a> -->
+<!--                             </li> -->
+<!--                             <li> -->
+<!--                                 <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a> -->
+<!--                             </li> -->
+                        <%
+                        	try{
+                        		if(session.getAttribute("isLogin").equals(true)){	
+                   		%>		
+	                   			<li>
+	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">테스트1</a>
+	                            </li>
+	                            <li>
+	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/myridi.jsp">로그아웃 테스트</a>
+	                            </li>
+                   		<%
+                        		} else {
+                        %>
+                        	
+	                            <li>
+	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
+	                            </li>
+	                            <li>
+	                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
+	                            </li>
+                        <%		
+                        		}
+                        	} catch(NullPointerException e) {
+                        %>
+                        		<li>
+	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
+	                            </li>
+	                            <li>
+	                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
+	                            </li>
+	                    <%
+                        	}
+                   		%>
+                        	
+                        
+                            
                         </ul>
                         <form class="h_ip_box" action="./search.html" method="get">
                             <div tabindex="-1" class="h_ip_wrap">

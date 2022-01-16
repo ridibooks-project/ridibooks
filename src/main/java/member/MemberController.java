@@ -18,12 +18,16 @@ public class MemberController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.loginMember(request, response);
 		
+		System.out.println(statusCode);
+		
+//		response.setStatus(statusCode);
+		
 		if(statusCode == 200) {
 			// 로그인 성공했을 때
-			response.sendRedirect("/ridibooks/html/index.html");
+			response.sendRedirect("http://localhost/ridibooks.com");
 		} else {
 			// 로그인 실패했을 때(Not Found)
-			response.sendRedirect("/ridibooks/account/login.jsp");
+			response.sendRedirect("http://localhost/ridibooks.com/account/login.jsp");
 		}
 	}
 	// 가입, 수정, 탈퇴도 post 메서드로 받으니 controller를 따로 만들 것

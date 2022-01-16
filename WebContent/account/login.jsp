@@ -15,13 +15,13 @@
 	
 		<section>
             <div class="login_wrap">
-                <form action="/ridibooks/member/controller" method="post">
+                <form action="http://localhost/ridibooks.com/member/controller" method="post">
                     <div class="ip_box">
                         <label class="ip_label" for="">
-                            <input class="idpw_ip id_ip" name="login_id" type="text" maxlength="20" placeholder="아이디">
+                            <input class="idpw_ip id_ip" name="login_id" id="login_id" type="text" maxlength="20" placeholder="아이디">
                         </label>
                         <label class="ip_label" for="">
-                            <input class="idpw_ip pw_ip" name="login_pw" type="password" maxlength="25"
+                            <input class="idpw_ip pw_ip" name="login_pw" id="login_pw" type="password" maxlength="25"
                                 placeholder="비밀번호">
                         </label>
                         <div class="ip_btn_box">
@@ -54,6 +54,27 @@
         </section>
     </div>
     <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
+    
+<!--      <script>
+    	let login_id = $("#login_id").val();
+    	let login_pw = $("#login_pw").val();
+    	
+    	$(".login_btn btn_ap").on("click", function() {
+    		$.ajax({
+    			url: "/member/controller",
+    			type: "POST",
+    			datatype: "text";
+    			data: "ID="+login_id+"&PW="+login_pw,
+    			success: function(response.status){
+    				if(status==200){
+    					window.location = "http://localhost/ridibooks.com";
+    				} else{
+    					alert("xx");
+    				};
+    			};
+    		});
+    	});
+    </script> -->
 
 </body>
 </html>

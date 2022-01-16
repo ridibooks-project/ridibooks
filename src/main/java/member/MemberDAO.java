@@ -67,12 +67,14 @@ public class MemberDAO {
 					// db_status가 0 일 때 (회원상태가 정상 일 때)
 					if(db_pw.equals(member.getPw())) {
 						
-						sql = "UPDATE memberinfo SET login_date = ?";
+						sql = "UPDATE memberinfo SET login_date = ? WHERE member_id = ?";
 						
 						PreparedStatement pstmt2 = conn.prepareStatement(sql);
 						pstmt2.setTimestamp(1, Timestamp.valueOf(member.getLogin_date()));
+						pstmt2.setString(2, member.getId());
+						int count = pstmt2.executeUpdate();
 						
-						login = true;
+						login = count == 1;
 						
 						pstmt2.close();
 					}
