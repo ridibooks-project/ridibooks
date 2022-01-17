@@ -172,7 +172,7 @@ pw_input.onfocus = () => {
 pw_input.onblur = () => {
 // 유효성 검사
     let id = id_input.value;
-    let pw = pw_input.value;	
+    let pw = pw_input.value;   
     let num = pw.search(/[0-9]/g);
     let eng = pw.search(/[a-z]/ig);
     let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -206,8 +206,8 @@ pw_input.onblur = () => {
         input_guide[1].style.display = "inline-block";
         input_guide[1].innerHTML = "비밀번호"
         input_guide[1].style.color = "#E64938";
-	}else if(/(\w)\1\1\1/.test(pw)){
-	    error_m_i[1].style.display = "inline-block";
+   }else if(/(\w)\1\1\1/.test(pw)){
+       error_m_i[1].style.display = "inline-block";
         error_wrong[1].style.display = "none";
         error_require[1].style.display = "none";
         error_special.style.display = "inline-block";
@@ -343,7 +343,7 @@ name_input.onfocus = () => {
 }
 
 name_input.onblur = () => {
-    let name = name_input.value;	
+    let name = name_input.value;   
     let num = name.search(/[0-9]/g);
     let spe = name.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
     
@@ -526,51 +526,5 @@ for (let i = 0; i < checkbox_style.length; i++){
         opacity_mo_event[i].style.opacity = "0.6";
     }
 }
-// 체크박스 설정
 
-//submit controller
-let jcb = document.querySelector('.join_complete_btn');
-let checkbox_wrapper = document.querySelector('.join_checkbox_wrapper');
-let join_ac_wrapper = document.querySelector('.join_ac_wrapper');
-jcb.onclick = (e) => {
-    e.preventDefault();
-    if (error_m_i[0].style.display == 'inline-block') {
-        //id input
-        id_input.focus();
-    } else if (error_m_i[1].style.display == 'inline-block') {
-        //pw ip, rpw ip
-        pw_input.focus();
-    } else if (error_m_i[2].style.display == 'inline-block') {
-        //email ip
-        em_input.focus();
-    } else if (error_m_i[3].style.display == 'inline-block') {
-        //name ip
-        name_input.focus();
-    }else if (checkbox_style[1].value == "N") {
-        //checkbox
-        //mi 5 rq 4 wr5 E64938
-        //border-bottom: 1px solid #D6DEEB;
-        //border: 1px solid #D6DEEB;
-        checkbox_style[1].focus();
-        error_m_i[5].style.display = "inline-block";
-        error_require[4].style.display = "inline-block";
-        error_wrong[5].style.display = "none";
-        checkbox_wrapper.style.border = "1px solid #E64938";
-        join_ac_wrapper.style.borderBottom = "1px solid #E64938";
-    } else if (checkbox_style[4].value == "N") {
-        checkbox_style[1].focus();
-        error_m_i[5].style.display = "inline-block";
-        error_require[4].style.display = "none";
-        error_wrong[5].style.display = "inline-block";
-        checkbox_wrapper.style.border = "1px solid #E64938";
-        join_ac_wrapper.style.borderBottom = "1px solid #E64938";
-    } else {
-        error_m_i[5].style.display = "none";
-        error_require[4].style.display = "none";
-        error_wrong[5].style.display = "none";
-        checkbox_wrapper.style.border = "1px solid #D6DEEB";
-        join_ac_wrapper.style.borderBottom = "1px solid #D6DEEB";
-        document.querySelector('.join_form').submit();
-        //gender, name -> 빈값 null로
-    }
-}
+

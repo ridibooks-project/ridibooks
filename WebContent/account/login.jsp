@@ -55,26 +55,25 @@
     </div>
     <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
     
-<!--      <script>
-    	let login_id = $("#login_id").val();
-    	let login_pw = $("#login_pw").val();
+      <script>
     	
-    	$(".login_btn btn_ap").on("click", function() {
+    	$(".login_btn").on("click", function() {
     		$.ajax({
-    			url: "/member/controller",
+    			url: "http://localhost/ridibooks.com/member/controller",
     			type: "POST",
-    			datatype: "text";
-    			data: "ID="+login_id+"&PW="+login_pw,
-    			success: function(response.status){
-    				if(status==200){
-    					window.location = "http://localhost/ridibooks.com";
-    				} else{
-    					alert("xx");
-    				};
-    			};
+    			dataType: "text",
+    			data: "login_id="+$('#login_id').val()+"&login_pw="+$('#login_pw').val(),
+    			success: function(){
+   					location.href = "http://localhost/ridibooks.com";
+   					alert("mm");
+    			},
+    			error: function(){
+   					alert("xx");
+   					location.href = "http://localhost/ridibooks.com/account/login.jsp";
+    			}
     		});
     	});
-    </script> -->
+    </script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 public class MemberService {
 	
 	// 리턴할 http 응답코드 - 기본값으로 입력 값이 없거나, 패턴가 맞지 않을 때의 응답코드로 지정
-	int statusCode = 400;
+	int statusCode;
 	
 	// 로그인
 	public int loginMember(HttpServletRequest request, HttpServletResponse response) {
