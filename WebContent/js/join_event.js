@@ -27,6 +27,7 @@ let name_input = document.querySelector('.join_name_input');
 //이름
 //출생년도
 let birth_input = document.querySelector('.join_birth_input');
+let hidden_input = document.querySelector('.hi_ip');
 //출생년도
 // 남녀 버튼 
 let gender_ip_man = document.querySelector('.gender_ipm');
@@ -172,7 +173,7 @@ pw_input.onfocus = () => {
 pw_input.onblur = () => {
 // 유효성 검사
     let id = id_input.value;
-    let pw = pw_input.value;   
+    let pw = pw_input.value;	
     let num = pw.search(/[0-9]/g);
     let eng = pw.search(/[a-z]/ig);
     let spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -206,8 +207,8 @@ pw_input.onblur = () => {
         input_guide[1].style.display = "inline-block";
         input_guide[1].innerHTML = "비밀번호"
         input_guide[1].style.color = "#E64938";
-   }else if(/(\w)\1\1\1/.test(pw)){
-       error_m_i[1].style.display = "inline-block";
+	}else if(/(\w)\1\1\1/.test(pw)){
+	    error_m_i[1].style.display = "inline-block";
         error_wrong[1].style.display = "none";
         error_require[1].style.display = "none";
         error_special.style.display = "inline-block";
@@ -343,7 +344,7 @@ name_input.onfocus = () => {
 }
 
 name_input.onblur = () => {
-    let name = name_input.value;   
+    let name = name_input.value;	
     let num = name.search(/[0-9]/g);
     let spe = name.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
     
@@ -425,7 +426,8 @@ birth_input.onblur = () => {
         input_guide[5].style.display = "inline-block";
         input_guide[5].innerHTML = "출생년도";
         input_guide[5].style.color = "#738096";
-        document.querySelector('.hi_ip').value == birth_input.value;
+        hidden_input.setAttribute('value', birth);
+        console.log(hidden_input.value);
     }
 
 }
@@ -526,5 +528,83 @@ for (let i = 0; i < checkbox_style.length; i++){
         opacity_mo_event[i].style.opacity = "0.6";
     }
 }
+// 체크박스 설정
+//submit controller
 
+let jcb = document.querySelector('.join_complete_btn');
+let checkbox_wrapper = document.querySelector('.join_checkbox_wrapper');
+let join_ac_wrapper = document.querySelector('.join_ac_wrapper');
+jcb.onclick = (e) => {
+    e.preventDefault();
+    if (error_m_i[0].style.display == 'inline-block') {
+        //id input
+        id_input.focus();
+    } else if (error_m_i[1].style.display == 'inline-block') {
+        //pw ip, rpw ip
+        pw_input.focus();
+    } else if (error_m_i[2].style.display == 'inline-block') {
+        //email ip
+        em_input.focus();
+    } else if (error_m_i[3].style.display == 'inline-block') {
+        //name ip
+        name_input.focus();
+    }else if (checkbox_style[1].value == "N") {
+        //checkbox
+        //mi 5 rq 4 wr5 E64938
+        //border-bottom: 1px solid #D6DEEB;
+        //border: 1px solid #D6DEEB;
+        checkbox_style[1].focus();
+        error_m_i[5].style.display = "inline-block";
+        error_require[4].style.display = "inline-block";
+        error_wrong[5].style.display = "none";
+        checkbox_wrapper.style.border = "1px solid #E64938";
+        join_ac_wrapper.style.borderBottom = "1px solid #E64938";
+    } else if (checkbox_style[4].value == "N") {
+        checkbox_style[1].focus();
+        error_m_i[5].style.display = "inline-block";
+        error_require[4].style.display = "none";
+        error_wrong[5].style.display = "inline-block";
+        checkbox_wrapper.style.border = "1px solid #E64938";
+        join_ac_wrapper.style.borderBottom = "1px solid #E64938";
+    } else {
+        error_m_i[5].style.display = "none";
+        error_require[4].style.display = "none";
+        error_wrong[5].style.display = "none";
+        checkbox_wrapper.style.border = "1px solid #D6DEEB";
+        join_ac_wrapper.style.borderBottom = "1px solid #D6DEEB";
+        $.ajax({
+            url: "http://localhost/ridibooks.com/signup/controller",
+            type: "POST",
+            dataType: "text",
+            data: "sign_id="+ id_input.value
+                +"&sign_pw="+ pw_input.value
+                +"&sign_pwChk="+rpw_input.value
+                +"&sign_email="+ em_input.value
+                +"&sign_name="+ name_input.value
+                +"&sign_year=" + birth_input.value
+                + "&sign_gender=" + gender_input.value
+                + "&all_agree=" + checkbox_style[0].value
+                + "&terms_agree=" + checkbox_style[1].value
+                +"&marketing_agree="+checkbox_style[2].value
+                +"&select_agree="+checkbox_style[3].value
+                +"&privacy_agree="+checkbox_style[4].value,
+            success: function () {
+                location.href = "http://localhost/ridibooks.com";
+                alert("success");
+            },
+            error: function (response) {
+                    //join interface 400 response
+                    if (response.status == 400) {
+                        //join interface 400 response
+                        alert("400");
+                        location.href = "http://localhost/ridibooks.com/account/signup.jsp";
 
+                    } else{
+                        //join interface 404 response
+                        alert("404");
+                        location.href = "http://localhost/ridibooks.com/account/signup.jsp";
+                    }
+            }
+        });
+    }
+}

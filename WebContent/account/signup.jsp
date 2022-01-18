@@ -64,7 +64,7 @@
                                 <label for="">
                                     <div>
                                         <span class="input_guide">8자 이상, 영문/숫자/특수문자중 2가지 이상 입력</span>
-                                        <input type="password" name="sign_pw" id="sign_pw" autocapitalize="off" autocomplete="off"
+                                        <input type="password" name="sign_pw" autocapitalize="off" autocomplete="off"
                                             autocorrect="off" class="ji_style join_pw_input" placeholder="비밀번호"
                                             required>
                                         <span class="success_mes"><i class="fas fa-check"></i></span>
@@ -72,7 +72,7 @@
                                     <div>
                                         <span class="input_guide">비밀번호 재입력</span>
                                         <input autocapitalize="off" autocomplete="off" autocorrect="off" type="password"
-                                            name="sign_pwChk" id="sign_pwChk" class="ji_style join_rpw_input" placeholder="비밀번호 확인"
+                                            name="sign_pwChk" class="ji_style join_rpw_input" placeholder="비밀번호 확인"
                                             required>
                                         <span class="success_mes"><i class="fas fa-check"></i></span>
                                     </div>
@@ -240,38 +240,9 @@
             </div>
         </section>
     </div>
+    
     <script src="../js/fontawesome.js"></script>
     <script src="../js/join_event.js"></script>
     
-	<script>
-    
-    $(".join_complete_btn").on("click", function() {
-    	$.ajax({
-            url: "http://localhost/ridibooks.com/signup/controller",
-            type: "POST",
-            dataType: "text",
-            data: "sign_id="+$('#sign_id').val()
-                +"&sign_pw="+$('#sign_pw').val()
-                +"&sign_pwChk="+$('#sign_pwChk').val()
-                +"&sign_email="+$('#sign_email').val()
-                +"&sign_name="+$('#sign_name').val()
-                +"&sign_year="+$('#sign_year').val()
-                +"&sign_gender="+$('#sign_gender').val()
-                +"&marketing_agree="+$('#marketing_agree').val()
-                +"&select_agree="+$('#select_agree').val(),
-            success: function () {
-                location.href = "http://localhost/ridibooks.com";
-                alert("mm");
-            },
-            error: function () {
-                    //join interface 400 response
-                    alert("입력값을 확인해주세요!");
-                    location.href = "http://localhost/ridibooks.com/account/signup.jsp";
-            }
-        });
-	});
-
-    </script>
-
 </body>
 </html>

@@ -146,7 +146,7 @@ public class MemberDAO {
 			pstmt.setString(2, member.getPw());
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getName());
-			pstmt.setString(5, member.getYear());
+			pstmt.setInt(5, member.getYear());
 			pstmt.setString(6, member.getGender());
 			pstmt.setString(7, member.getMarketing_agree());
 			pstmt.setString(8, member.getSelect_agree());

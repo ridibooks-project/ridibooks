@@ -10,13 +10,13 @@ public class MemberDTO {
 	private String name;				// 이름
 	private String year;				// 출생년도(4자리)
 	private String gender;				// 성별 (남,여)
-	private String marketing_agree;		// 마케팅 수신여부(Y,N)
-	private String select_agree;		// 개인정보제공 동의여부(Y,N)
+	private char marketing_agree;		// 마케팅 수신여부(Y,N)
+	private char select_agree;		// 개인정보제공 동의여부(Y,N)
 	private LocalDateTime signup_date;	// 회원가입 날짜
 	private LocalDateTime login_date;	// 마지막 로그인 날짜
 	private int cash;					// 보유 캐쉬
 	private int point;					// 보유 포인트
-	private String status;				// 회원상태(1-정상 / 2-탈퇴)
+	private int status;				// 회원상태(1-정상 / 2-탈퇴)
 	private String pwChk;				// 비밀번호 확인
 
 	public String getId() {
@@ -67,19 +67,19 @@ public class MemberDTO {
 		this.gender = gender;
 	}
 
-	public String getMarketing_agree() {
+	public char getMarketing_agree() {
 		return marketing_agree;
 	}
 
-	public void setMarketing_agree(String marketing_agree) {
+	public void setMarketing_agree(char marketing_agree) {
 		this.marketing_agree = marketing_agree;
 	}
 
-	public String getSelect_agree() {
+	public char getSelect_agree() {
 		return select_agree;
 	}
 
-	public void setSelect_agree(String select_agree) {
+	public void setSelect_agree(char select_agree) {
 		this.select_agree = select_agree;
 	}
 
@@ -115,11 +115,11 @@ public class MemberDTO {
 		this.point = point;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

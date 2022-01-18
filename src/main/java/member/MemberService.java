@@ -117,6 +117,16 @@ public class MemberService {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
+		// 마케팅 수신동의 미체크 시 N 지정
+		if(marketing_agree.isEmpty() || marketing_agree == null) {
+			marketing_agree = "N";
+		}
+		
+		// 선택동의 미체크 시 N 지정
+		if(select_agree.isEmpty() || select_agree == null) {
+			select_agree = "N";
+		}
+		
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
 		
