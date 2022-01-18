@@ -8,8 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class MemberService {
 	
-	// 리턴할 http 응답코드 - 기본값으로 입력 값이 없거나, 패턴가 맞지 않을 때의 응답코드로 지정
-	int statusCode = 400;
+	int statusCode;
 	
 	// 로그인
 	public int loginMember(HttpServletRequest request, HttpServletResponse response) {
@@ -33,9 +32,20 @@ public class MemberService {
 		member.setLogin_date(ldt);
 		
 		MemberDAO dao = new MemberDAO();
-		boolean login = dao.selectMember(member);
+		String db_pw = dao.checkMemberById(member);
 		
-		if(login) {
+		if(db_pw.equals(member.getPw())) {
+			
+			dao = new MemberDAO();
+			boolean insertDate = dao.insertLoginDate(member);
+			
+			// db에 로그인date가 추가되지 않았다면
+			if(!insertDate) {
+				statusCode = HttpServletResponse.SC_BAD_REQUEST;
+				
+				return statusCode;
+			}
+			
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("isLogin", true);
@@ -67,19 +77,14 @@ public class MemberService {
 		String gender = request.getParameter("sign_gender");
 		String marketing_agree = request.getParameter("marketing_agree");
 		String select_agree = request.getParameter("select_agree");
-
 		
-		// ----- 아이디 패턴 확인
-		// 5~20자 영문/숫자 입력
-		String idPattern = "^.*(?=.*[0-9])(?=.*[a-zA-Z])(?=^.{5,20}$).*$";
+		// 아이디 패턴 확인 - 5~20자 영문/숫자 입력
+		String idPattern = "^.*(?=.*[0-9a-zA-Z])(?=^.{5,20}$).*$";
 		if(!id.matches(idPattern)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
-		// ----- 아이디 패턴 확인
 		
-		
-		// ----- 비밀번호 패턴확인
-		// 비닐번호 패턴 - 8자 이상, 영문/숫자/특수문자 중 2가지 이상 포함
+		// 비밀번호 패턴 확인 - 8자 이상, 영문/숫자/특수문자 중 2가지 이상 포함
 		// 패턴1 - 숫자/영문/특수문자 모두 포함 8자 이상
 		String pwPattern1 = "^.*(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";	
 		// 패턴2 - 숫자/영문 포함 8자 이상
@@ -93,48 +98,23 @@ public class MemberService {
 		if(!pw.matches(pwPattern1) && !pw.matches(pwPattern2) && !pw.matches(pwPattern3) && !pw.matches(pwPattern4) ) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
-		// ----- 비밀번호 패턴확인
 		
-		
-		// ----- 비밀번호 입력 확인
+		// 비밀번호 입력 확인 - pw == Chk 확인
 		if(!pw.equals(pwChk)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
-		// ----- 비밀번호 입력 확인
 		
-		
-		// ----- 이메일 패턴 확인
-		// 나중에 좀더 정확하게 확인가능한 패턴으로 변경할 것
+		// 이메일 패턴 확인
 		String emailPattern = "^[a-zA-Z0-9]*@[a-zA-Z]*+.[a-zA-Z]([.a-zA-Z]).*$";
 		if(!email.matches(emailPattern)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
-		// ----- 이메일 패턴 확인
 		
-		
-		// ----- 이름 패턴 확인
-		// 2글자 이상의 한글,영어
+		// 이름 패턴 확인 - 2글자 이상의 한글,영어
 		String namePattern = "^.*(?=.*[가-힣a-zA-Z])(?=^.{2,}$).*$";
 		if(!name.matches(namePattern)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
-		// ----- 이름 패턴 확인
-		
-		
-		// ----- 선택동의 값 설정
-		// 이럴 필요 없이 html에서 value값을 넣으면 체크 시 value값이 넘어오지 않을까 - 추후 확인 후 변경해볼 것
-		if(marketing_agree == null) {
-			marketing_agree = "N";
-		} else {
-			marketing_agree = "Y";
-		}
-		if(select_agree == null) {
-			select_agree = "N";
-		} else {
-			select_agree = "Y";
-		}
-		// ----- 선택동의 값 설정
-		
 		
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
@@ -154,13 +134,8 @@ public class MemberService {
 		boolean signup = dao.insertMember(member);
 		
 		if(signup) {
-			// 회원가입 성공 201
 			statusCode = HttpServletResponse.SC_CREATED;
 		} else {
-			// 회원가입 실패
-			// 근데 id 입력하면서 중복 확인하고 이메일 입력하면서 중복확인하면
-			// 실패할 이유가 있을까
-			// 또 이렇게 하려면 id중복확인 dao, 이메일확인 dao를 따로 만들어야 하는가
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		}
 		
@@ -215,7 +190,7 @@ public class MemberService {
 	}
 	
 	// 아이디 찾기
-	public int findId(HttpServletRequest request, HttpServletResponse response) {
+	public int checkMemberByEmail(HttpServletRequest request, HttpServletResponse response) {
 		String email = request.getParameter("find_email");
 		
 		// 받은 이메일이 비어있거나 null일 경우
@@ -230,18 +205,18 @@ public class MemberService {
 		member.setEmail(email);
 		
 		MemberDAO dao = new MemberDAO();
-		String findId = dao.findId(member);
+		String db_id = dao.checkMemberByEmail(member);
 		
-		if(findId.isEmpty() || findId == null) {
+		if(db_id.isEmpty() || db_id == null) {
 			// 찾아온 아이디가 없을 때
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		} else {
-			// 있을 때
+			// 있을 때 - 세션보다는 printwriter 사용
 			statusCode = HttpServletResponse.SC_OK;
 			
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("findId", findId);
+			session.setAttribute("findId", db_id);
 		}
 		
 		return statusCode;

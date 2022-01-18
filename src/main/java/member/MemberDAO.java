@@ -34,26 +34,18 @@ public class MemberDAO {
 		return null;
 	}
 	
-	// db 정보 조회 - 로그인
-	
-	// 코드 수정 필요
-	// 1. MemberService 로 가서 비밀번호를 체크하지 말고 여기서 체크하고
-	//    체크 후 맞는지 아닌지 결과 값을 return
-	// 2. 만약 비밀번호가 맞으면 db에서 해당 id의 login_date 값을 수정하는 코드 추가
-	public boolean selectMember(MemberDTO member) {
+	// db 정보 조회 - id를 이용해 회원 조회
+	public String checkMemberById(MemberDTO member) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		boolean login = false;
-		
 		String db_pw = "";
-		String db_status = "";
 		
 		try {
 			conn = getConnection();
-			
-			String sql = "SELECT member_pw, status FROM memberinfo WHERE member_id = ?";
+			// 입력한 id와 status(회원상태)가 0(정상)일 때를 조회
+			String sql = "SELECT member_pw FROM memberinfo WHERE member_id = ? AND m_status = 0";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getId());
@@ -61,26 +53,57 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				db_pw = rs.getString("member_pw");
-				db_status = rs.getString("status");
-				
-				if(db_status.equals("0")) {
-					// db_status가 0 일 때 (회원상태가 정상 일 때)
-					if(db_pw.equals(member.getPw())) {
-						
-						sql = "UPDATE memberinfo SET login_date = ? WHERE member_id = ?";
-						
-						PreparedStatement pstmt2 = conn.prepareStatement(sql);
-						pstmt2.setTimestamp(1, Timestamp.valueOf(member.getLogin_date()));
-						pstmt2.setString(2, member.getId());
-						int count = pstmt2.executeUpdate();
-						
-						login = count == 1;
-						
-						pstmt2.close();
-					}
+			}
+			
+		} catch(SQLException e) {
+//			e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
 				}
 			}
-			rs.close();
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// db의 비밀번호 값 리턴 / 없으면 "" 리턴
+		return db_pw;
+	}
+	
+	// db 로그인date 추가
+	public boolean insertLoginDate(MemberDTO member) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		boolean insertDate = false;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "UPDATE memberinfo SET login_date = ? WHERE member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setTimestamp(1, Timestamp.valueOf(member.getLogin_date()));
+			pstmt.setString(2, member.getId());
+			
+			int count = pstmt.executeUpdate();
+			
+			insertDate = count == 1;
 			
 		} catch(SQLException e) {
 //			e.printStackTrace();
@@ -101,8 +124,10 @@ public class MemberDAO {
 				}
 			}
 		}
-		return login;
+		// 성공적으로 추가되었다면 true / 아니면 false 리턴
+		return insertDate;
 	}
+	
 	
 	// db 정보 추가 - 회원가입
 	public boolean insertMember(MemberDTO member) {
@@ -128,7 +153,6 @@ public class MemberDAO {
 			pstmt.setString(8, member.getSelect_agree());
 			pstmt.setTimestamp(9, Timestamp.valueOf(member.getSignup_date()));
 			
-			// executeUpdate() 값이 얼마인지 확인할 것
 			int count = pstmt.executeUpdate();
 			
 			signup = count == 1;
@@ -217,41 +241,38 @@ public class MemberDAO {
 		return delete;
 	}
 	
-	// db - id찾기
-	public String findId(MemberDTO member) {
+	// db 정보 조회 - email를 이용해 회원 조회
+	public String checkMemberByEmail(MemberDTO member) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String db_id = "";
-		String db_status = "";
 		
 		try {
 			conn = getConnection();
 			
-			String sql = "SELECT member_id, status FROM memberinfo WHERE member_email = ?";
+			String sql = "SELECT member_id FROM memberinfo WHERE member_email = ? AND m_status = 0";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getEmail());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				db_status = rs.getString("status");
-				
-				if(db_status.equals("0")) {
-					// db_status가 0 일 때 (회원상태가 정상 일 때)
-					
-					db_id = rs.getString("member_id");
-					
-				}
+				db_id = rs.getString("member_id");
 			}
-			rs.close();
-			
 		} catch(SQLException e) {
 //			e.printStackTrace();
 			System.out.println("SQL 예외");
 		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
 			if(pstmt != null) {
 				try {
 					pstmt.close();

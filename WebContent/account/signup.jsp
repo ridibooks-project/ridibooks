@@ -15,7 +15,7 @@
 	
 		<section>
             <div class="join_wrap">
-                <form action="/ridibooks/signup/controller" method="post" class="join_form">
+                <form action="http://localhost/ridibooks.com/signup/controller" method="post" class="join_form">
                     <div class="join_ip_wrapper">
                         <div class="join_id_wrapper">
                             <div>
