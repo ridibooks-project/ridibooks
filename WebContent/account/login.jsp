@@ -26,7 +26,8 @@
                         </label>
                         <div class="ip_btn_box">
                             <div class="ch_wrap">
-                                <input class="ch_ip" type="checkbox" name="stay_login">
+								<input type="checkbox"class="stay_login">
+                                <input class="hd_chk_ip" type="hidden" name="stay_login" value="off">
                                 <span>로그인 상태 유지</span>
                             </div>
                             <div class="findidpw_box">
@@ -54,26 +55,7 @@
         </section>
     </div>
     <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
-    
-      <script>
-    	
-    	$(".login_btn").on("click", function() {
-    		$.ajax({
-    			url: "http://localhost/ridibooks.com/member/controller",
-    			type: "POST",
-    			dataType: "text",
-    			data: "login_id="+$('#login_id').val()+"&login_pw="+$('#login_pw').val(),
-    			success: function(){
-   					location.href = "http://localhost/ridibooks.com";
-   					alert("mm");
-    			},
-    			error: function(){
-   					alert("xx");
-   					location.href = "http://localhost/ridibooks.com/account/login.jsp";
-    			}
-    		});
-    	});
-    </script>
+    <script src="../js/login_event.js"></script>
 
 </body>
 </html>

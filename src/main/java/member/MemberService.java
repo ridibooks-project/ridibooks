@@ -1,6 +1,7 @@
 package member;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,10 +9,7 @@ import javax.servlet.http.HttpSession;
 
 public class MemberService {
 	
-<<<<<<< HEAD
-	// 리턴할 http 응답코드 - 기본값으로 입력 값이 없거나, 패턴가 맞지 않을 때의 응답코드로 지정
-=======
->>>>>>> 630ce357bc3daa2c87f4054eb07c05823f55129f
+	// 리턴할 http 응답코드
 	int statusCode;
 	
 	// 로그인
@@ -36,14 +34,13 @@ public class MemberService {
 		member.setLogin_date(ldt);
 		
 		MemberDAO dao = new MemberDAO();
-		String db_pw = dao.checkMemberById(member);
+		String db_pw = dao.selectMemberById(member);
 		
 		if(db_pw.equals(member.getPw())) {
 			
 			dao = new MemberDAO();
-			boolean insertDate = dao.insertLoginDate(member);
+			boolean insertDate = dao.updateLoginDate(member);
 			
-			// db에 로그인date가 추가되지 않았다면
 			if(!insertDate) {
 				statusCode = HttpServletResponse.SC_BAD_REQUEST;
 				
@@ -55,11 +52,11 @@ public class MemberService {
 			session.setAttribute("isLogin", true);
 			session.setAttribute("id", id);
 			
-			if(stay_login == null) {
-				// 로그인상태유지 체크가 안되어 있었다면
+			if(stay_login == null || stay_login.equals("N") || stay_login.isEmpty()) {
+				// 로그인 상태유지 체크X
 				session.setMaxInactiveInterval(3600);	// 1시간
 			} else {
-				// 체크 되었다면
+				// 로그인 상태유지 체크
 				session.setMaxInactiveInterval(3600 * 24 * 3);	// 3일
 			}
 			statusCode = HttpServletResponse.SC_OK;
@@ -155,16 +152,6 @@ public class MemberService {
 	// 회원 탈퇴
 	public int deleteMember(HttpServletRequest request, HttpServletResponse response) {
 		
-		// 어차피 로그인을 해야 마이리디 페이지에 접속 가능하니 로그인 상태를 확인하는 코드는 필요 없을 듯
-		// 그럼 회원상태가 정상이 아니면 로그인도 안되게 할 거니 회원상태 확인하는 코드도 필요 없을지도
-//		HttpSession session = request.getSession();
-//		
-//		boolean isLogin = (boolean) session.getAttribute("isLogin");
-//		
-//		if(isLogin) {
-//			
-//		}
-		
 		HttpSession session = request.getSession();
 		
 		// 로그인할 때 id 값을 세션에 저장했으니 불러와서 저장
@@ -174,21 +161,19 @@ public class MemberService {
 		
 		MemberDTO member = new MemberDTO();
 		member.setId(loginId);
-		member.setPwChk(delete_pwChk);
 		
 		MemberDAO dao = new MemberDAO();
-		boolean delete = dao.deleteMember(member);
-			
-		if(delete) {
-			statusCode = HttpServletResponse.SC_OK;
-				
-			// 회원탈퇴하면 로그아웃 되게 만들기 - 세션 제거 뭐가 좋을지 찾아보기
-			// 해당 세션의 값 삭제
-			session.removeAttribute("isLogin");
-			session.removeAttribute("id");
-				
-			// 세션 전체 제거
-//			session.invalidate();
+		String db_pw = dao.selectMemberById(member);
+		
+		if(db_pw.equals(delete_pwChk)) {
+			dao = new MemberDAO();
+			boolean delete = dao.deleteMember(member);
+			if(delete) {
+				statusCode = HttpServletResponse.SC_OK;
+					
+				// 세션 전체 제거
+				session.invalidate();
+			}
 		}
 		return statusCode;
 	}
@@ -245,22 +230,49 @@ public class MemberService {
 		member.setEmail(email);
 		
 		MemberDAO dao = new MemberDAO();
-		String findPw = dao.findPw(member);
+		String db_id = dao.checkMemberByEmail(member);
 		
-		if(findPw.isEmpty() || findPw == null) {
-			// findPw가 없는 경우 -> 전달 받은 id,email에 해당하는 데이터가 DB에 없는 경우 / 회원상태1(탈퇴)인 경우
-			// 404 반환
-			statusCode = HttpServletResponse.SC_NOT_FOUND;
-		} else {
-			// 찾은 경우 200 반환
-			statusCode = HttpServletResponse.SC_OK;
+		if(db_id.equals(member.getId())) {
+			Random random = new Random();
 			
-			// 이메일로 임시 비밀번호 전달이 불가능하니 id찾기 처럼 값을 보여줄 예정
-			HttpSession session = request.getSession();
+			StringBuffer tempPw = new StringBuffer();
+			// 임시 비밀번호 10자리로 지정
+			for(int i=0; i<10; i++) {
+				// 숫자,영문대문자,영문소문자 3개지를 랜덤으로
+				int j = random.nextInt(3);
+				switch(j) {
+				// j가 0일 때 숫자 출력		// 0~9
+				case 0:
+					tempPw.append((random.nextInt(10)));
+					break;
+				// j가 1일 때 소문자 출력		// 아스키코드 97~122 -> a-z
+				case 1:
+					tempPw.append((char) ((int) (random.nextInt(26))+97 ));
+					break;
+				// j가 2일 때 대문자 출력		// 아스키코드 65~90 -> A-Z
+				case 2:
+					tempPw.append((char) ((int) (random.nextInt(26))+65 ));
+					break;
+				}
+			}
 			
-			session.setAttribute("findPw", findPw);
+			String newPw = tempPw.toString();
+			member.setPw(newPw);
+			
+			dao = new MemberDAO();
+			boolean update = dao.updatePw(member);
+			
+			if(update) {
+				statusCode = HttpServletResponse.SC_OK;
+				
+				// 이것도 아이디 찾기처럼
+				HttpSession session = request.getSession();
+				
+				session.setAttribute("findPw", newPw);
+			} else {
+				statusCode = HttpServletResponse.SC_NOT_FOUND;
+			}
 		}
-	
 		return statusCode;
 	}
 	

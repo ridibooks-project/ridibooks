@@ -19,7 +19,7 @@
 		<%
 			session.invalidate();
 		
-		response.sendRedirect("http://localhost/ridibooks.com");
+			response.sendRedirect("http://localhost/ridibooks.com");
 		%>
 		
 	});
