@@ -25,13 +25,13 @@ public class SignupController extends HttpServlet {
 		
 //		if(statusCode == 201) {
 //			// 회원가입 성공했을 때
-//			response.sendRedirect("/ridibooks.com/html/index.html");
+//			response.sendRedirect("http://localhost/ridibooks.com");
 //		} else if(statusCode == 400) {
 //			// 회원가입 실패했을 때
-//			response.sendRedirect("/ridibooks.com/account/signup.jsp");
+//			response.sendRedirect("http://localhost/ridibooks.com/account/signup.jsp");
 //		} else {
 //			// 회원가입 실패했을 때 - 404
-//			response.sendRedirect("/ridibooks.com/account/signup.jsp");
+//			response.sendRedirect("http://localhost/ridibooks.com/account/signup.jsp");
 //		}
 	}
 }
