@@ -1,12 +1,12 @@
 package member;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/find/controller")
 public class FindController extends HttpServlet {
@@ -19,9 +19,22 @@ public class FindController extends HttpServlet {
 		
 		System.out.println(statusCode);
 		
-		HttpSession session = request.getSession();
+//		response.setStatus(statusCode);
 		
-		System.out.println(session.getAttribute("findId"));
+		if(statusCode == 200) {
+			// 회원탈퇴 성공했을 때
+			
+			
+//			PrintWriter out = response.getWriter();
+//			
+//			out.close();
+
+			response.sendRedirect("http://localhost/ridibooks.com/account/testview.jsp");
+		} else {
+			// 회원탈퇴 실패했을 때 - 400
+			response.sendRedirect("http://localhost/ridibooks.com/account/findID.jsp");
+		}
+		
 	}
 
 	// 비밀번호 재설정
@@ -31,8 +44,20 @@ public class FindController extends HttpServlet {
 		
 		System.out.println(statusCode);
 		
-		HttpSession session = request.getSession();
+//		response.setStatus(statusCode);
 		
-		System.out.println(session.getAttribute("findPw"));
+		if(statusCode == 200) {
+			// 회원탈퇴 성공했을 때
+			
+			
+//			PrintWriter out = response.getWriter();
+//			
+//			out.close();
+
+			response.sendRedirect("http://localhost/ridibooks.com/account/testview.jsp");
+		} else {
+			// 회원탈퇴 실패했을 때 - 400
+			response.sendRedirect("http://localhost/ridibooks.com/account/findPW.jsp");
+		}
 	}
 }

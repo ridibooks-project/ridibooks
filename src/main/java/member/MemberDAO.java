@@ -146,12 +146,11 @@ public class MemberDAO {
 			pstmt.setString(2, member.getPw());
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getName());
-			pstmt.setInt(5, member.getYear());
+			pstmt.setString(5, member.getYear());
 			pstmt.setString(6, member.getGender());
 			pstmt.setString(7, member.getMarketing_agree());
 			pstmt.setString(8, member.getSelect_agree());
 			pstmt.setTimestamp(9, Timestamp.valueOf(member.getSignup_date()));
-			
 			int count = pstmt.executeUpdate();
 			
 			signup = count == 1;
@@ -196,8 +195,7 @@ public class MemberDAO {
 			String sql = "UPDATE memberinfo SET m_status = 1 WHERE member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setTimestamp(1, Timestamp.valueOf(member.getLogin_date()));
-			pstmt.setString(2, member.getId());
+			pstmt.setString(1, member.getId());
 			
 			int count = pstmt.executeUpdate();
 			
@@ -222,7 +220,6 @@ public class MemberDAO {
 				}
 			}
 		}
-		// 성공적으로 추가되었다면 true / 아니면 false 리턴
 		return delete;
 	}
 

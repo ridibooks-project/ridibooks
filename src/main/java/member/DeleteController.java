@@ -15,12 +15,14 @@ public class DeleteController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.deleteMember(request, response);
 		
+		response.setStatus(statusCode);
+		
 		if(statusCode == 200) {
 			// 회원탈퇴 성공했을 때
-			response.sendRedirect("#");
+			response.sendRedirect("리디북스 홈");
 		} else {
 			// 회원탈퇴 실패했을 때 - 400
-			response.sendRedirect("#");
+			response.sendRedirect("회원탈퇴하는페이지");
 		}
 	}
 }

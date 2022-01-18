@@ -127,6 +127,16 @@ public class MemberService {
 			select_agree = "N";
 		}
 		
+		// 성별 미체크 시 기본값 null 지정
+		if(gender.isEmpty() || gender == null) {
+			gender = null;
+		}
+		
+		// 년도 미입력 시 기본값 null 지정
+		if(year.isEmpty() || year == null) {
+			year = null;
+		}
+		
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
 		
@@ -181,7 +191,6 @@ public class MemberService {
 			if(delete) {
 				statusCode = HttpServletResponse.SC_OK;
 					
-				// 세션 전체 제거
 				session.invalidate();
 			}
 		}
@@ -189,7 +198,7 @@ public class MemberService {
 	}
 	
 	// 아이디 찾기
-	public int checkMemberByEmail(HttpServletRequest request, HttpServletResponse response) {
+	public int findId(HttpServletRequest request, HttpServletResponse response) {
 		String email = request.getParameter("find_email");
 		
 		// 받은 이메일이 비어있거나 null일 경우
@@ -213,11 +222,13 @@ public class MemberService {
 			// 있을 때 - 세션보다는 printwriter 사용
 			statusCode = HttpServletResponse.SC_OK;
 			
+			member.setId(db_id);
+			
 			HttpSession session = request.getSession();
 			
-			session.setAttribute("findId", db_id);
+			session.setAttribute("findId", member.getId());
+			
 		}
-		
 		return statusCode;
 	}
 	
@@ -303,7 +314,6 @@ public class MemberService {
 		member.setId(id);
 		
 		MemberDAO dao = new MemberDAO();
-		
 		boolean checkId = dao.checkId(member);
 		
 		if(checkId) {
