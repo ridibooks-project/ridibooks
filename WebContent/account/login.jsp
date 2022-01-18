@@ -15,7 +15,7 @@
 	
 		<section>
             <div class="login_wrap">
-                <form action="http://localhost/ridibooks.com/signup/controller" method="post">
+                <form action="http://localhost/ridibooks.com/member/controller" method="post">
                     <div class="ip_box">
                         <label class="ip_label" for="">
                             <input class="idpw_ip id_ip" name="login_id" id="login_id" type="text" maxlength="20" placeholder="아이디">
@@ -54,27 +54,6 @@
         </section>
     </div>
     <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
-    
-    <script>
-    	let login_id = $("#login_id").val();
-    	let login_pw = $("#login_pw").val();
-    	
-    	$(".login_btn btn_ap").on("click", function() {
-    		$.ajax({
-    			url: "http://localhost/ridibooks.com/member/controller",
-    			type: "POST",
-    			datatype: "text";
-    			data: "ID="+login_id+"&PW="+login_pw,
-    			success: function(response.status){
-    				if(status==200){
-    					window.location = "http://localhost/ridibooks.com";
-    				} else{
-    					alert("xx");
-    				};
-    			};
-    		});
-    	});
-    </script>
-
+    <script src="../js/login_event.js"></script>
 </body>
 </html>

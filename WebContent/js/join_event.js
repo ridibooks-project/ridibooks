@@ -572,33 +572,39 @@ jcb.onclick = (e) => {
         error_wrong[5].style.display = "none";
         checkbox_wrapper.style.border = "1px solid #D6DEEB";
         join_ac_wrapper.style.borderBottom = "1px solid #D6DEEB";
-        
         $.ajax({
             url: "http://localhost/ridibooks.com/signup/controller",
-            type: "post",
-            dataType: 'text',
-            headers : { 
-                "Content-Type" : "application/json",
-                "X-HTTP-Method-Override" : "POST"
-              },
-            data: data,
-            success: function (data) {
-                    alert(data);
-                    location.href = "http://localhost/ridibooks.com";
+            type: "POST",
+            dataType: "text",
+            data: "sign_id="+ id_input.value
+                +"&sign_pw="+ pw_input.value
+                +"&sign_pwChk="+rpw_input.value
+                +"&sign_email="+ em_input.value
+                +"&sign_name="+ name_input.value
+                +"&sign_year=" + birth_input.value
+                + "&sign_gender=" + gender_input.value
+                + "&all_agree=" + checkbox_style[0].value
+                + "&terms_agree=" + checkbox_style[1].value
+                +"&marketing_agree="+checkbox_style[2].value
+                +"&select_agree="+checkbox_style[3].value
+                +"&privacy_agree="+checkbox_style[4].value,
+            success: function () {
+                location.href = "http://localhost/ridibooks.com";
+                alert("success");
             },
             error: function (response) {
-                if (response.status == 400) {
                     //join interface 400 response
-                    alert("400");
-                } else if (response.status == 404) {
-                    //join interface 404 response
-                    alert("404");
-                } else {
-                    alert("?");
-                }
+                    if (response.status == 400) {
+                        //join interface 400 response
+                        alert("400");
+                        location.href = "http://localhost/ridibooks.com/account/signup.jsp";
+
+                    } else{
+                        //join interface 404 response
+                        alert("404");
+                        location.href = "http://localhost/ridibooks.com/account/signup.jsp";
+                    }
             }
         });
-        document.querySelector('.join_form').submit();
-
     }
 }
