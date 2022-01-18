@@ -27,6 +27,7 @@ let name_input = document.querySelector('.join_name_input');
 //이름
 //출생년도
 let birth_input = document.querySelector('.join_birth_input');
+let hidden_input = document.querySelector('.hi_ip');
 //출생년도
 // 남녀 버튼 
 let gender_ip_man = document.querySelector('.gender_ipm');
@@ -425,7 +426,8 @@ birth_input.onblur = () => {
         input_guide[5].style.display = "inline-block";
         input_guide[5].innerHTML = "출생년도";
         input_guide[5].style.color = "#738096";
-        document.querySelector('.hi_ip').value == birth_input.value;
+        hidden_input.setAttribute('value', birth);
+        console.log(hidden_input.value);
     }
 
 }
@@ -528,6 +530,7 @@ for (let i = 0; i < checkbox_style.length; i++){
 }
 // 체크박스 설정
 //submit controller
+
 let jcb = document.querySelector('.join_complete_btn');
 let checkbox_wrapper = document.querySelector('.join_checkbox_wrapper');
 let join_ac_wrapper = document.querySelector('.join_ac_wrapper');
@@ -572,20 +575,15 @@ jcb.onclick = (e) => {
         
         $.ajax({
             url: "http://localhost/ridibooks.com/signup/controller",
-            type: "POST",
-            dataType: 'json',
-            data: JSON.stringify({
-                sign_id: id_input.value,
-                sign_pw : pw_input.value,
-                sign_email : em_input.value,
-                sign_name : name_input.value,
-                sign_year : birth_input.value,
-                sign_gender : gender_input.value,
-                marketing_agree : checkbox_style[2].value,
-                select_agree : checkbox_style[3].value
-            }),
-            success: function () {
-                    alert('회원가입 성공');
+            type: "post",
+            dataType: 'text',
+            headers : { 
+                "Content-Type" : "application/json",
+                "X-HTTP-Method-Override" : "POST"
+              },
+            data: data,
+            success: function (data) {
+                    alert(data);
                     location.href = "http://localhost/ridibooks.com";
             },
             error: function (response) {

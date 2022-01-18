@@ -4,12 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 - 리디북스</title>
+		<script src="../js/jquery-3.6.0.min.js"></script>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
     <link href="../css/join_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="container">
-		<script src="../js/jquery-3.6.0.min.js"></script>
 		
 		<%@ include file="./header.jsp" %>
 	
