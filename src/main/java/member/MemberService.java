@@ -1,5 +1,7 @@
 package member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -74,7 +76,9 @@ public class MemberService {
 		String pwChk = request.getParameter("sign_pwChk"); // 검증코드를 어디서 쓸지에 따라 삭제할 수도 있음
 		String email = request.getParameter("sign_email");
 		String name = request.getParameter("sign_name");
-		String year = request.getParameter("sign_year");
+		
+		// null로 받으면 에러뜸 수정필요
+		int year = Integer.parseInt(request.getParameter("sign_year"));
 		String gender = request.getParameter("sign_gender");
 		String marketing_agree = request.getParameter("marketing_agree");
 		String select_agree = request.getParameter("select_agree");
@@ -132,13 +136,17 @@ public class MemberService {
 			gender = null;
 		}
 		
-		// 년도 미입력 시 기본값 null 지정
-		if(year.isEmpty() || year == null) {
-			year = null;
-		}
+		// year 을 int 타입으로 했을 때 문제
+		// 년도 미입력 시 기본값 null 지정 -> 파라미터 타입을 int로 바꿧으므로 안됨
+		// 프론트에서 미입력시 전달하는 value 값을 0으로 지정하고 받기
+		// 
+		// db의 타입을 year -> int 로 바꾸기
+		
 		
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
+		
+		
 		
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
@@ -218,17 +226,34 @@ public class MemberService {
 		if(db_id.isEmpty() || db_id == null) {
 			// 찾아온 아이디가 없을 때
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
+			
+			db_id = "가입된 아이디가 없습니다.";
+			
 		} else {
-			// 있을 때 - 세션보다는 printwriter 사용
 			statusCode = HttpServletResponse.SC_OK;
 			
-			member.setId(db_id);
-			
-			HttpSession session = request.getSession();
-			
-			session.setAttribute("findId", member.getId());
-			
+				try {
+					
+					//sendRedirect("http://localhost/ridibooks.com/account/findIdView.jsp");
+					
+					PrintWriter out = response.getWriter();
+					
+//					out.print("<script>");
+//					
+//					out.print("location.href=\"http://localhost/ridibooks.com/account/findIdView.jsp\";");
+//					
+//					out.print("</script>");
+					
+					
+					out.print(db_id);
+					
+					out.close();
+				} catch (IOException e) {
+					// e.printStackTrace();
+					System.out.println("언제뜨는 에러인지 확인 중");
+				}
 		}
+			
 		return statusCode;
 	}
 	
@@ -286,10 +311,28 @@ public class MemberService {
 			if(update) {
 				statusCode = HttpServletResponse.SC_OK;
 				
-				// 이것도 아이디 찾기처럼
-				HttpSession session = request.getSession();
+				try {
+					
+					//sendRedirect("http://localhost/ridibooks.com/account/findIdView.jsp");
+					
+					PrintWriter out = response.getWriter();
+					
+//					out.print("<script>");
+//					
+//					out.print("location.href=\"http://localhost/ridibooks.com/account/findIdView.jsp\";");
+//					
+//					out.print("</script>");
+					
+					
+					out.print(member.getPw());
+					
+					out.close();
+				} catch (IOException e) {
+					// e.printStackTrace();
+					System.out.println("언제뜨는 에러인지 확인 중");
+				}
 				
-				session.setAttribute("findPw", newPw);
+	
 			} else {
 				statusCode = HttpServletResponse.SC_NOT_FOUND;
 			}

@@ -134,7 +134,7 @@
                                         <input oninput="maxLengthCheck(this)" autocapitalize="off" autocomplete="off"
                                             autocorrect="off" inputmode="numeric" type="number" maxlength="4"
                                             class="ji_style join_birth_input" placeholder="출생년도">
-                                        <input type="hidden" name="sign_year" id="sign_year" class="hi_ip" value="">
+                                        <input type="hidden" name="sign_year" id="sign_year" class="hi_ip" value="0">
                                         <span class="success_mes half_sm"><i class="fas fa-check"></i></span>
                                     </label>
                                 </div>

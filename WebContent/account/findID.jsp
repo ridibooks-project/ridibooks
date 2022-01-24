@@ -33,6 +33,20 @@
         </section>
     </div>
     <script src="../js/fontawesome.js" crossorigin="anonymous"></script>
+    
+    <script>
+/*     document.querySelector('.findID_btn_box').onclick = () => {
+        window.location = "http://localhost/ridibooks.com/account.testview.jsp";
+    } */
+    
+    
+    
+    	$(function(){
+    		$(".findID_btn").click(function(){
+    			location.href="http://localhost/ridibooks.com/account.testview.jsp";
+    		})
+    	})
+    </script>
 
 </body>
 </html>

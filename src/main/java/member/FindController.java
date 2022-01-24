@@ -19,21 +19,7 @@ public class FindController extends HttpServlet {
 		
 		System.out.println(statusCode);
 		
-//		response.setStatus(statusCode);
-		
-		if(statusCode == 200) {
-			// 회원탈퇴 성공했을 때
-			
-			
-//			PrintWriter out = response.getWriter();
-//			
-//			out.close();
-
-			response.sendRedirect("http://localhost/ridibooks.com/account/testview.jsp");
-		} else {
-			// 회원탈퇴 실패했을 때 - 400
-			response.sendRedirect("http://localhost/ridibooks.com/account/findID.jsp");
-		}
+		response.setStatus(statusCode);
 		
 	}
 
@@ -44,20 +30,7 @@ public class FindController extends HttpServlet {
 		
 		System.out.println(statusCode);
 		
-//		response.setStatus(statusCode);
-		
-		if(statusCode == 200) {
-			// 회원탈퇴 성공했을 때
-			
-			
-//			PrintWriter out = response.getWriter();
-//			
-//			out.close();
+		response.setStatus(statusCode);
 
-			response.sendRedirect("http://localhost/ridibooks.com/account/testview.jsp");
-		} else {
-			// 회원탈퇴 실패했을 때 - 400
-			response.sendRedirect("http://localhost/ridibooks.com/account/findPW.jsp");
-		}
 	}
 }
