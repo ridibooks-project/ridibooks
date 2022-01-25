@@ -227,32 +227,32 @@ public class MemberService {
 			// 찾아온 아이디가 없을 때
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 			
-			db_id = "가입된 아이디가 없습니다.";
+			//db_id = "가입된 아이디가 없습니다.";
 			
 		} else {
 			statusCode = HttpServletResponse.SC_OK;
-			
-				try {
-					
-					//sendRedirect("http://localhost/ridibooks.com/account/findIdView.jsp");
-					
-					PrintWriter out = response.getWriter();
-					
-//					out.print("<script>");
-//					
-//					out.print("location.href=\"http://localhost/ridibooks.com/account/findIdView.jsp\";");
-//					
-//					out.print("</script>");
-					
-					
-					out.print(db_id);
-					
-					out.close();
-				} catch (IOException e) {
-					// e.printStackTrace();
-					System.out.println("언제뜨는 에러인지 확인 중");
-				}
+				
 		}
+		
+		try {
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print("<script>");
+			
+			out.print("location.href=\"http://localhost/ridibooks.com/account/findIdView.jsp?id="+db_id+"\"");
+			
+			out.print("</script>");
+			
+			out.close();
+		} catch (IOException e) {
+			// e.printStackTrace();
+			System.out.println("언제뜨는 에러인지 확인 중");
+		}
+		
 			
 		return statusCode;
 	}
@@ -310,28 +310,6 @@ public class MemberService {
 			
 			if(update) {
 				statusCode = HttpServletResponse.SC_OK;
-				
-				try {
-					
-					//sendRedirect("http://localhost/ridibooks.com/account/findIdView.jsp");
-					
-					PrintWriter out = response.getWriter();
-					
-//					out.print("<script>");
-//					
-//					out.print("location.href=\"http://localhost/ridibooks.com/account/findIdView.jsp\";");
-//					
-//					out.print("</script>");
-					
-					
-					out.print(member.getPw());
-					
-					out.close();
-				} catch (IOException e) {
-					// e.printStackTrace();
-					System.out.println("언제뜨는 에러인지 확인 중");
-				}
-				
 	
 			} else {
 				statusCode = HttpServletResponse.SC_NOT_FOUND;
