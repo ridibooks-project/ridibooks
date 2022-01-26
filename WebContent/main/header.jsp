@@ -97,6 +97,7 @@
                             </li>
                         </ul>
                         <ul class="h_btn_box">
+                        
                         <%
                         	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)){	
                    		%>		
@@ -106,20 +107,19 @@
 	                            <li>
 	                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
 	                            </li>
-	                            
-	                   			
                    		<%
                         		} else {
                         %>
                         		<li>
-	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">테스트1</a>
+	                                <a class="join_btn" href="#">캐시충전</a>
 	                            </li>
 	                            <li>
-	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/myridi.jsp">로그아웃 테스트</a>
+	                                <a class="join_btn" href="#">내서재</a>
 	                            </li>
                         <%		
                         		}
                         %>
+                        
                         </ul>
                         <form class="h_ip_box" action="./search.html" method="get">
                             <div tabindex="-1" class="h_ip_wrap">
@@ -138,7 +138,10 @@
                     <li>
                         <div class="menu_navi homeTab">
                             <i class="fas fa-home"></i>
-                            <span class="ic_text">홈</span>
+                            <a href="http://localhost/ridibooks.com">
+                            	<span class="ic_text">홈</span>
+                            </a>
+                            
                         </div>
                     </li>
                     <li>
@@ -156,7 +159,9 @@
                     <li>
                         <div class="menu_navi mpTab">
                             <i class="far fa-user"></i>
-                            <span class="ic_text">마이리디</span>
+                            <a href="http://localhost/ridibooks.com/account/myridi.jsp">
+                            	<span class="ic_text">마이리디</span>
+                            </a>
                         </div>
                     </li>
                 </ul>

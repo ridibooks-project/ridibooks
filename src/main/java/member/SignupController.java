@@ -19,8 +19,6 @@ public class SignupController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.joinMember(request, response);
 		
-		System.out.println(statusCode);
-		
 		response.setStatus(statusCode);
 	}
 }
