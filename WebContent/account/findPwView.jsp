@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
-	String pw = request.getParameter("pw");
+	String pw = (String) session.getAttribute("pw");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,8 +12,8 @@
 	<div class="container">
 		<%@ include file="./header.jsp" %>
 		
-		<%
-			if(pw.isEmpty() || pw == null) {
+ 		<%
+			if(pw.isEmpty() || pw.equals(null)) {
 		%>
 			<div>
 				<h3>가입된 아이디가 없습니다.</h3>
@@ -28,6 +28,7 @@
 		<%
 			}
 		%>
+		
 		<div>
 			<button class="home_btn">로그인 화면으로</button>
 		</div>

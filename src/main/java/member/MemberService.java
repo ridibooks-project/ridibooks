@@ -146,8 +146,6 @@ public class MemberService {
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
 		
-		
-		
 		MemberDTO member = new MemberDTO();
 		member.setId(id);
 		member.setPw(pw);
@@ -259,13 +257,12 @@ public class MemberService {
 	
 	// 비밀번호 찾기
 	public int findPw(HttpServletRequest request, HttpServletResponse response) {
-		// 비밀번호를 찾기 위한 파라미터 id, email
 		String id = request.getParameter("find_id");
 		String email = request.getParameter("find_email");
+		String newPw = "";
 		
 		// 전달 받은 값이 공백이거나 null일 경우
 		if( (id.isEmpty() || id == null) || (email.isEmpty() || email == null) ) {
-			// 400 반환
 			statusCode = HttpServletResponse.SC_BAD_REQUEST;
 			
 			return statusCode;
@@ -302,19 +299,44 @@ public class MemberService {
 				}
 			}
 			
-			String newPw = tempPw.toString();
+			newPw = tempPw.toString();
 			member.setPw(newPw);
 			
 			dao = new MemberDAO();
 			boolean update = dao.updatePw(member);
 			
 			if(update) {
+				// 새로운 비밀번호 db에 저장완료
 				statusCode = HttpServletResponse.SC_OK;
-	
-			} else {
-				statusCode = HttpServletResponse.SC_NOT_FOUND;
 			}
+		} else {
+			// 비밀번호를 찾기위해 입력한 id 또는 email이 틀렸을 때
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		}
+		
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("pw", newPw);
+		
+		try {
+			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=UTF-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print("<script>");
+			
+			out.print("location.href=\"http://localhost/ridibooks.com/account/findPwView.jsp?\"");
+			
+			out.print("</script>");
+			
+			out.close();
+		} catch (IOException e) {
+			// e.printStackTrace();
+			System.out.println("언제뜨는 에러인지 확인 중");
+		}
+		
 		return statusCode;
 	}
 	
