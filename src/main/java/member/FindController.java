@@ -23,7 +23,7 @@ public class FindController extends HttpServlet {
 		
 	}
 
-	// 비밀번호 재설정
+	// 비밀번호 찾기
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService service = new MemberService();
 		int statusCode = service.findPw(request, response);

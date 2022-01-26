@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 	String pw = (String) session.getAttribute("pw");
 %>
@@ -12,22 +13,18 @@
 	<div class="container">
 		<%@ include file="./header.jsp" %>
 		
- 		<%
-			if(pw.isEmpty() || pw.equals(null)) {
-		%>
+		<c:if test="${empty pw }">
 			<div>
 				<h3>가입된 아이디가 없습니다.</h3>
 			</div>
-		<%
-			} else {
-		%>
+		</c:if>
+		
+		<c:if test="${!empty pw }">
 			<div>
-				<h3>임시 비밀번호는</h3>
+				<h3>가입하신 아이디는</h3>
 				<span><%= pw %></span> 입니다.
 			</div>
-		<%
-			}
-		%>
+		</c:if>
 		
 		<div>
 			<button class="home_btn">로그인 화면으로</button>
