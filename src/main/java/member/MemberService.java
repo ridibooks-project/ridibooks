@@ -40,7 +40,6 @@ public class MemberService {
 		
 		if(db_pw.equals(member.getPw())) {
 			
-			dao = new MemberDAO();
 			boolean insertDate = dao.updateLoginDate(member);
 			
 			if(!insertDate) {
@@ -73,12 +72,18 @@ public class MemberService {
 	public int joinMember(HttpServletRequest request, HttpServletResponse response) {
 		String id = request.getParameter("sign_id");
 		String pw = request.getParameter("sign_pw");
-		String pwChk = request.getParameter("sign_pwChk"); // 검증코드를 어디서 쓸지에 따라 삭제할 수도 있음
+		String pwChk = request.getParameter("sign_pwChk");
 		String email = request.getParameter("sign_email");
 		String name = request.getParameter("sign_name");
 		
-		// null로 받으면 에러뜸 수정필요
-		int year = Integer.parseInt(request.getParameter("sign_year"));
+		// null로 받으면 에러뜸 수정필요 -> 미입력 시 기본값을 0 으로
+		// 추 후 int -> date로 바꿔볼 것
+		// int year = Integer.parseInt(request.getParameter("sign_year"));
+		
+		String myear = request.getParameter("sign_year");
+		if(myear==null || myear.isEmpty()) myear = "0";
+		int year = Integer.parseInt(myear);
+		
 		String gender = request.getParameter("sign_gender");
 		String marketing_agree = request.getParameter("marketing_agree");
 		String select_agree = request.getParameter("select_agree");
@@ -136,13 +141,6 @@ public class MemberService {
 			gender = null;
 		}
 		
-		// year 을 int 타입으로 했을 때 문제
-		// 년도 미입력 시 기본값 null 지정 -> 파라미터 타입을 int로 바꿧으므로 안됨
-		// 프론트에서 미입력시 전달하는 value 값을 0으로 지정하고 받기
-		// 
-		// db의 타입을 year -> int 로 바꾸기
-		
-		
 		// 가입날짜 입력을 위해 현재시간 불러오기
 		LocalDateTime ldt = LocalDateTime.now();
 		
@@ -169,20 +167,86 @@ public class MemberService {
 		return statusCode;
 	}
 	
-	// 정보 수정
-	public int updateMember(HttpServletRequest request, HttpServletResponse response) {
+	// 이메일 변경
+	public int changeEmail(HttpServletRequest request, HttpServletResponse response) {
 		
-		return 0;
+		HttpSession session = request.getSession();
+		
+		String loginId = (String) session.getAttribute("id");
+		String newEmail = request.getParameter("newEmail");
+		
+		if(newEmail.isEmpty() || newEmail == null) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		MemberDTO member = new MemberDTO();
+		member.setId(loginId);
+		member.setEmail(newEmail);
+		
+		MemberDAO dao = new MemberDAO();
+		boolean update = dao.updateEmail(member);
+		
+		if(update) {
+			statusCode = HttpServletResponse.SC_CREATED;
+		} else {
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
+		}
+		
+		return statusCode;
 	}
+	
+	// 비밀번호 변경
+	public int changePw(HttpServletRequest request, HttpServletResponse response) {
+			
+		HttpSession session = request.getSession();
+		
+		String loginId = (String) session.getAttribute("id");
+		String pwChk = request.getParameter("pwChk");
+		String newPw = request.getParameter("newPw");
+		String newPwChk = request.getParameter("newPwChk");
+			
+		if(pwChk.isEmpty() || pwChk == null || newPw.isEmpty() || newPw == null || newPwChk.isEmpty() || newPwChk == null) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		if(!newPw.equals(newPwChk)) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		MemberDTO member = new MemberDTO();
+		member.setId(loginId);
+		
+		MemberDAO dao = new MemberDAO();
+		String db_pw = dao.selectMemberById(member);
+		
+		if(db_pw.isEmpty() || db_pw == null) {
+			return statusCode = HttpServletResponse.SC_NOT_FOUND;
+		}
+		
+		if(db_pw.equals(db_pw)) {
+			
+			member.setPw(newPw);
+			
+			boolean update = dao.updatePw(member);
+			
+			if(update) {
+				statusCode = HttpServletResponse.SC_CREATED;
+			} else {
+				statusCode = HttpServletResponse.SC_NOT_FOUND;
+			}
+		}
+		
+		
+		return statusCode;
+	}
+	
 	
 	// 회원 탈퇴
 	public int deleteMember(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
 		
-		// 로그인할 때 id 값을 세션에 저장했으니 불러와서 저장
 		String loginId = (String) session.getAttribute("id");
-		
 		String delete_pwChk = request.getParameter("delete_pwChk");
 		
 		MemberDTO member = new MemberDTO();
@@ -192,7 +256,7 @@ public class MemberService {
 		String db_pw = dao.selectMemberById(member);
 		
 		if(db_pw.equals(delete_pwChk)) {
-			dao = new MemberDAO();
+			
 			boolean delete = dao.deleteMember(member);
 			if(delete) {
 				statusCode = HttpServletResponse.SC_OK;

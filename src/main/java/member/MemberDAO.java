@@ -273,7 +273,7 @@ public class MemberDAO {
 		return db_id;
 	}
 	
-	// db pw재설정 
+	// db pw변경
 	public boolean updatePw(MemberDTO member) {
 	
 		Connection conn = null;
@@ -314,6 +314,49 @@ public class MemberDAO {
 		}
 		return update;
 	}
+	
+	// db 이메일 변경
+	public boolean updateEmail(MemberDTO member) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		boolean update = false;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "UPDATE memberinfo SET member_email = ? WHERE member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getEmail());
+			pstmt.setString(2, member.getId());
+			
+			int count = pstmt.executeUpdate();
+			
+			update = count == 1;
+			
+		} catch(SQLException e) {
+	//		e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return update;
+	}
+	
 	
 	// 아이디 중복 확인
 	public boolean checkId(MemberDTO member) {
