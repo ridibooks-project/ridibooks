@@ -17,8 +17,6 @@ public class FindController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.findId(request, response);
 		
-		System.out.println(statusCode);
-		
 		response.setStatus(statusCode);
 		
 	}
@@ -27,8 +25,6 @@ public class FindController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService service = new MemberService();
 		int statusCode = service.findPw(request, response);
-		
-		System.out.println(statusCode);
 		
 		response.setStatus(statusCode);
 

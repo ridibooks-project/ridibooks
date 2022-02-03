@@ -407,9 +407,8 @@ public class MemberService {
 	// 아이디 중복 확인
 	public int checkId (HttpServletRequest request, HttpServletResponse response) {
 		
-		String id = request.getParameter("login_id");
+		String id = request.getParameter("sign_id");
 		
-		// 아이디 또는 비밀번호가 null이거나 공백일경우
 		if( (id.isEmpty() || id == null) ) {
 			
 			statusCode = HttpServletResponse.SC_BAD_REQUEST;
@@ -424,7 +423,6 @@ public class MemberService {
 		boolean checkId = dao.checkId(member);
 		
 		if(checkId) {
-			// checkId가 true -> 아이디가 중복 됨
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		} else {
 			statusCode = HttpServletResponse.SC_OK;
@@ -436,9 +434,8 @@ public class MemberService {
 	// 이메일 중복 확인
 		public int checkEmail (HttpServletRequest request, HttpServletResponse response) {
 			
-			String email = request.getParameter("login_email");
+			String email = request.getParameter("sign_email");
 			
-			// 아이디 또는 비밀번호가 null이거나 공백일경우
 			if( (email.isEmpty() || email == null) ) {
 				
 				statusCode = HttpServletResponse.SC_BAD_REQUEST;
@@ -454,7 +451,6 @@ public class MemberService {
 			boolean checkEmail = dao.checkEmail(member);
 			
 			if(checkEmail) {
-				// checkId가 true -> 아이디가 중복 됨
 				statusCode = HttpServletResponse.SC_NOT_FOUND;
 			} else {
 				statusCode = HttpServletResponse.SC_OK;

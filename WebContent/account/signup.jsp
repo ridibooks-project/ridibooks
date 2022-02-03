@@ -241,6 +241,56 @@
         </section>
     </div>
     
+    <!-- 아이디 중복확인 -->
+    <script>
+    	$(".join_id_input").focusout(function() {
+    		let sign_id = $('#sign_id').val();
+    		$.ajax({
+    			url: "http://localhost/ridibooks.com/check/controller",
+    			type: "GET",
+    			dataType: "text",
+    			data: {sign_id: sign_id},
+    			success: function(){
+   					alert("사용가능한 아이디 입니다.");
+    			},
+    			error: function(response){
+    				if(response.status==400){
+    					alert("아이디를 정확히 입력해주세요.");
+    				} else if(response.status==404){
+    					alert("이미 사용중인 아이디입니다.");
+    				} else{
+    					alert("?");
+    				}
+    			}
+    		});
+    	});
+    </script>
+    
+    <!-- 이메일 중복확인 -->
+    <script>
+    	$(".join_em_input").focusout(function() {
+    		let sign_email = $('#sign_email').val();
+    		$.ajax({
+    			url: "http://localhost/ridibooks.com/check/controller",
+    			type: "POST",
+    			dataType: "text",
+    			data: {sign_email: sign_email},
+    			success: function(){
+   					alert("사용가능한 이메일 입니다.");
+    			},
+    			error: function(response){
+    				if(response.status==400){
+    					alert("이메일을 정확히 입력해주세요.");
+    				} else if(response.status==404){
+    					alert("이미 사용중인 이메일입니다.");
+    				} else{
+    					alert("?");
+    				}
+    			}
+    		});
+    	});
+    </script>
+    
     <script src="../js/fontawesome.js"></script>
     <script src="../js/join_event.js"></script>
     
