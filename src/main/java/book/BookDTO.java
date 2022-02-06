@@ -1,17 +1,16 @@
 package book;
 
+import java.time.LocalDateTime;
+
 // 도서 정보
 public class BookDTO {
-	
-	private int book_no;		// 도서 식별 번호
-	private String bookName;	// 도서 명
-	private int au_no;			// 저자 식별 번호
-	private int tr_no;			// 역자 식별 번호
-	private int buyPrice;		// 구매 가격
-	private int rentPrice;		// 대여 가격
-	private String introduce;	// 작품소개
-	private int grade_no;		// 평점 번호(리뷰)
-	
+	private int book_no;				// 도서 식별 번호
+	private String book_name;			// 도서 제목
+	private int buyprice;				// 도서 구매 가격
+	private int rentprice;				// 도서 대여 가격
+	private String introduction;		// 도서 소개
+	private LocalDateTime book_date;	// 도서 추가 일
+	private String book_image;			// 도서 이미지
 	
 	public int getBook_no() {
 		return book_no;
@@ -19,46 +18,40 @@ public class BookDTO {
 	public void setBook_no(int book_no) {
 		this.book_no = book_no;
 	}
-	public String getBookName() {
-		return bookName;
+	public String getBook_name() {
+		return book_name;
 	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
-	public int getAu_no() {
-		return au_no;
+	public int getBuyprice() {
+		return buyprice;
 	}
-	public void setAu_no(int au_no) {
-		this.au_no = au_no;
+	public void setBuyprice(int buyprice) {
+		this.buyprice = buyprice;
 	}
-	public int getTr_no() {
-		return tr_no;
+	public int getRentprice() {
+		return rentprice;
 	}
-	public void setTr_no(int tr_no) {
-		this.tr_no = tr_no;
+	public void setRentprice(int rentprice) {
+		this.rentprice = rentprice;
 	}
-	public int getBuyPrice() {
-		return buyPrice;
+	public String getIntroduction() {
+		return introduction;
 	}
-	public void setBuyPrice(int buyPrice) {
-		this.buyPrice = buyPrice;
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
-	public int getRentPrice() {
-		return rentPrice;
+	public LocalDateTime getBook_date() {
+		return book_date;
 	}
-	public void setRentPrice(int rentPrice) {
-		this.rentPrice = rentPrice;
+	public void setBook_date(LocalDateTime book_date) {
+		this.book_date = book_date;
 	}
-	public String getIntroduce() {
-		return introduce;
+	public String getBook_image() {
+		return book_image;
 	}
-	public void setIntroduce(String introduce) {
-		this.introduce = introduce;
-	}
-	public int getGrade_no() {
-		return grade_no;
-	}
-	public void setGrade_no(int grade_no) {
-		this.grade_no = grade_no;
+	public void setBook_image(String book_image) {
+		this.book_image = book_image;
 	}
 }
