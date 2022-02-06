@@ -1,6 +1,8 @@
 //let menu_navi = document.querySelectorAll('.menu_navi');
-//for (let i = 1; i < menu_navi.length; i++){
+//for (let i = 0; i < menu_navi.length; i++){
 //    menu_navi[i].onclick = () => {
+//		if(i==0) window.location.href = "http://localhost/ridibooks.com";
+//		
 //		if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
 //			window.location.href = "http://localhost/ridibooks.com/account/login.jsp";
 //		}
@@ -9,4 +11,4 @@
 //		if(i==3) window.location.href = "http://localhost/ridibooks.com/account/myridi.jsp";
 //    }
 //}
-//
+

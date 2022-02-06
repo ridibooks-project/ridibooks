@@ -138,36 +138,32 @@
                     <li>
                         <div class="menu_navi homeTab">
                             <i class="fas fa-home"></i>
-                            <a href="http://localhost/ridibooks.com">
                             	<span class="ic_text">홈</span>
-                            </a>
-                            
                         </div>
                     </li>
                     <li>
                         <div class="menu_navi noticeTab">
                             <i class="far fa-bell"></i>
-                            <span class="ic_text">알림</span>
+                            	<span class="ic_text">알림</span>
                         </div>
                     </li>
                     <li>
                         <div class="menu_navi cartTab">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="ic_text">카트</span>
+                            	<span class="ic_text">카트</span>
                         </div>
                     </li>
                     <li>
                         <div class="menu_navi mpTab">
                             <i class="far fa-user"></i>
-                            <a href="http://localhost/ridibooks.com/account/myridi.jsp">
                             	<span class="ic_text">마이리디</span>
-                            </a>
                         </div>
                     </li>
                 </ul>
             </header>
         </div>
-    <div class="sub_menu">
+
+        	<div class="sub_menu">
         <div class="hd_sub_menu">
             <ul class="hd_sm_wrap">
                 <li>
@@ -519,5 +515,19 @@
             </ul>
         </div>
     </div>
+    
+    <script>
+    	let menu_navi = document.querySelectorAll('.menu_navi');
+    	for (let i = 0; i < menu_navi.length; i++){
+        	menu_navi[i].onclick = () => {
+    		if(i == 0) window.location.href = "http://localhost/ridibooks.com";
+			if(i==1) window.location.href = "http://localhost/ridibooks.com/account/notice.jsp";
+       		if(i==2) window.location.href = "http://localhost/ridibooks.com/account/cart.jsp";
+       		if(i==3) window.location.href = "http://localhost/ridibooks.com/account/myridi.jsp";
+        }
+    }
+    
+    </script>
+    
 </body>
 </html>

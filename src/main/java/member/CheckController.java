@@ -28,7 +28,6 @@ public class CheckController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.checkEmail(request, response);
 		
-		System.out.println(statusCode);
 		response.setStatus(statusCode);
 
 	}

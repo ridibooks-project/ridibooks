@@ -14,18 +14,7 @@
 	
 	<a href="http://localhost/ridibooks.com/account/modify.jsp">정보변경</a>
 	
-	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
-	
 	<script>
-	
-	// 이거는 왜 안되는지 // 증상 -> 마이리디로 접속하기위해 마이리디를 클릭하면 로그아웃버튼을 누른것처럼 인식됨
-// 	$(".logout_btn").on("click", function() {
-<%-- 		<% --%>
-// 			session.invalidate();
-		
-// 			response.sendRedirect("http://localhost/ridibooks.com");
-<%-- 		%> --%>
-// 	});
 	
 	document.querySelector('.logout_btn').onclick = () => {
 		<%
@@ -36,6 +25,8 @@
 	}
 	
 	</script>
+	
+	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
