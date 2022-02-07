@@ -64,7 +64,7 @@
                                 <label for="">
                                     <div>
                                         <span class="input_guide">8자 이상, 영문/숫자/특수문자중 2가지 이상 입력</span>
-                                        <input type="password" name="sign_pw" autocapitalize="off" autocomplete="off"
+                                        <input type="password" name="sign_pw" id="sign_pw" autocapitalize="off" autocomplete="off"
                                             autocorrect="off" class="ji_style join_pw_input" placeholder="비밀번호"
                                             required>
                                         <span class="success_mes"><i class="fas fa-check"></i></span>
@@ -72,7 +72,7 @@
                                     <div>
                                         <span class="input_guide">비밀번호 재입력</span>
                                         <input autocapitalize="off" autocomplete="off" autocorrect="off" type="password"
-                                            name="sign_pwChk" class="ji_style join_rpw_input" placeholder="비밀번호 확인"
+                                            name="sign_pwChk" id="sign_pwChk" class="ji_style join_rpw_input" placeholder="비밀번호 확인"
                                             required>
                                         <span class="success_mes"><i class="fas fa-check"></i></span>
                                     </div>
