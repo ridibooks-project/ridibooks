@@ -15,9 +15,13 @@ public class ConfirmController extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
+	
+	// 비밀번호 확인
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		MemberService service = new MemberService();
+		int statusCode = service.confirmPw(request, response);
+		
+		response.setStatus(statusCode);
 	}
 }

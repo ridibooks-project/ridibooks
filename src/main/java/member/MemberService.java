@@ -432,31 +432,59 @@ public class MemberService {
 	}
 	
 	// 이메일 중복 확인
-		public int checkEmail (HttpServletRequest request, HttpServletResponse response) {
+	public int checkEmail (HttpServletRequest request, HttpServletResponse response) {
+		
+		String email = request.getParameter("sign_email");
+		
+		if( (email.isEmpty() || email == null) ) {
 			
-			String email = request.getParameter("sign_email");
-			
-			if( (email.isEmpty() || email == null) ) {
-				
-				statusCode = HttpServletResponse.SC_BAD_REQUEST;
-				
-				return statusCode;
-			}
-			
-			MemberDTO member = new MemberDTO();
-			member.setEmail(email);
-			
-			MemberDAO dao = new MemberDAO();
-			
-			boolean checkEmail = dao.checkEmail(member);
-			
-			if(checkEmail) {
-				statusCode = HttpServletResponse.SC_NOT_FOUND;
-			} else {
-				statusCode = HttpServletResponse.SC_OK;
-			}
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
 			
 			return statusCode;
 		}
-
+		
+		MemberDTO member = new MemberDTO();
+		member.setEmail(email);
+		
+		MemberDAO dao = new MemberDAO();
+		
+		boolean checkEmail = dao.checkEmail(member);
+		
+		if(checkEmail) {
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
+		} else {
+			statusCode = HttpServletResponse.SC_OK;
+		}
+		
+		return statusCode;
+	}
+	
+	// 비밀번호 확인(정보변경을 위한 확인 수단)
+	public int confirmPw (HttpServletRequest request, HttpServletResponse response) {
+		
+		HttpSession session = request.getSession();
+		
+		String loginId = (String) session.getAttribute("id");
+		String pw = request.getParameter("pwChk");
+		
+		if(pw == null || pw.isEmpty()) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		MemberDTO member = new MemberDTO();
+		member.setId(loginId);
+		
+		MemberDAO dao = new MemberDAO();
+		String db_pw = dao.selectMemberById(member);
+		
+		if(db_pw.equals(pw)) {
+			statusCode = HttpServletResponse.SC_OK;
+		} else {
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
+		}
+		
+		return statusCode;
+	}
+	
+		
 }

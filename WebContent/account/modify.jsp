@@ -29,7 +29,8 @@
     				location.href = "http://localhost/ridibooks.com/account/test.jsp";
     			},
     			error: function(){
-    					alert("비밀번호가 올바르지 않습니다.");
+    				alert("비밀번호가 올바르지 않습니다.");
+    				location.href = "http://localhost/ridibooks.com/account/modify.jsp";
     				}
     			}
     		});

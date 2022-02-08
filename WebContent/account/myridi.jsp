@@ -15,7 +15,6 @@
 	<a href="http://localhost/ridibooks.com/account/modify.jsp">정보변경</a>
 	
 	<script>
-	
 	document.querySelector('.logout_btn').onclick = () => {
 		<%
 		session.invalidate();
