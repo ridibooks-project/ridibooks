@@ -6,16 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebServlet("/confirm/controller")
-public class ConfirmController extends HttpServlet {
+@WebServlet("/logout/controller")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		MemberService service = new MemberService();
-		int statusCode = service.confirmPw(request, response);
+		HttpSession session = request.getSession();
 		
-		response.setStatus(statusCode);
+		session.invalidate();
+		
+		response.sendRedirect("http://localhost/ridibooks.com");
 	}
 }

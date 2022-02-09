@@ -1,7 +1,10 @@
 package book;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -27,6 +30,68 @@ public class BookDAO {
 			System.out.println("Conncetion 예외 발생");
 		}
 		return null;
+	}
+	
+	// 도서 검색 - 제목만 검색?
+	// 저자, 출판사 검색은?
+	public ArrayList<BookDTO> bookSearch(String searching) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
+		
+		try {
+			conn = getConnection();
+			// 입력한 id와 status(회원상태)가 0(정상)일 때를 조회
+			String sql = "SELECT * FROM bookinfo WHERE book_name LIKE ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searching+"%");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				BookDTO book = new BookDTO();
+				
+				book.setBook_name(rs.getString("book_name"));
+				book.setBook_no(rs.getInt("book_no"));
+				// db로 날짜만? 날짜+시간 구하는법은?				
+//				book.setBook_date(rs.getDate("book_date"));
+				book.setBook_image(rs.getString("book_image"));
+				book.setBuyprice(rs.getInt("buyprice"));
+				book.setRentprice(rs.getInt("rentprice"));
+				book.setIntroduction(rs.getString("introduction"));
+				
+				bookList.add(book);
+			}
+			
+		} catch(SQLException e) {
+//			e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return bookList;
 	}
 
 }

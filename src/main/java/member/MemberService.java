@@ -173,9 +173,16 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String newEmail = request.getParameter("newEmail");
+		String newEmail = request.getParameter("new_email");
 		
+		// 이메일 공백 확인
 		if(newEmail.isEmpty() || newEmail == null) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		// 이메일 패턴 확인
+		String emailPattern = "^[a-zA-Z0-9]*@[a-zA-Z]*+.[a-zA-Z]([.a-zA-Z]).*$";
+		if(!newEmail.matches(emailPattern)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
@@ -187,7 +194,7 @@ public class MemberService {
 		boolean update = dao.updateEmail(member);
 		
 		if(update) {
-			statusCode = HttpServletResponse.SC_CREATED;
+			statusCode = HttpServletResponse.SC_OK;
 		} else {
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		}
@@ -201,14 +208,31 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String pwChk = request.getParameter("pwChk");
-		String newPw = request.getParameter("newPw");
-		String newPwChk = request.getParameter("newPwChk");
+		String newPw = request.getParameter("new_pw");
+		String newPwChk = request.getParameter("new_pwChk");
 			
-		if(pwChk.isEmpty() || pwChk == null || newPw.isEmpty() || newPw == null || newPwChk.isEmpty() || newPwChk == null) {
+		// 비밀번호 공백 확인
+		if(newPw.isEmpty() || newPw == null || newPwChk.isEmpty() || newPwChk == null) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
+		// 비밀번호 패턴 확인
+		// 비밀번호 패턴 확인 - 8자 이상, 영문/숫자/특수문자 중 2가지 이상 포함
+		// 패턴1 - 숫자/영문/특수문자 모두 포함 8자 이상
+		String pwPattern1 = "^.*(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";	
+		// 패턴2 - 숫자/영문 포함 8자 이상
+		String pwPattern2 = "^.*(?=.*[0-9])(?=.*[a-zA-Z])(?=^.{8,}$).*$";
+		// 패턴3 - 숫자/특수문자 포함 8자 이상
+		String pwPattern3 = "^.*(?=.*[0-9])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";
+		// 패턴4 - 영문/특수문자 포함 8자 이상
+		String pwPattern4 = "^.*(?=.*[a-zA-Z])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";
+		
+		// 패턴 1~4 모두 아닐경우 리턴 (4중 하나라도 맞으면 통과)
+		if(!newPw.matches(pwPattern1) && !newPw.matches(pwPattern2) && !newPw.matches(pwPattern3) && !newPw.matches(pwPattern4) ) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		// 입력 확인 에러
 		if(!newPw.equals(newPwChk)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
@@ -216,26 +240,18 @@ public class MemberService {
 		MemberDTO member = new MemberDTO();
 		member.setId(loginId);
 		
+		member.setPw(newPw);
+		
 		MemberDAO dao = new MemberDAO();
-		String db_pw = dao.selectMemberById(member);
-		
-		if(db_pw.isEmpty() || db_pw == null) {
-			return statusCode = HttpServletResponse.SC_NOT_FOUND;
+		boolean update = dao.updatePw(member);
+			
+		if(update) {
+			statusCode = HttpServletResponse.SC_OK;
+			
+			session.invalidate();
+		} else {
+			statusCode = HttpServletResponse.SC_NOT_FOUND;
 		}
-		
-		if(db_pw.equals(db_pw)) {
-			
-			member.setPw(newPw);
-			
-			boolean update = dao.updatePw(member);
-			
-			if(update) {
-				statusCode = HttpServletResponse.SC_CREATED;
-			} else {
-				statusCode = HttpServletResponse.SC_NOT_FOUND;
-			}
-		}
-		
 		
 		return statusCode;
 	}
@@ -247,22 +263,23 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String delete_pwChk = request.getParameter("delete_pwChk");
+		String leave_agree = request.getParameter("leave_agree");
+		
+		// 회원탈퇴 동의 확인
+		if(leave_agree == null || leave_agree.isEmpty()) {
+			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
 		
 		MemberDTO member = new MemberDTO();
 		member.setId(loginId);
 		
 		MemberDAO dao = new MemberDAO();
-		String db_pw = dao.selectMemberById(member);
+		boolean delete = dao.deleteMember(member);
 		
-		if(db_pw.equals(delete_pwChk)) {
-			
-			boolean delete = dao.deleteMember(member);
-			if(delete) {
-				statusCode = HttpServletResponse.SC_OK;
-					
-				session.invalidate();
-			}
+		if(delete) {
+			statusCode = HttpServletResponse.SC_OK;
+				
+			session.invalidate();
 		}
 		return statusCode;
 	}
@@ -465,7 +482,7 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String pw = request.getParameter("pwChk");
+		String pw = request.getParameter("confirm_pw");
 		
 		if(pw == null || pw.isEmpty()) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;

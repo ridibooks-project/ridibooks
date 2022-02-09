@@ -7,26 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/change/controller")
-public class ChangeController extends HttpServlet {
+@WebServlet("/leave/controller")
+public class LeaveController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	// 이메일 변경
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		MemberService service = new MemberService();
-		int statusCode = service.changeEmail(request, response);
-		
-		System.out.println(statusCode);
-		
-		response.setStatus(statusCode);
-	}
-
-	// 비밀번호 변경
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberService service = new MemberService();
-		int statusCode = service.changePw(request, response);
+		int statusCode = service.confirmPw(request, response);
+		
+		if(statusCode == 200) {
+			statusCode = service.deleteMember(request, response);
+		}
 		
 		response.setStatus(statusCode);
 	}

@@ -9,21 +9,13 @@
 </head>
 <body>
 	<%@ include file="../main/header.jsp" %>
-
-	<button class="logout_btn" type="button">로그아웃</button>
+	
+	<form action="http://localhost/ridibooks.com/logout/controller" method="post">
+		<button class="logout_btn" type="submit">로그아웃</button>
+	</form>
 	
 	<a href="http://localhost/ridibooks.com/account/modify.jsp">정보변경</a>
-	
-	<script>
-	document.querySelector('.logout_btn').onclick = () => {
-		<%
-		session.invalidate();
-		%>
-		
-	    window.location = "http://localhost/ridibooks.com";
-	}
-	
-	</script>
+
 	
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 
