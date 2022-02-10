@@ -11,6 +11,7 @@ public class BookDTO {
 	private String introduction;		// 도서 소개
 	private LocalDateTime book_date;	// 도서 추가 일
 	private String book_image;			// 도서 이미지
+	private int category_no;			// 카테고리 식별 번호
 	
 	public int getBook_no() {
 		return book_no;
@@ -54,4 +55,11 @@ public class BookDTO {
 	public void setBook_image(String book_image) {
 		this.book_image = book_image;
 	}
+	public int getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
+	}
+	
 }

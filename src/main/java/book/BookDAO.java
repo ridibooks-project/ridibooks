@@ -61,6 +61,7 @@ public class BookDAO {
 				book.setBuyprice(rs.getInt("buyprice"));
 				book.setRentprice(rs.getInt("rentprice"));
 				book.setIntroduction(rs.getString("introduction"));
+				book.setCategory_no(rs.getInt("category_no"));
 				
 				bookList.add(book);
 			}
