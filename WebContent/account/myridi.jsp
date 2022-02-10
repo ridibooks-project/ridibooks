@@ -18,6 +18,8 @@
 
 	
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
+	<script src="../js/swiper-bundle.min.js"></script>
+	<script src="../js/swiper-bundle.js"></script>
 
 </body>
 </html>
