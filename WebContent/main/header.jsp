@@ -149,9 +149,10 @@
                                 <a class="join_btn" href="#">내서재</a>
                             </li>
                         </c:if> --%>
-                        
                         </ul>
-                        <form class="h_ip_box" action="./search.html" method="get">
+                        
+                        <!-- 검색 -->
+                        <form class="h_ip_box" action="http://localhost/ridibooks.com/search/controller" method="get">
                             <div tabindex="-1" class="h_ip_wrap">
                                 <div class="h_ip_box">
                                     <label class="h_ip_l">

@@ -1,7 +1,5 @@
 package book;
 
-import java.time.LocalDateTime;
-
 // 도서 정보
 public class BookDTO {
 	private int book_no;				// 도서 식별 번호
@@ -9,7 +7,6 @@ public class BookDTO {
 	private int buyprice;				// 도서 구매 가격
 	private int rentprice;				// 도서 대여 가격
 	private String introduction;		// 도서 소개
-	private LocalDateTime book_date;	// 도서 추가 일
 	private String book_image;			// 도서 이미지
 	private int category_no;			// 카테고리 식별 번호
 	
@@ -42,12 +39,6 @@ public class BookDTO {
 	}
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
-	}
-	public LocalDateTime getBook_date() {
-		return book_date;
-	}
-	public void setBook_date(LocalDateTime book_date) {
-		this.book_date = book_date;
 	}
 	public String getBook_image() {
 		return book_image;
