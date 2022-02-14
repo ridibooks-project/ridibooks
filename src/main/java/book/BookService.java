@@ -18,6 +18,9 @@ public class BookService {
 		BookDAO dao = new BookDAO();
 		ArrayList<BookDTO> list = dao.bookSearch(search);
 		
+		//Map<String, String> map = new HashMap<>();
+		
+		
 		try {
 			
 			response.setCharacterEncoding("UTF-8");
@@ -27,7 +30,15 @@ public class BookService {
 			
 			out.print("<script>");
 			
-			out.print("location.href=\"http://localhost/ridibooks.com/search.jsp?q="+list+"\"");
+			if(list.size() == 0) {
+				out.print("검색결과가 없습니다.");
+			}
+			for(int i=0; i<list.size(); i++) {
+				list.get(i).getBook_name();
+			}
+			
+			
+//			out.print("location.href=\"http://localhost/ridibooks.com/search.jsp?q="+list+"\"");
 			
 			out.print("</script>");
 			

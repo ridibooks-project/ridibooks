@@ -1574,7 +1574,7 @@
     <script src="./js/swiper-bundle.min.js"></script>
     <script src="./js/swiper-bundle.js"></script>
     <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
-    <script src="./js/notPosition.js"></script>
+<!--     <script src="./js/notPosition.js"></script> -->
     <script src="./js/slide_tab.js"></script>
     <script src="./js/starPoint.js"></script>
     <script src="./js/rem_recent_search.js"></script>
