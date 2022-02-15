@@ -8,6 +8,12 @@
 	String currentURI = request.getRequestURI();
 	System.out.println(currentURI);
 	
+	String confirm = "true";
+	
+	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
+		confirm = "false";
+	}
+	
 //	String Login = String.valueOf(session.getAttribute("isLogin"));
 	
 // 	String Login = "false";
@@ -111,9 +117,12 @@
                         
                         <ul class="h_btn_box">
                         
-                        <%
+                        <%-- <%
                         	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)){	
-                   		%>		
+                   		%>	 --%>	
+                   		<%
+                   			if(confirm.equals("false") || confirm.isEmpty()) {
+                   		%>
                    				<li>
 	                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
 	                            </li>
@@ -551,20 +560,11 @@
     	let menu_navi = document.querySelectorAll('.menu_navi');
     	for (let i = 0; i < menu_navi.length; i++){
         	menu_navi[i].onclick = () => {
-        		alert(i);
     			if(i == 0) window.location.href = "http://localhost/ridibooks.com";
-    		
-    			else {
-     				if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
-        				window.location.href = "http://localhost/ridibooks.com/login.jsp";
-        			}
-       			
-       			if(i==1) window.location.href = "http://localhost/ridibooks.com/account/notice.jsp";
-           		if(i==2) window.location.href = "http://localhost/ridibooks.com/account/cart.jsp";
-           		if(i==3) window.location.href = "http://localhost/ridibooks.com/account/myridi.jsp";
+    			
+    			else location.href = "http://localhost/ridibooks.com/confirm/login/controller?page="+i;
     		}
         }
-    }
     </script>
     
 </body>
