@@ -34,7 +34,7 @@ public class BookDAO {
 	
 	// 도서 검색 - 제목만 검색?
 	// 저자, 출판사 검색은?
-	public ArrayList<BookDTO> bookSearch(String searching) {
+	public ArrayList<BookDTO> bookSearch(String search) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -43,14 +43,14 @@ public class BookDAO {
 		
 		try {
 			conn = getConnection();
-			// 입력한 id와 status(회원상태)가 0(정상)일 때를 조회
 			String sql = "SELECT * FROM bookinfo WHERE book_name LIKE ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+searching+"%");
+			pstmt.setString(1, "%"+search+"%");
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			// if? while?
+			while(rs.next()) {
 				BookDTO book = new BookDTO();
 				
 				book.setBook_name(rs.getString("book_name"));

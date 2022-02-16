@@ -13,17 +13,6 @@
 	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
 		confirm = "false";
 	}
-	
-//	String Login = String.valueOf(session.getAttribute("isLogin"));
-	
-// 	String Login = "false";
-// 	HttpSession session = request.getSession();	
-
-//  	if(session.getAttribute("isLogin") != null) {
-//  		String Login = (String) session.getAttribute("isLogin");
-//  	}
-	
-	
 
 	Map<String, String> activeMap = new HashMap<>();
 	activeMap.put("main", "main");
@@ -117,9 +106,6 @@
                         
                         <ul class="h_btn_box">
                         
-                        <%-- <%
-                        	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)){	
-                   		%>	 --%>	
                    		<%
                    			if(confirm.equals("false") || confirm.isEmpty()) {
                    		%>
@@ -142,22 +128,6 @@
                         		}
                         %>
                         
-                        <%-- <c:if test="${empty Login or Login = 'false' }">
-                        	<li>
-                                <a class="join_btn" href="http://localhost/ridibooks.com/account/signup.jsp">회원가입</a>
-                            </li>
-                            <li>
-                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
-                            </li>
-                        </c:if>
-                        <c:if test="${Login = 'true' }">
-                        	<li>
-                                <a class="join_btn" href="#">캐시충전</a>
-                            </li>
-                            <li>
-                                <a class="join_btn" href="#">내서재</a>
-                            </li>
-                        </c:if> --%>
                         </ul>
                         
                         <!-- 검색 -->
@@ -166,7 +136,7 @@
                                 <div class="h_ip_box">
                                     <label class="h_ip_l">
                                         <input class="h_ip_search" name="q" type="search" maxlength="60"
-                                            placeholder="제목, 저자, 출판사 검색">
+                                            placeholder="제목, 저자, 출판사 검색" value="${param.q }" >
                                         <i class="fas fa-search"></i>
                                     </label>
                                 </div>
@@ -174,6 +144,8 @@
                         </form>
                     </div>
                 </nav>
+                
+                <!-- 이것도 시간되면 sub_menu처럼 수정 / 반복문 밑줄css -->
                 <ul class="hd_mm_wrap">
                     <li>
                         <div class="menu_navi homeTab">

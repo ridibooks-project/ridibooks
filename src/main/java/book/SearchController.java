@@ -13,6 +13,7 @@ public class SearchController extends HttpServlet {
        
 	// 도서 검색
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		BookService service = new BookService();
 		int statusCode = service.Search(request, response);
 		

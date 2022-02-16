@@ -15,11 +15,25 @@ public class BookService {
 	public int Search(HttpServletRequest request, HttpServletResponse response) {
 		String search = request.getParameter("q");
 		
+		// 공백제거
+		search.trim();
+		
+		if(search == null || search.isEmpty()) {
+			// return statusCode = HttpServletResponse.SC_NOT_FOUND;
+			return statusCode;
+		}
+		
 		BookDAO dao = new BookDAO();
-		ArrayList<BookDTO> list = dao.bookSearch(search);
 		
-		//Map<String, String> map = new HashMap<>();
+		ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
 		
+		bookList = dao.bookSearch(search);
+		
+		for(BookDTO book : bookList) {
+			request.setAttribute("name", book.getBook_name());
+		}
+		
+		System.out.println(request.getAttribute("name"));
 		
 		try {
 			
@@ -30,15 +44,7 @@ public class BookService {
 			
 			out.print("<script>");
 			
-			if(list.size() == 0) {
-				out.print("검색결과가 없습니다.");
-			}
-			for(int i=0; i<list.size(); i++) {
-				list.get(i).getBook_name();
-			}
-			
-			
-//			out.print("location.href=\"http://localhost/ridibooks.com/search.jsp?q="+list+"\"");
+			out.print("location.href=\"http://localhost/ridibooks.com/search.jsp?q="+search+"\"");
 			
 			out.print("</script>");
 			
@@ -47,6 +53,8 @@ public class BookService {
 			// e.printStackTrace();
 			System.out.println("언제뜨는 에러인지 확인 중");
 		}
+		
+		
 		return statusCode;
 	}
 }
