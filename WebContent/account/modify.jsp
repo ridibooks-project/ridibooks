@@ -31,14 +31,9 @@
     			success: function(){
     				location.href = "http://localhost/ridibooks.com/account/test.jsp";
     			},
-    			error: function(response){
-    				if(response.status == 400){
-    					alert("비밀번호가 올바르지 않습니다.");
-        				location.href = "http://localhost/ridibooks.com/account/modify.jsp";
-    				} else {
-    					alert("비밀번호가 올바르지 않습니다.");
-        				location.href = "http://localhost/ridibooks.com/account/modify.jsp";
-    				}
+    			error: function(){
+       				location.href = "http://localhost/ridibooks.com/account/modify.jsp";
+    				alert("비밀번호를 정확히 입력해주세요.");
     			}
     		});
     	});

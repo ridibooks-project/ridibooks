@@ -208,11 +208,11 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String newPw = request.getParameter("new_pw");
-		String newPwChk = request.getParameter("new_pwChk");
+		String new_pw = request.getParameter("new_pw");
+		String new_pwChk = request.getParameter("new_pwChk");
 			
 		// 비밀번호 공백 확인
-		if(newPw.isEmpty() || newPw == null || newPwChk.isEmpty() || newPwChk == null) {
+		if(new_pw.isEmpty() || new_pw == null || new_pwChk.isEmpty() || new_pwChk == null) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
@@ -228,19 +228,19 @@ public class MemberService {
 		String pwPattern4 = "^.*(?=.*[a-zA-Z])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";
 		
 		// 패턴 1~4 모두 아닐경우 리턴 (4중 하나라도 맞으면 통과)
-		if(!newPw.matches(pwPattern1) && !newPw.matches(pwPattern2) && !newPw.matches(pwPattern3) && !newPw.matches(pwPattern4) ) {
+		if(!new_pw.matches(pwPattern1) && !new_pw.matches(pwPattern2) && !new_pw.matches(pwPattern3) && !new_pw.matches(pwPattern4) ) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
 		// 입력 확인 에러
-		if(!newPw.equals(newPwChk)) {
+		if(!new_pw.equals(new_pwChk)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
 		MemberDTO member = new MemberDTO();
 		member.setId(loginId);
 		
-		member.setPw(newPw);
+		member.setPw(new_pw);
 		
 		MemberDAO dao = new MemberDAO();
 		boolean update = dao.updatePw(member);
@@ -482,9 +482,9 @@ public class MemberService {
 		HttpSession session = request.getSession();
 		
 		String loginId = (String) session.getAttribute("id");
-		String pw = request.getParameter("confirm_pw");
+		String confirm_pw = request.getParameter("confirm_pw");
 		
-		if(pw == null || pw.isEmpty()) {
+		if(confirm_pw == null || confirm_pw.isEmpty()) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
@@ -494,7 +494,7 @@ public class MemberService {
 		MemberDAO dao = new MemberDAO();
 		String db_pw = dao.selectMemberById(member);
 		
-		if(db_pw.equals(pw)) {
+		if(db_pw.equals(confirm_pw)) {
 			statusCode = HttpServletResponse.SC_OK;
 		} else {
 			statusCode = HttpServletResponse.SC_NOT_FOUND;

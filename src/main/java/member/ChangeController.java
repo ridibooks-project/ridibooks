@@ -17,8 +17,6 @@ public class ChangeController extends HttpServlet {
 		MemberService service = new MemberService();
 		int statusCode = service.changeEmail(request, response);
 		
-		System.out.println(statusCode);
-		
 		response.setStatus(statusCode);
 	}
 

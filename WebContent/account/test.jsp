@@ -56,7 +56,7 @@
 				url: "http://localhost/ridibooks.com/confirm/controller",
 				type: "POST",
 				dataType: "text",
-				data: {confirm_pw: confirm_pw},
+				data: "confirm_pw="+$('#confirm_pw').val(),
 				success: function(){
 						alert("good.");
 				},
@@ -74,19 +74,14 @@
 			url: "http://localhost/ridibooks.com/change/controller",
 			type: "POST",
 			dataType: "text",
-			data: "new_pw="+$('#new_pw').val()+"&new_pwChk="+&('#new_pwChk').val(),
+			data: "new_pw="+$('#new_pw').val()+"&new_pwChk="+$('#new_pwChk').val(),
 			success: function(){
-				alert("비밀번호가 변경되었습니다.")
 				location.href = "http://localhost/ridibooks.com";
+				alert("비밀번호가 변경되었습니다.");
 			},
-			error: function(response){
-				if(response.status == 400){
-					alert("8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.");
-    				location.href = "http://localhost/ridibooks.com/account/test.jsp";
-				} else {
-					alert("8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.");
-    				location.href = "http://localhost/ridibooks.com/account/test.jsp";
-				}
+			error: function(){
+   				location.href = "http://localhost/ridibooks.com/account/test.jsp";
+   				alert("8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.");
 			}
 		});
 	});
@@ -101,7 +96,7 @@
 			dataType: "text",
 			data: "new_email="+$('#new_email').val(),
 			success: function(){
-				alert("이메일이 변경되었습니다.")
+				alert("이메일이 변경되었습니다.");
 				location.href = "http://localhost/ridibooks.com";
 			},
 			error: function(){

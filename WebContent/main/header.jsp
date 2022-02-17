@@ -8,6 +8,9 @@
 	String currentURI = request.getRequestURI();
 	System.out.println(currentURI);
 	
+// 	String[] array = currentURI.split("/");
+// 	System.out.println(array[array.length-1]);
+	
 	String confirm = "true";
 	
 	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
@@ -72,8 +75,6 @@
 		subMenuList[3] = subMenuList[3].replace("{here}", "");
 		subMenuList[4] = subMenuList[4].replace("{here}", "class=\"active\"");
 	}
-	
-	
 %>
 
 <body>
@@ -115,16 +116,16 @@
 	                            <li>
 	                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
 	                            </li>
-                   		<%
+                        <%		
                         		} else {
                         %>
+	       
                         		<li>
 	                                <a class="join_btn" href="#">캐시충전</a>
 	                            </li>
 	                            <li>
 	                                <a class="join_btn" href="#">내서재</a>
-	                            </li>
-                        <%		
+	        			<%		
                         		}
                         %>
                         
