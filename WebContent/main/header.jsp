@@ -11,8 +11,8 @@
 // 	String[] array = currentURI.split("/");
 // 	System.out.println(array[array.length-1]);
 	
+	// 로그인 상태 확인
 	String confirm = "true";
-	
 	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
 		confirm = "false";
 	}

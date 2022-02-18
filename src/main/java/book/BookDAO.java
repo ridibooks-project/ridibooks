@@ -49,17 +49,16 @@ public class BookDAO {
 			pstmt.setString(1, "%"+search+"%");
 			rs = pstmt.executeQuery();
 			
-			// if? while?
 			while(rs.next()) {
 				BookDTO book = new BookDTO();
 				
-				book.setBook_name(rs.getString("book_name"));
 				book.setBook_no(rs.getInt("book_no"));
+				book.setBook_name(rs.getString("book_name"));
 				book.setBook_image(rs.getString("book_image"));
 				book.setBuyprice(rs.getInt("buyprice"));
 				book.setRentprice(rs.getInt("rentprice"));
 				book.setIntroduction(rs.getString("introduction"));
-				book.setCategory_no(rs.getInt("category"));
+//				book.setCategory_no(rs.getInt(7));
 				
 				bookList.add(book);
 			}

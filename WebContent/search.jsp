@@ -3,6 +3,7 @@
 
 <% 
 	String q = request.getParameter("id");
+	// String bookname = (String) request.getAttribute("name");
 %>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
 	<%@ include file="main/header.jsp" %>
 	
 	<h3>'${param.q }' 도서 검색 결과</h3>
+	<p>${bookname }</p>
 	
 	<c:if test="${empty param.q }">
 		<div>
