@@ -132,7 +132,7 @@
                         </ul>
                         
                         <!-- 검색 -->
-                        <form class="h_ip_box" action="http://localhost/ridibooks.com/search/controller" method="get">
+                        <form class="h_ip_box" action="http://localhost/ridibooks.com/search.jsp" method="get">
                             <div tabindex="-1" class="h_ip_wrap">
                                 <div class="h_ip_box">
                                     <label class="h_ip_l">
