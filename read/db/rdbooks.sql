@@ -44,14 +44,22 @@ INSERT INTO `bookinfo` (`book_no`, `book_name`, `buyprice`, `rentprice`, `introd
 -- 테이블 rdbooks.cart 구조 내보내기
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
-  `열 1` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `c_value` int(11) NOT NULL AUTO_INCREMENT,
+  `id_no` int(11) NOT NULL,
+  `book_no` int(11) NOT NULL,
+  `c_date` datetime NOT NULL,
+  PRIMARY KEY (`c_value`),
+  KEY `FK_cart_memberinfo` (`id_no`),
+  KEY `FK_cart_bookinfo` (`book_no`),
+  CONSTRAINT `FK_cart_bookinfo` FOREIGN KEY (`book_no`) REFERENCES `bookinfo` (`book_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_cart_memberinfo` FOREIGN KEY (`id_no`) REFERENCES `memberinfo` (`id_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='카트 테이블';
 
 -- 테이블 데이터 rdbooks.cart:~0 rows (대략적) 내보내기
 DELETE FROM `cart`;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` (`열 1`) VALUES
-	('1');
+INSERT INTO `cart` (`c_value`, `id_no`, `book_no`, `c_date`) VALUES
+	(1, 3, 1, '2022-02-20 22:10:53');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 -- 테이블 rdbooks.memberinfo 구조 내보내기
@@ -81,7 +89,7 @@ DELETE FROM `memberinfo`;
 /*!40000 ALTER TABLE `memberinfo` DISABLE KEYS */;
 INSERT INTO `memberinfo` (`id_no`, `member_id`, `member_email`, `member_pw`, `member_name`, `year`, `gender`, `marketing_agree`, `select_agree`, `signup_date`, `login_date`, `cash`, `point`, `m_status`) VALUES
 	(1, 'id0001', 'id0001@naver.com', '1o1RdQbXVM', '홍길동', NULL, NULL, 'N', 'N', '2021-12-30 00:00:00', '2022-01-18 23:42:35', 0, 0, 0),
-	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-09 21:56:09', 0, 0, 0),
+	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-21 01:05:32', 0, 0, 0),
 	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-01-17 00:19:54', 0, 0, 0),
 	(5, 'id0004', 'id0004@gmail.com', 'qwe123!!', '사번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:05:04', '2022-01-17 00:19:54', 0, 0, 0),
 	(6, 'id0005', 'id0005@gmail.com', 'qwe123!!', '오번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:08:47', '2022-01-17 00:19:54', 0, 0, 0),
