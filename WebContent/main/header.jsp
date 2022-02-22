@@ -132,11 +132,11 @@
                         </ul>
                         
                         <!-- 검색 -->
-                        <form class="h_ip_box" action="http://localhost/ridibooks.com/search.jsp" method="get">
+                        <form class="h_ip_box" action="http://localhost/ridibooks.com/search/controller" method="get">
                             <div tabindex="-1" class="h_ip_wrap">
                                 <div class="h_ip_box">
                                     <label class="h_ip_l">
-                                        <input class="h_ip_search" name="q" type="search" maxlength="60"
+                                        <input class="h_ip_search" name="q" id="q" type="search" maxlength="60"
                                             placeholder="제목, 저자, 출판사 검색" value="${param.q }" >
                                         <i class="fas fa-search"></i>
                                     </label>
@@ -145,6 +145,20 @@
                         </form>
                     </div>
                 </nav>
+                
+                
+                <!-- 검색 기능 시작 공백 -->
+	            <!-- <script>
+	            	function enterkey() {
+	            		if (window.event.keyCode == 13) {
+	            			var text = $("#q").val();
+	            			text.replace(" ","");
+	            			if(text == null || text.isEmpty() || text.equals("") ) return false;
+	            		}
+					}
+			    	
+			    </script> -->
+                
                 
                 <!-- 이것도 시간되면 sub_menu처럼 수정 / 반복문 밑줄css -->
                 <ul class="hd_mm_wrap">
@@ -539,5 +553,7 @@
     		}
         }
     </script>
+    
+    <script src="../js/jquery-3.6.0.min.js"></script>
     
 </body>

@@ -5,13 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import book.BookDTO;
 
 
 public class MemberDAO {
@@ -459,65 +456,6 @@ public class MemberDAO {
 			}
 		}
 		return checkEmail;
-	}
-		
-	// 내 카트 불러오기
-	public ArrayList<BookDTO> cart(String id) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
-		
-		try {
-			conn = getConnection();
-			String sql = "SELECT book_name, book_image, buyprice "
-					+ "FROM cart "
-					+ "INNER JOIN memberinfo ON memberinfo.id_no = cart.id_no "
-					+ "INNER JOIN bookinfo ON bookinfo.book_no = cart.book_no "
-					+ "WHERE member_id = ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				BookDTO book = new BookDTO();
-				
-				book.setBook_name(rs.getString("book_name"));
-				book.setBook_image(rs.getString("book_image"));
-				book.setBuyprice(rs.getInt("buyprice"));
-				
-				bookList.add(book);
-			}
-			
-		} catch(SQLException e) {
-//				e.printStackTrace();
-			System.out.println("SQL 예외");
-		} finally {
-			if(rs != null) {
-				try {
-					rs.close();
-				} catch(SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(pstmt != null) {
-				try {
-					pstmt.close();
-				} catch(SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(conn != null) {
-				try {
-					conn.close();
-				} catch(SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return bookList;
 	}
 	
 }
