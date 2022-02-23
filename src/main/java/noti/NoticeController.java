@@ -1,4 +1,4 @@
-package book;
+package noti;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/cart/controller")
-public class CartController extends HttpServlet {
+@WebServlet("/notice/controller")
+public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BookService service = new BookService();
+		NoticeService service = new NoticeService();
 		
-		ArrayList<BookDTO> bookList = service.cart(request, response);
+		ArrayList<NoticeDTO> notice = service.notice(request, response);
 		
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("mycart", bookList);
+		session.setAttribute("notice", notice);
 		
-		response.sendRedirect("http://localhost/ridibooks.com/account/cart.jsp");
-		
+		response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
 	}
 }

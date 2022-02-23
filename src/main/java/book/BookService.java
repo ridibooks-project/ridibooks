@@ -45,7 +45,7 @@ public class BookService {
 	
 		bookList = dao.cart(id);
 	
-		session.setAttribute("mycart", bookList);
+		//session.setAttribute("mycart", bookList);
 	
 		return bookList;
 	}

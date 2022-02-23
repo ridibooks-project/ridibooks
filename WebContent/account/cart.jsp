@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="member.MemberDAO" %>
-<%@ page import="member.MemberDTO" %>
 <%@ page import="book.BookDTO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%
 	String id = (String) session.getAttribute("id");
 
-	MemberDAO dao = new MemberDAO();
-	ArrayList<BookDTO> bookList = dao.cart(id);
+	ArrayList<BookDTO> mycart = (ArrayList<BookDTO>) session.getAttribute("mycart");
 %>
 
 <!DOCTYPE html>
@@ -26,7 +23,7 @@
 	<h2>카트</h2>
 	
 	<%
-		if(bookList.size() == 0) {
+		if(mycart.size() == 0) {
 	%>
 		<div>
 			<p>
@@ -35,13 +32,13 @@
 		</div>
 	<%
 		} else {
-			for(int i=0; i<bookList.size(); i++) {
+			for(int i=0; i<mycart.size(); i++) {
 	%>
 			<div>
 				<p>
-					<img src="<%= bookList.get(i).getBook_image() %>">
-					<%= bookList.get(i).getBook_name() %>
-					<%= bookList.get(i).getBuyprice() %>
+					<img src="<%= mycart.get(i).getBook_image() %>">
+					<%= mycart.get(i).getBook_name() %>
+					<%= mycart.get(i).getBuyprice() %>
 				</p>
 			</div>
 		

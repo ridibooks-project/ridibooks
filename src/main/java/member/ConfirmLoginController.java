@@ -21,8 +21,8 @@ public class ConfirmLoginController extends HttpServlet {
 			
 			response.sendRedirect("http://localhost/ridibooks.com/account/login.jsp");
 		} else {
-			if(i==1) response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
-       		//if(i==2) response.sendRedirect("http://localhost/ridibooks.com/account/cart.jsp");
+			//if(i==1) response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
+			if(i==1) response.sendRedirect("http://localhost/ridibooks.com/notice/controller");
 			if(i==2) response.sendRedirect("http://localhost/ridibooks.com/cart/controller");
        		if(i==3) response.sendRedirect("http://localhost/ridibooks.com/account/myridi.jsp");
 		}

@@ -32,35 +32,23 @@ CREATE TABLE IF NOT EXISTS `bookinfo` (
   PRIMARY KEY (`book_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COMMENT='도서정보 테이블';
 
--- 테이블 데이터 rdbooks.bookinfo:~3 rows (대략적) 내보내기
-DELETE FROM `bookinfo`;
-/*!40000 ALTER TABLE `bookinfo` DISABLE KEYS */;
-INSERT INTO `bookinfo` (`book_no`, `book_name`, `buyprice`, `rentprice`, `introduction`, `book_date`, `book_image`, `category`) VALUES
-	(1, '귀환했더니 신이되었다', 10000, 10000, '귀환했더니 신이되었다 소개내용', '2022-02-10 00:22:08', 'C:\\Users\\leeso\\OneDrive\\바탕 화면\\ridibooks\\WebContent\\image\\1.png', '판타지소설'),
-	(2, '상점쓰는이세계전자', 10000, 10000, '상점쓰는이세계전자 소개내용', '2022-02-11 00:23:33', 'C:\\Users\\leeso\\OneDrive\\바탕 화면\\ridibooks\\WebContent\\image\\2.png', '판타지소설'),
-	(3, '백작가의망나니가되었다', 10000, 10000, '백작가의망나니가되었다 소개내용', '2022-02-14 00:24:22', 'C:\\Users\\leeso\\OneDrive\\바탕 화면\\ridibooks\\WebContent\\image\\2.png', '판타지소설');
-/*!40000 ALTER TABLE `bookinfo` ENABLE KEYS */;
+-- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 rdbooks.cart 구조 내보내기
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
-  `c_value` int(11) NOT NULL AUTO_INCREMENT,
-  `id_no` int(11) NOT NULL,
-  `book_no` int(11) NOT NULL,
-  `c_date` datetime NOT NULL,
-  PRIMARY KEY (`c_value`),
+  `c_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '카트 고유 식별 번호',
+  `id_no` int(11) NOT NULL COMMENT '아이디 고유 식별 번호',
+  `book_no` int(11) NOT NULL COMMENT '도서 고유 식별 번호',
+  `c_date` datetime NOT NULL COMMENT '도서 카트 추가 일',
+  PRIMARY KEY (`c_no`) USING BTREE,
   KEY `FK_cart_memberinfo` (`id_no`),
   KEY `FK_cart_bookinfo` (`book_no`),
   CONSTRAINT `FK_cart_bookinfo` FOREIGN KEY (`book_no`) REFERENCES `bookinfo` (`book_no`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_cart_memberinfo` FOREIGN KEY (`id_no`) REFERENCES `memberinfo` (`id_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='카트 테이블';
 
--- 테이블 데이터 rdbooks.cart:~0 rows (대략적) 내보내기
-DELETE FROM `cart`;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` (`c_value`, `id_no`, `book_no`, `c_date`) VALUES
-	(1, 3, 1, '2022-02-20 22:10:53');
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+-- 내보낼 데이터가 선택되어 있지 않습니다.
 
 -- 테이블 rdbooks.memberinfo 구조 내보내기
 DROP TABLE IF EXISTS `memberinfo`;
@@ -84,22 +72,23 @@ CREATE TABLE IF NOT EXISTS `memberinfo` (
   UNIQUE KEY `member_email` (`member_email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb3 COMMENT='회원정보 테이블';
 
--- 테이블 데이터 rdbooks.memberinfo:~11 rows (대략적) 내보내기
-DELETE FROM `memberinfo`;
-/*!40000 ALTER TABLE `memberinfo` DISABLE KEYS */;
-INSERT INTO `memberinfo` (`id_no`, `member_id`, `member_email`, `member_pw`, `member_name`, `year`, `gender`, `marketing_agree`, `select_agree`, `signup_date`, `login_date`, `cash`, `point`, `m_status`) VALUES
-	(1, 'id0001', 'id0001@naver.com', '1o1RdQbXVM', '홍길동', NULL, NULL, 'N', 'N', '2021-12-30 00:00:00', '2022-01-18 23:42:35', 0, 0, 0),
-	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-21 01:05:32', 0, 0, 0),
-	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-01-17 00:19:54', 0, 0, 0),
-	(5, 'id0004', 'id0004@gmail.com', 'qwe123!!', '사번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:05:04', '2022-01-17 00:19:54', 0, 0, 0),
-	(6, 'id0005', 'id0005@gmail.com', 'qwe123!!', '오번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:08:47', '2022-01-17 00:19:54', 0, 0, 0),
-	(7, 'id0006', 'id0006@gmail.com', 'qwe123!!', '육번', NULL, NULL, 'N', 'N', '2022-01-10 22:14:10', '2022-01-17 00:19:54', 0, 0, 0),
-	(8, 'id0007', 'id0007@daum.net', 'qwe123!!', '칠번', NULL, NULL, 'N', 'N', '2022-01-10 22:39:06', '2022-01-17 00:19:54', 0, 0, 0),
-	(9, 'id0008', 'id0008@naver.com', 'qwe123!!', '팔번', NULL, NULL, 'N', 'N', '2022-01-11 21:08:39', '2022-01-17 00:19:54', 0, 0, 0),
-	(83, 'id0009', 'id0009@naver.com', 'qwe123!!', '구번', '1999', NULL, 'Y', 'Y', '2022-01-23 19:47:53', NULL, 0, 0, 0),
-	(84, 'id0010', 'id0010@naver.com', 'qwe123!!', '십번', '1995', NULL, 'N', 'N', '2022-01-27 00:25:38', NULL, 0, 0, 0),
-	(85, 'id0011', 'id0011@naver.com', 'qwe123!!', '십일번', '0000', 'F', 'Y', 'Y', '2022-01-27 00:33:32', NULL, 0, 0, 0);
-/*!40000 ALTER TABLE `memberinfo` ENABLE KEYS */;
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 rdbooks.notification 구조 내보내기
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `noti_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '알림 고유 식별 번호',
+  `id_no` int(11) DEFAULT NULL COMMENT '아이디 고유 식별 번호',
+  `noti_title` varchar(255) NOT NULL COMMENT '알림 제목',
+  `noti_text` varchar(255) NOT NULL COMMENT '알림 내용',
+  `noti_date` datetime NOT NULL COMMENT '알림 추가 일',
+  `noti_status` int(11) NOT NULL DEFAULT 0 COMMENT '알림 상태\r\n0 -> 신규\r\n1 -> 읽음',
+  PRIMARY KEY (`noti_no`),
+  KEY `FK_notification_memberinfo` (`id_no`),
+  CONSTRAINT `FK_notification_memberinfo` FOREIGN KEY (`id_no`) REFERENCES `memberinfo` (`id_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COMMENT='알림 테이블';
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
