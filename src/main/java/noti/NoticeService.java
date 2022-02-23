@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 public class NoticeService {
 	
-public ArrayList<NoticeDTO> notice(HttpServletRequest request, HttpServletResponse response) {
+	public ArrayList<NoticeDTO> notice(HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession();
 		
@@ -36,6 +36,30 @@ public ArrayList<NoticeDTO> notice(HttpServletRequest request, HttpServletRespon
 		session.setAttribute("mynoti", noticeList);
 	
 		return noticeList;
+	}
+	
+	
+	// 알림 status 변경(신규 -> 읽음) 테스트 필요
+	public int noticeStatus(HttpServletRequest request, HttpServletResponse response) {
+		
+		int statusCode;
+		
+		HttpSession session = request.getSession();
+		
+		String id = (String) session.getAttribute("id");
+		int noti_no = Integer.parseInt(request.getParameter("page"));
+	
+		NoticeDAO dao = new NoticeDAO();
+		
+		boolean update = dao.noticeStatus(id, noti_no);
+		
+		if(update) {
+			statusCode = HttpServletResponse.SC_OK;
+		} else {
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		return statusCode;
 	}
 
 }

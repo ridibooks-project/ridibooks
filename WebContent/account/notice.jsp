@@ -32,26 +32,57 @@
 		} else {
 			for(int i=0; i<mynoti.size(); i++) {
 	%>
-			<div>
+			<div class="noti ${mynoti.get(i).getNoti_title() }">
 				<p>
-					<span>
-						[<%= mynoti.get(i).getNoti_title() %>]
-					</span>
-					<span>
-						<%= mynoti.get(i).getNoti_text() %>
-					</span>
+						<span>
+							[<%= mynoti.get(i).getNoti_title() %>]
+						</span>
+						<span>
+							<%= mynoti.get(i).getNoti_text() %>
+						</span>
 				</p>
 				<p>
 					<%= mynoti.get(i).getDuration() %>시간 전
 				</p>
-				
-				
+				<%
+					if(mynoti.get(i).getNoti_status() == 0) {
+				%>
+					<span>읽지 않은 알람</span>
+				<%
+					} else {
+				%>
+					<span>읽은 알람</span>
+				<%
+					}
+				%>
 			</div>
-		
 	<%	
 			}
 		}
 	%>
+	
+	<!-- 신규알람, 읽은알람 db처리를 위해 -->
+	<script>
+    	let noti = document.querySelectorAll('.menu_navi');
+    	for (let i = 0; i < noti.length; i++){
+    		noti[i].onclick = () => {
+    			//location.href = "http://localhost/ridibooks.com/notice/status/controller?page="+mynoti.get(i).getNoti_no();
+    			
+    			$.ajax({
+    		        url: "http://localhost/ridibooks.com/notice/status/controller",
+    		        type: "GET",
+    		        dataType: "text",
+    		        data: "page="+mynoti.get(i).getNoti_no()+"&status="+mynoti.get(i).getNoti_status(),
+    		        success: function(){
+    		               location.href = "http://localhost/ridibooks.com/event?page="+mynoti.get(i).getNoti_no();
+    		        },
+    		        error: function(){
+   		                location.href = "http://localhost/ridibooks.com/account/notice.jsp";
+    		        }
+    		    });
+    		}
+        }
+    </script>
 
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 </body>

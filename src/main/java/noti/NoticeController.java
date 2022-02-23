@@ -26,4 +26,5 @@ public class NoticeController extends HttpServlet {
 		
 		response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
 	}
+	
 }

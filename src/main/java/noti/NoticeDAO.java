@@ -94,4 +94,46 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
+	// 알림 status 변경(신규 -> 읽음) 테스트 필요
+	public boolean noticeStatus(String id, int noti_no) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		boolean update = false;
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "UPDATE notification SET noti_status = 1 WHERE member_id = ? AND noti_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, noti_no);
+			
+			int count = pstmt.executeUpdate();
+			
+			update = count == 1;
+			
+		} catch(SQLException e) {
+	//		e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return update;
+	}
+	
 }
