@@ -104,11 +104,11 @@ public class NoticeDAO {
 		try {
 			conn = getConnection();
 			
-			String sql = "UPDATE notification SET noti_status = 1 WHERE member_id = ? AND noti_no = ?";
+			String sql = "UPDATE notification SET noti_status = 1 WHERE noti_no = ? AND id_no = (SELECT id_no FROM memberinfo WHERE member_id = ?)";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
-			pstmt.setInt(2, noti_no);
+			pstmt.setInt(1, noti_no);
+			pstmt.setString(2, id);
 			
 			int count = pstmt.executeUpdate();
 			

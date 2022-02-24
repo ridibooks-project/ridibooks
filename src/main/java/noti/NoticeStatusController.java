@@ -15,6 +15,10 @@ public class NoticeStatusController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int noti_status = Integer.parseInt(request.getParameter("status"));
+		int noti_no = Integer.parseInt(request.getParameter("page"));
+		
+		System.out.println(noti_status);
+		System.out.println(noti_no);
 		
 		int statusCode;
 		
@@ -28,8 +32,6 @@ public class NoticeStatusController extends HttpServlet {
 			// 이미 읽은 알림일 때
 			statusCode = HttpServletResponse.SC_OK;
 		}
-		
-		System.out.println(statusCode);
 		
 		response.setStatus(statusCode);
 	}

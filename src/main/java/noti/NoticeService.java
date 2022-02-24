@@ -25,9 +25,6 @@ public class NoticeService {
 		// 알림 받은 시간 계산
 		LocalDateTime ldt = LocalDateTime.now();
 		
-		System.out.println(ldt);
-		
-		
 		for(int i=0; i<noticeList.size(); i++) {
 			Duration duration = Duration.between(noticeList.get(i).getNoti_date(), ldt);
 			noticeList.get(i).setDuration(duration.getSeconds() / 3600);
@@ -48,7 +45,7 @@ public class NoticeService {
 		
 		String id = (String) session.getAttribute("id");
 		int noti_no = Integer.parseInt(request.getParameter("page"));
-	
+		
 		NoticeDAO dao = new NoticeDAO();
 		
 		boolean update = dao.noticeStatus(id, noti_no);

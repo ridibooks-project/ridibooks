@@ -91,8 +91,8 @@ DELETE FROM `memberinfo`;
 /*!40000 ALTER TABLE `memberinfo` DISABLE KEYS */;
 INSERT INTO `memberinfo` (`id_no`, `member_id`, `member_email`, `member_pw`, `member_name`, `year`, `gender`, `marketing_agree`, `select_agree`, `signup_date`, `login_date`, `cash`, `point`, `m_status`) VALUES
 	(1, 'id0001', 'id0001@naver.com', '1o1RdQbXVM', '홍길동', NULL, NULL, 'N', 'N', '2021-12-30 00:00:00', '2022-01-18 23:42:35', 0, 0, 0),
-	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-24 09:56:26', 0, 0, 0),
-	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-02-24 09:56:12', 0, 0, 0),
+	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-24 23:57:47', 0, 0, 0),
+	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-02-25 00:38:18', 0, 0, 0),
 	(5, 'id0004', 'id0004@gmail.com', 'qwe123!!', '사번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:05:04', '2022-02-24 09:56:03', 0, 0, 0),
 	(6, 'id0005', 'id0005@gmail.com', 'qwe123!!', '오번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:08:47', '2022-01-17 00:19:54', 0, 0, 0),
 	(7, 'id0006', 'id0006@gmail.com', 'qwe123!!', '육번', NULL, NULL, 'N', 'N', '2022-01-10 22:14:10', '2022-01-17 00:19:54', 0, 0, 0),
@@ -106,24 +106,23 @@ INSERT INTO `memberinfo` (`id_no`, `member_id`, `member_email`, `member_pw`, `me
 -- 테이블 rdbooks.notification 구조 내보내기
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE IF NOT EXISTS `notification` (
-  `noti_no` int(11) NOT NULL AUTO_INCREMENT COMMENT '알림 고유 식별 번호',
+  `noti_no` int(11) NOT NULL COMMENT '알림 고유 식별 번호',
   `id_no` int(11) DEFAULT NULL COMMENT '아이디 고유 식별 번호',
   `noti_title` varchar(255) NOT NULL COMMENT '알림 제목',
   `noti_text` varchar(255) NOT NULL COMMENT '알림 내용',
   `noti_date` datetime NOT NULL COMMENT '알림 추가 일',
   `noti_status` int(11) NOT NULL DEFAULT 0 COMMENT '알림 상태\r\n0 -> 신규\r\n1 -> 읽음',
-  PRIMARY KEY (`noti_no`),
   KEY `FK_notification_memberinfo` (`id_no`),
   CONSTRAINT `FK_notification_memberinfo` FOREIGN KEY (`id_no`) REFERENCES `memberinfo` (`id_no`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COMMENT='알림 테이블';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='알림 테이블';
 
 -- 테이블 데이터 rdbooks.notification:~3 rows (대략적) 내보내기
 DELETE FROM `notification`;
 /*!40000 ALTER TABLE `notification` DISABLE KEYS */;
 INSERT INTO `notification` (`noti_no`, `id_no`, `noti_title`, `noti_text`, `noti_date`, `noti_status`) VALUES
-	(1, 3, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-23 09:48:30', 0),
-	(2, 4, '두번 째', '두번째', '2022-02-24 09:57:16', 0),
-	(3, 4, '첫번 째', '첫번 째', '2022-02-24 10:02:03', 0);
+	(1, 3, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-23 09:48:30', 1),
+	(1, 4, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-24 09:57:16', 1),
+	(2, 4, '첫번 째', '첫번 째', '2022-02-24 10:02:03', 0);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
