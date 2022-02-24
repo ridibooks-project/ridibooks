@@ -29,6 +29,8 @@ public class NoticeStatusController extends HttpServlet {
 			statusCode = HttpServletResponse.SC_OK;
 		}
 		
+		System.out.println(statusCode);
+		
 		response.setStatus(statusCode);
 	}
 

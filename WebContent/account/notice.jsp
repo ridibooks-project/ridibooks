@@ -17,6 +17,8 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	
 	<%@ include file="../main/header.jsp" %>
 	<h2>알림</h2>
 	
@@ -32,14 +34,16 @@
 		} else {
 			for(int i=0; i<mynoti.size(); i++) {
 	%>
-			<div class="noti ${mynoti.get(i).getNoti_title() }">
+	<!-- http://localhost/ridibooks.com/event/page${mynoti.get(i).getNoti_no() }.jsp -->
+		<div>
+			<a href="http://localhost/ridibooks.com/event/page${mynoti.get(i).getNoti_no() }.jsp" class="noti" id="noti ${mynoti.get(i).getNoti_title() }">
 				<p>
-						<span>
-							[<%= mynoti.get(i).getNoti_title() %>]
-						</span>
-						<span>
-							<%= mynoti.get(i).getNoti_text() %>
-						</span>
+					<span>
+						[<%= mynoti.get(i).getNoti_title() %>]
+					</span>
+					<span>
+						<%= mynoti.get(i).getNoti_text() %>
+					</span>
 				</p>
 				<p>
 					<%= mynoti.get(i).getDuration() %>시간 전
@@ -55,7 +59,8 @@
 				<%
 					}
 				%>
-			</div>
+			</a>
+		</div>
 	<%	
 			}
 		}
@@ -63,26 +68,49 @@
 	
 	<!-- 신규알람, 읽은알람 db처리를 위해 -->
 	<script>
-    	let noti = document.querySelectorAll('.menu_navi');
+    	let noti = document.querySelectorAll("#noti");
     	for (let i = 0; i < noti.length; i++){
     		noti[i].onclick = () => {
+//     			e.preventDefault(); a 태그와 이거는 맞지 않음
     			//location.href = "http://localhost/ridibooks.com/notice/status/controller?page="+mynoti.get(i).getNoti_no();
     			
     			$.ajax({
     		        url: "http://localhost/ridibooks.com/notice/status/controller",
     		        type: "GET",
     		        dataType: "text",
-    		        data: "page="+mynoti.get(i).getNoti_no()+"&status="+mynoti.get(i).getNoti_status(),
+    		        data: "page="+${mynoti.get(i).getNoti_no() }+"&status="+${mynoti.get(i).getNoti_status() },
     		        success: function(){
-    		               location.href = "http://localhost/ridibooks.com/event?page="+mynoti.get(i).getNoti_no();
+    		            //location.href = "http://localhost/ridibooks.com/event/page"+mynoti.get(i).getNoti_no()+".jsp";
+    		        	alert("oo");
     		        },
     		        error: function(){
-   		                location.href = "http://localhost/ridibooks.com/account/notice.jsp";
+   		                //location.href = "http://localhost/ridibooks.com/account/notice.jsp";
+   		             	alert("xx");
     		        }
     		    });
+    			
+    			return false;	// a태그에는 리턴을 e.prevent가 아니라 리턴을 해야 기본 동작을 막을 수 있음
     		}
         }
     </script>
+    
+    <!-- <script>
+    	$("#noti").on("click",function(e) {
+    		e.preventDefault();
+    		$.ajax({
+    			url: "http://localhost/ridibooks.com/notice/status/controller",
+    			type: "GET",
+    			dataType: "text",
+    			data: "page="+mynoti.get(i).getNoti_no()+"&status="+mynoti.get(i).getNoti_status(),
+    			success: function(){
+    				location.href = "http://localhost/ridibooks.com/event/page"+mynoti.get(i).getNoti_no()+".jsp";
+    			},
+    			error: function(){
+       				location.href = "http://localhost/ridibooks.com/account/notice.jsp";
+    			}
+    		});
+    	});
+    </script> -->
 
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 </body>
