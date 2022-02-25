@@ -273,7 +273,7 @@ public class MemberDAO {
 		return db_id;
 	}
 	
-	// db pw변경
+	// db update - pw변경
 	public boolean updatePw(MemberDTO member) {
 	
 		Connection conn = null;
@@ -315,7 +315,7 @@ public class MemberDAO {
 		return update;
 	}
 	
-	// db 이메일 변경
+	// db update - 이메일 변경
 	public boolean updateEmail(MemberDTO member) {
 		
 		Connection conn = null;
@@ -430,7 +430,7 @@ public class MemberDAO {
 				db_email = rs.getString("member_email");
 				
 				if(db_email.equals(member.getEmail())) {
-					// db에 입력한 아이디와 같은 값이 있다면 true 반환
+					// db에 입력한 이메일과 같은 값이 있다면 true 반환
 					checkEmail = true;
 				}
 			}

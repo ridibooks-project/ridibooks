@@ -216,7 +216,6 @@ public class MemberService {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
-		// 비밀번호 패턴 확인
 		// 비밀번호 패턴 확인 - 8자 이상, 영문/숫자/특수문자 중 2가지 이상 포함
 		// 패턴1 - 숫자/영문/특수문자 모두 포함 8자 이상
 		String pwPattern1 = "^.*(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!?@#$%^&*])(?=^.{8,}$).*$";	
@@ -232,14 +231,13 @@ public class MemberService {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
-		// 입력 확인 에러
+		// 비밀번호 입력 확인
 		if(!new_pw.equals(new_pwChk)) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
 		
 		MemberDTO member = new MemberDTO();
 		member.setId(loginId);
-		
 		member.setPw(new_pw);
 		
 		MemberDAO dao = new MemberDAO();
@@ -425,7 +423,7 @@ public class MemberService {
 	public int checkId (HttpServletRequest request, HttpServletResponse response) {
 		
 		String id = request.getParameter("sign_id");
-		
+		// 입력 값 공백 확인
 		if( (id.isEmpty() || id == null) ) {
 			
 			statusCode = HttpServletResponse.SC_BAD_REQUEST;
@@ -452,7 +450,7 @@ public class MemberService {
 	public int checkEmail (HttpServletRequest request, HttpServletResponse response) {
 		
 		String email = request.getParameter("sign_email");
-		
+		// 입력 값 공백 확인
 		if( (email.isEmpty() || email == null) ) {
 			
 			statusCode = HttpServletResponse.SC_BAD_REQUEST;
