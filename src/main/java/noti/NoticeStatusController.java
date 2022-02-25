@@ -17,9 +17,6 @@ public class NoticeStatusController extends HttpServlet {
 		int noti_status = Integer.parseInt(request.getParameter("status"));
 		int noti_no = Integer.parseInt(request.getParameter("page"));
 		
-		System.out.println(noti_status);
-		System.out.println(noti_no);
-		
 		int statusCode;
 		
 		if(noti_status == 0) {
@@ -33,7 +30,9 @@ public class NoticeStatusController extends HttpServlet {
 			statusCode = HttpServletResponse.SC_OK;
 		}
 		
-		response.setStatus(statusCode);
+		System.out.println(statusCode);
+		
+		response.sendRedirect("http://localhost/ridibooks.com/event/page"+noti_no+".jsp");
+		
 	}
-
 }

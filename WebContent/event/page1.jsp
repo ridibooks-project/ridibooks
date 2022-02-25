@@ -3,11 +3,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이벤트 페이지1</title>
+	<link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
+	<%@ include file="../main/header.jsp" %>
+	
 	<h3>
 		이벤트 페이지1
 	</h3>
+	
+	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 </body>
 </html>
