@@ -151,8 +151,8 @@ public class BookDAO {
 		return bookList;
 	}
 	
-	// 신작 불러오기(날짜순 10개) 테스트 중
-	public ArrayList<BookDTO> bookByDate(BookDTO book) {
+	// 신작 불러오기 - 테스트 중
+	public ArrayList<BookDTO> newList() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -162,12 +162,14 @@ public class BookDAO {
 		try {
 			conn = getConnection();
 			
-			String sql = "SELECT * FROM bookinfo ORDER BY book_date DESC LIMIT 10;";
+			String sql = "SELECT * FROM bookinfo ORDER BY book_date DESC";	// LIMIT 10
 			
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				BookDTO book = new BookDTO();
+				
 				book = new BookDTO();
 				
 				book.setBook_name(rs.getString("book_name"));
@@ -209,5 +211,126 @@ public class BookDAO {
 		}
 		return bookList;
 	}
+	
+	// 금 주 신작 불러오기 - 테스트 중
+	public ArrayList<BookDTO> newWeekList() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				BookDTO book = new BookDTO();
+				
+				book = new BookDTO();
+				
+				book.setBook_name(rs.getString("book_name"));
+				book.setBook_no(rs.getInt("book_no"));
+				book.setBook_image(rs.getString("book_image"));
+				book.setBuyprice(rs.getInt("buyprice"));
+				book.setRentprice(rs.getInt("rentprice"));
+				book.setIntroduction(rs.getString("introduction"));
+				book.setCategory_no(rs.getInt("category_no"));
+				
+				bookList.add(book);
+			}
+			
+		} catch(SQLException e) {
+//				e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return bookList;
+	}
 
+	// 베스트셀러 불러오기 - 테스트 중
+	public ArrayList<BookDTO> bestList() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ArrayList<BookDTO> bookList = new ArrayList<BookDTO>();
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "";
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				BookDTO book = new BookDTO();
+				
+				book = new BookDTO();
+				
+				book.setBook_name(rs.getString("book_name"));
+				book.setBook_no(rs.getInt("book_no"));
+				book.setBook_image(rs.getString("book_image"));
+				book.setBuyprice(rs.getInt("buyprice"));
+				book.setRentprice(rs.getInt("rentprice"));
+				book.setIntroduction(rs.getString("introduction"));
+				book.setCategory_no(rs.getInt("category_no"));
+				
+				bookList.add(book);
+			}
+			
+		} catch(SQLException e) {
+//					e.printStackTrace();
+			System.out.println("SQL 예외");
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return bookList;
+	}
 }

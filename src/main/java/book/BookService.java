@@ -27,8 +27,6 @@ public class BookService {
 		
 		bookList = dao.bookSearch(search);
 		
-		//request.setAttribute("bookList", bookList);
-		
 		return bookList;
 	}
 	
@@ -45,9 +43,46 @@ public class BookService {
 	
 		bookList = dao.cart(id);
 	
-		//session.setAttribute("mycart", bookList);
-	
 		return bookList;
+	}
+	
+	// 신간 불러오기
+	public ArrayList<BookDTO> newList(HttpServletRequest request, HttpServletResponse response) {
+		
+	
+		ArrayList<BookDTO> newList = new ArrayList<BookDTO>();
+	
+		BookDAO dao = new BookDAO();
+	
+		newList = dao.newList();
+	
+		return newList;
+	}
+	
+	// 금 주 신간 불러오기
+	public ArrayList<BookDTO> newWeekList(HttpServletRequest request, HttpServletResponse response) {
+		
+	
+		ArrayList<BookDTO> newList = new ArrayList<BookDTO>();
+	
+		BookDAO dao = new BookDAO();
+	
+		newList = dao.newWeekList();
+	
+		return newList;
+	}
+	
+	// 베스트셀러 불러오기
+	public ArrayList<BookDTO> bestList(HttpServletRequest request, HttpServletResponse response) {
+		
+	
+		ArrayList<BookDTO> newList = new ArrayList<BookDTO>();
+	
+		BookDAO dao = new BookDAO();
+	
+		newList = dao.bestList();
+	
+		return newList;
 	}
 	
 }
