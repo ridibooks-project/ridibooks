@@ -21,33 +21,26 @@
 	<%@ include file="../main/header.jsp" %>
 	
 	<h2>카트</h2>
+	<br>
 	
-	<%
-		if(mycart.size() == 0) {
-	%>
-		<div>
-			<p>
-				카트에 담긴 책이 없습니다.
-			</p>
-		</div>
-	<%
-		} else {
-			for(int i=0; i<mycart.size(); i++) {
-	%>
+	<c:choose>
+		<c:when test="${mycart.size() == 0 }">
 			<div>
-				<p>
-					<img src="<%= mycart.get(i).getBook_image() %>">
-					<%= mycart.get(i).getBook_name() %>
-					<%= mycart.get(i).getBuyprice() %>
-				</p>
+				<p> 카트에 담긴 책이 없습니다. </p>
 			</div>
-		
-	<%	
-			}
-		}
-	%>
-	
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="cart" items="${mycart }">
+				<div>
+					<p> <img src="${cart.book_image }"> </p>
+					<p> ${cart.book_name } </p>
+					<p> ${cart.buyprice } </p>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
+	
 </body>
 </html>

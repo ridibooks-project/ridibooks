@@ -138,7 +138,8 @@ public class MemberDAO {
 		try {
 			conn = getConnection();
 			
-			String sql = "INSERT INTO memberinfo(member_id, member_pw, member_email, member_name, year, gender, marketing_agree, select_agree, signup_date) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO memberinfo(member_id, member_pw, member_email, member_name, year, gender, marketing_agree, select_agree, signup_date) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -177,12 +178,7 @@ public class MemberDAO {
 		return signup;
 	}
 	
-	// db 정보 수정
-	public boolean updateMember(MemberDTO member) {
-		return false;
-	}
-	
-	// db 정보 삭제 - 회원탈퇴
+	// db 정보 삭제 - 회원탈퇴(db의 데이터 삭제가아닌 상태를 변경하여 탈퇴처리)
 	public boolean deleteMember(MemberDTO member) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -192,6 +188,7 @@ public class MemberDAO {
 		try {
 			conn = getConnection();
 			
+			// m_status(회원상태)를 0(정상) -> 1(탈퇴) 
 			String sql = "UPDATE memberinfo SET m_status = 1 WHERE member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			

@@ -11,7 +11,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logout/controller")
 public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	// 로그아웃
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();

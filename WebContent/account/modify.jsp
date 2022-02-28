@@ -20,7 +20,6 @@
 		<input type="submit" class="confirm_pw_btn" value="확인">
 	</form>
 
-	<!-- 성공 페이지 임시 -->	
 	<script>
     	$(".confirm_pw_btn").on("click",function() {
     		$.ajax({
@@ -29,7 +28,7 @@
     			dataType: "text",
     			data: "confirm_pw="+$('#confirm_pw').val(),
     			success: function(){
-    				location.href = "http://localhost/ridibooks.com/account/test.jsp";
+    				location.href = "http://localhost/ridibooks.com/account/modify_step2.jsp";
     			},
     			error: function(){
        				location.href = "http://localhost/ridibooks.com/account/modify.jsp";

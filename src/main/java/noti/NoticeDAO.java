@@ -94,7 +94,7 @@ public class NoticeDAO {
 		return noticeList;
 	}
 	
-	// 알림 status 변경(신규 -> 읽음) 테스트 필요
+	// 알림 status 변경(신규(0) -> 읽음(1))
 	public boolean noticeStatus(String id, int noti_no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

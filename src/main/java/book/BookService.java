@@ -63,26 +63,26 @@ public class BookService {
 	public ArrayList<BookDTO> newWeekList(HttpServletRequest request, HttpServletResponse response) {
 		
 	
-		ArrayList<BookDTO> newList = new ArrayList<BookDTO>();
+		ArrayList<BookDTO> newWeekList = new ArrayList<BookDTO>();
 	
 		BookDAO dao = new BookDAO();
 	
-		newList = dao.newWeekList();
+		newWeekList = dao.newWeekList();
 	
-		return newList;
+		return newWeekList;
 	}
 	
 	// 베스트셀러 불러오기
 	public ArrayList<BookDTO> bestList(HttpServletRequest request, HttpServletResponse response) {
 		
 	
-		ArrayList<BookDTO> newList = new ArrayList<BookDTO>();
+		ArrayList<BookDTO> bestList = new ArrayList<BookDTO>();
 	
 		BookDAO dao = new BookDAO();
 	
-		newList = dao.bestList();
+		bestList = dao.bestList();
 	
-		return newList;
+		return bestList;
 	}
 	
 }

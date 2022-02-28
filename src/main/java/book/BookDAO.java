@@ -223,6 +223,8 @@ public class BookDAO {
 		try {
 			conn = getConnection();
 			
+			// SELECT * FROM bookinfo WHERE book_date BETWEEN '2022-02-10' AND '2022-02-15' ORDER BY book_date DESC;
+			// BETWEEN 시작일 AND 종료일 >> 금 주 의 기준을 어떻게 설정할 건지
 			String sql = "";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -284,6 +286,7 @@ public class BookDAO {
 		try {
 			conn = getConnection();
 			
+			// bookinfo에 판매량 칼럼을 추가한 후 높은 순으로 가져오기
 			String sql = "";
 			
 			pstmt = conn.prepareStatement(sql);

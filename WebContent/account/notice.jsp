@@ -23,7 +23,26 @@
 	<h2>알림</h2>
 	<br>
 	
-	<%
+	<c:choose>
+		<c:when test="${mynoti.size() == 0 }">
+			<div>
+				<p> 알림이 없습니다. </p>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="noti" items="${mynoti }">
+				<div>
+					<a href="http://localhost/ridibooks.com/notice/status/controller?page=<%=mynoti.get(i).getNoti_no() %>&status=<%=mynoti.get(i).getNoti_status() %>"
+			class="noti <%= mynoti.get(i).getNoti_no() %>" id="noti">
+					
+					</a>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	
+	</c:choose>
+	
+	<%-- <%
 		if(mynoti.size() == 0) {
 	%>
 		<div>
@@ -66,8 +85,9 @@
 	<%	
 			}
 		}
-	%>
+	%> --%>
 
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
+	
 </body>
 </html>

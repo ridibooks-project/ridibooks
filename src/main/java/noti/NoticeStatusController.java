@@ -29,10 +29,11 @@ public class NoticeStatusController extends HttpServlet {
 			// 이미 읽은 알림일 때
 			statusCode = HttpServletResponse.SC_OK;
 		}
-		
-		System.out.println(statusCode);
-		
-		response.sendRedirect("http://localhost/ridibooks.com/event/page"+noti_no+".jsp");
-		
+
+		if(statusCode==200) {
+			response.sendRedirect("http://localhost/ridibooks.com/event/page"+noti_no+".jsp");
+		} else {
+			response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
+		}
 	}
 }

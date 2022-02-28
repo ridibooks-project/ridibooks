@@ -36,7 +36,7 @@ public class NoticeService {
 	}
 	
 	
-	// 알림 status 변경(신규 -> 읽음) 테스트 필요
+	// 알림 status 변경(신규 -> 읽음)
 	public int noticeStatus(HttpServletRequest request, HttpServletResponse response) {
 		
 		int statusCode;

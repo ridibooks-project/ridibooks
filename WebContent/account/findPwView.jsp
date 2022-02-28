@@ -36,7 +36,6 @@
      document.querySelector('.home_btn').onclick = () => {
         window.location = "http://localhost/ridibooks.com/account/login.jsp";
     } 
-
     </script>
 
 </body>

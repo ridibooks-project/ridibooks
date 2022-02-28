@@ -79,7 +79,6 @@ public class MemberService {
 		// null로 받으면 에러뜸 수정필요 -> 미입력 시 기본값을 0 으로
 		// 추 후 int -> date로 바꿔볼 것
 		// int year = Integer.parseInt(request.getParameter("sign_year"));
-		
 		String myear = request.getParameter("sign_year");
 		if(myear==null || myear.isEmpty()) myear = "0";
 		int year = Integer.parseInt(myear);
@@ -263,7 +262,7 @@ public class MemberService {
 		String loginId = (String) session.getAttribute("id");
 		String leave_agree = request.getParameter("leave_agree");
 		
-		// 회원탈퇴 동의 확인
+		// 회원탈퇴 동의 여부 확인
 		if(leave_agree == null || leave_agree.isEmpty()) {
 			return statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
@@ -304,8 +303,6 @@ public class MemberService {
 			// 찾아온 아이디가 없을 때
 			statusCode = HttpServletResponse.SC_NOT_FOUND;
 			
-			//db_id = "가입된 아이디가 없습니다.";
-			
 		} else {
 			statusCode = HttpServletResponse.SC_OK;
 				
@@ -327,9 +324,8 @@ public class MemberService {
 			out.close();
 		} catch (IOException e) {
 			// e.printStackTrace();
-			System.out.println("언제뜨는 에러인지 확인 중");
+			System.out.println("어떤 상황에서 뜨는 에러인지 확인 필요");
 		}
-		
 			
 		return statusCode;
 	}
@@ -413,7 +409,7 @@ public class MemberService {
 			out.close();
 		} catch (IOException e) {
 			// e.printStackTrace();
-			System.out.println("언제뜨는 에러인지 확인 중");
+			System.out.println("어떤 상황에서 뜨는 에러인지 확인 필요");
 		}
 		
 		return statusCode;
@@ -500,6 +496,5 @@ public class MemberService {
 		
 		return statusCode;
 	}
-	
 		
 }

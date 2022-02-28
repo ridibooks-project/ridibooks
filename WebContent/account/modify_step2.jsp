@@ -80,7 +80,7 @@
 				alert("비밀번호가 변경되었습니다.");
 			},
 			error: function(){
-   				location.href = "http://localhost/ridibooks.com/account/test.jsp";
+   				location.href = "http://localhost/ridibooks.com/account/modify_step2.jsp";
    				alert("8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.");
 			}
 		});
@@ -101,7 +101,7 @@
 			},
 			error: function(){
 				alert("8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.");
-   				location.href = "http://localhost/ridibooks.com/account/test.jsp";
+   				location.href = "http://localhost/ridibooks.com/account/modify_step2.jsp";
 			}
 		});
 	});

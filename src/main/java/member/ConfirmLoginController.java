@@ -11,7 +11,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/confirm/login/controller")
 public class ConfirmLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	// 로그인상태 확인
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int i = Integer.parseInt(request.getParameter("page"));
@@ -21,7 +22,6 @@ public class ConfirmLoginController extends HttpServlet {
 			
 			response.sendRedirect("http://localhost/ridibooks.com/account/login.jsp");
 		} else {
-			//if(i==1) response.sendRedirect("http://localhost/ridibooks.com/account/notice.jsp");
 			if(i==1) response.sendRedirect("http://localhost/ridibooks.com/notice/controller");
 			if(i==2) response.sendRedirect("http://localhost/ridibooks.com/cart/controller");
        		if(i==3) response.sendRedirect("http://localhost/ridibooks.com/account/myridi.jsp");
