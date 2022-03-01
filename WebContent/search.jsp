@@ -23,31 +23,25 @@
 	
 	<h3>'${param.q }'도서 검색 결과</h3>
 	
-	<%
-		if(bookList.size() == 0) {
-	%>
-		<div>
-			<p>
-				'${param.q}'에 대한 도서 검색 결과가 없습니다.
-			</p>
-		</div>
-	<%
-		} else {
-			for(int i=0; i<bookList.size(); i++) {
-	%>
+	<c:choose>
+		<c:when test="${bookList.size() == 0 }">
 			<div>
 				<p>
-					<img src="<%= bookList.get(i).getBook_image() %>">
-					<%= bookList.get(i).getBook_name() %>
-					<%= bookList.get(i).getBuyprice() %>
+					'${param.q}'에 대한 도서 검색 결과가 없습니다.
 				</p>
 			</div>
-		
-	<%	
-			}
-		}
-	%>
-		
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="book" items="${bookList }">
+				<div>
+					<p> <img src="${book.book_image }"> </p>
+					<p> ${book.book_name } </p>
+					<p> ${book.buyprice } </p>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
+	
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 </body>
 </html>

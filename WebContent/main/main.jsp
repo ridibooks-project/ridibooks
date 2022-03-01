@@ -1,4 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="book.BookDTO" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%-- <%
+	ArrayList<BookDTO> NewList = (ArrayList<BookDTO>) request.getAttribute("NewList");
+	ArrayList<BookDTO> NewWeekList = (ArrayList<BookDTO>) request.getAttribute("NewWeekList");
+	ArrayList<BookDTO> BestList = (ArrayList<BookDTO>) request.getAttribute("BestList");
+
+%> --%>
+
+<%
+
+%>
+
 
 <link href="./css/normal_style.css" rel="stylesheet" type="text/css">
 
@@ -213,6 +228,8 @@
             </ul>
         </div>
     </section>
+    
+    <!-- 신간 탭 -->
     <section class="darkSlideTab newBook_tab">
         <div class="dark_sw_wrapper">
             <div>
