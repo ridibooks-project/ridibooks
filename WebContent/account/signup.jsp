@@ -34,30 +34,6 @@
                                 <span class="error_alreadyUse">이미 사용 중인 아이디입니다.</span>
                                 <span class="error_wrong">5~20자의 영문 소문자와 숫자로만 입력해주세요</span>
                             </div>
-                            <!-- <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('.join_id_input').keyup(function () {
-                                        if ($('.join_id_input').val().length > 4) {
-                                            let id = $(this).val();
-
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: '../../src/main/java/member/chk_id',
-                                                data: "ID=" + $('.join_id_input').val,
-                                                success: function () {
-                                                    $('.success_mes').style.display = 'block';
-                                                },
-                                                error: function (response) {
-                                                    if (response.status == '400') {
-                                                        $('.error_alreadyUse').style.display = 'block';
-                                                        $('.join_id_input').style.border = '1px solid red;';
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
-                            </script> -->
                         </div>
                         <div class="join_pw_wrapper">
                             <div>

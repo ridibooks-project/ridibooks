@@ -62,7 +62,6 @@ public class NoticeDAO {
 				
 				noticeList.add(notice);
 				
-				System.out.println(notice.getNoti_date());
 			}
 			
 		} catch(SQLException e) {

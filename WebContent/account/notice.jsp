@@ -30,63 +30,23 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:forEach var="noti" items="${mynoti }">
+			<c:forEach var="notis" items="${mynoti }">
 				<div>
-					<a href="http://localhost/ridibooks.com/notice/status/controller?page=<%=mynoti.get(i).getNoti_no() %>&status=<%=mynoti.get(i).getNoti_status() %>"
-			class="noti <%= mynoti.get(i).getNoti_no() %>" id="noti">
-					
+					<a href="http://localhost/ridibooks.com/notice/status/controller?page=${notis.noti_no }&status=${notis.noti_status }" class="noti ${notis.noti_no }" id="noti">
+						<c:if test="${notis.noti_status == 0 }" >
+							<span>읽지않은 알람</span>
+						</c:if>
+						<span>[ ${notis.noti_title } ]</span>
+						<span>${notis.noti_text }</span><br>
+						<span>${notis.duration }시간 전</span>
 					</a>
 				</div>
+				<hr>
 			</c:forEach>
 		</c:otherwise>
 	
 	</c:choose>
 	
-	<%-- <%
-		if(mynoti.size() == 0) {
-	%>
-		<div>
-			<p>
-				알림이 없습니다.
-			</p>
-		</div>
-	<%
-		} else {
-			for(int i=0; i<mynoti.size(); i++) {
-	%>
-		<div>
-			<a href="http://localhost/ridibooks.com/notice/status/controller?page=<%=mynoti.get(i).getNoti_no() %>&status=<%=mynoti.get(i).getNoti_status() %>"
-			class="noti <%= mynoti.get(i).getNoti_no() %>" id="noti">
-				<p>
-					<span>
-						[<%= mynoti.get(i).getNoti_title() %>]
-					</span>
-					<span>
-						<%= mynoti.get(i).getNoti_text() %>
-					</span>
-				</p>
-				<p>
-					<%= mynoti.get(i).getDuration() %>시간 전
-				</p>
-				<%
-					if(mynoti.get(i).getNoti_status() == 0) {
-				%>
-					<span>읽지 않은 알람</span>
-				<%
-					} else {
-				%>
-					<span>읽은 알람</span>
-				<%
-					}
-				%>
-			</a>
-			<hr>
-		</div>
-	<%	
-			}
-		}
-	%> --%>
-
 	<script src="../js/fontawesome.js" crossorigin="anonymous"></script>
 	
 </body>

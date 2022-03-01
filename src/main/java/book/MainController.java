@@ -27,6 +27,8 @@ public class MainController extends HttpServlet {
 		request.setAttribute("NewWeekList", NewWeekList);
 		request.setAttribute("BestList", BestList);
 		
+		System.out.println("11");
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/frontController.jsp");
 		rd.forward(request, response);
 	}
