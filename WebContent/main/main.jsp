@@ -18,10 +18,12 @@
 
 <body>
 	
+	<!-- 이벤트 슬라이드 탭 -->
 	<section class="event_slide_tab">
        	<div class="ev_sw_wrapper">
            	<div class="event_box swiper-container">
                	<div class="event_wrapper swiper-wrapper">
+               		<!-- 이벤트 슬라이드 컨텐츠 -->
                    	<div class="event_slide event1 swiper-slide">
                        	<img src="https://active.ridibooks.com/ridibooks_top_banner/20211229101547_1640740547185.jpg" alt="">
                    	</div>
@@ -52,6 +54,7 @@
                     <div class="event_slide event10 swiper-slide">
                         <img src="https://active.ridibooks.com/ridibooks_top_banner/20211214105436_1639446876116.jpg" alt="">
                     </div>
+                    
                	</div>
                 <div class="ev_pn_wrapper">
                     <div class="ev_pn swiper-pagination"></div>
@@ -65,6 +68,7 @@
            	</div>
        	</div>
    	</section>
+   	
    	<section class="ic_navi_tab">
        	<div class="ic_navi_wrapper">
            	<ul class="ic_navi_box">
@@ -236,6 +240,7 @@
                 <div class="darkbg_swiper_wrapper">
                     <div class="dark_box_cont swiper-container">
                         <ul class="dk_li_wrapper swiper-wrapper">
+                        	<!-- 신간 컨텐츠 -->
                             <li class="dk_li swiper-slide" data-hash="slide1">
                                 <div class="dk_all_wrapper">
                                     <div class="dk_bc_wrapper">
@@ -502,6 +507,7 @@
                                     </div>
                                 </div>
                             </li>
+                            
                         </ul>
                         <div class="navi_btn_wrapper prev_btn_dk">
                             <span class="dk_bg_nav_prev swiper-button-prev"></span>
@@ -514,6 +520,8 @@
             </div>
         </div>
     </section>
+    
+    <!--  -->
     <section class="rankBook_tab">
         <div class="rb_wrapper">
             <div class="rb_time_text">
@@ -548,6 +556,7 @@
             </div>
             <div class="rb_box">
                 <ul class="rb_li_wrapper">
+                	<!--  -->
                     <li>
                         <div class="rb_bc_wrapper">
                             <a href="#">
@@ -674,10 +683,13 @@
                             </div>
                         </div>
                     </li>
+                    
                 </ul>
             </div>
         </div>
     </section>
+    
+    <!--  -->
     <section class="whiteSlideTab todayRidi_tab">
         <div class="white_sw_wrapper">
             <div class="whiteSlide_text">
@@ -686,6 +698,7 @@
             <div class="whitebg_swiper_wrapper">
                 <div class="white_box_cont swiper-container">
                     <ul class="wt_li_wrapper swiper-wrapper">
+                    	<!--  -->
                         <li class="wt_li swiper-slide" data-hash="slide1">
                             <div class="wt_all_wrapper">
                                 <div class="wt_bc_wrapper">
@@ -856,6 +869,7 @@
                                 </div>
                             </div>
                         </li>
+                        
                     </ul>
                     <div class="navi_btn_wrapper prev_btn_wt">
                         <span class="wt_bg_nav_prev swiper-button-prev"></span>
@@ -867,6 +881,8 @@
             </div>
         </div>
     </section>
+    
+    <!--  -->
     <section class="bestSeller_tab">
         <div class="rb_wrapper">
             <div class="rb_time_text">
@@ -874,6 +890,7 @@
             </div>
             <div class="rb_box">
                 <ul class="bs_li_wrapper">
+                	<!--  -->
                     <li>
                         <div class="bs_bc_wrapper">
                             <a href="#">
@@ -1099,10 +1116,13 @@
                             </div>
                         </div>
                     </li>
+                    
                 </ul>
             </div>
         </div>
     </section>
+    
+    <!--  -->
     <section class="whiteSlideTab weeklyNew_tab">
         <div class="white_sw_wrapper">
             <div class="whiteSlide_text">
@@ -1111,6 +1131,7 @@
             <div class="whitebg_swiper_wrapper">
                 <div class="white_box_cont swiper-container">
                     <ul class="wt_li_wrapper swiper-wrapper">
+                    	<!--  -->
                         <li class="wt_li swiper-slide">
                             <div class="wt_all_wrapper">
                                 <div class="wt_bc_wrapper">
@@ -1327,6 +1348,7 @@
                                 </div>
                             </div>
                         </li>
+                        
                     </ul>
                     <div class="navi_btn_wrapper prev_btn_wt">
                         <span class="wt_bg_nav_prev swiper-button-prev"></span>
@@ -1338,6 +1360,8 @@
             </div>
         </div>
     </section>
+    
+    <!--  -->
     <section class="whiteSlideTab instagram_tab">
         <div class="white_sw_wrapper">
             <div class="whiteSlide_text">
