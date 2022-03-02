@@ -91,8 +91,8 @@ DELETE FROM `memberinfo`;
 /*!40000 ALTER TABLE `memberinfo` DISABLE KEYS */;
 INSERT INTO `memberinfo` (`id_no`, `member_id`, `member_email`, `member_pw`, `member_name`, `year`, `gender`, `marketing_agree`, `select_agree`, `signup_date`, `login_date`, `cash`, `point`, `m_status`) VALUES
 	(1, 'id0001', 'id0001@naver.com', '1o1RdQbXVM', '홍길동', NULL, NULL, 'N', 'N', '2021-12-30 00:00:00', '2022-01-18 23:42:35', 0, 0, 0),
-	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-24 23:57:47', 0, 0, 0),
-	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-02-25 00:38:18', 0, 0, 0),
+	(3, 'id0002', 'id0002@gmail.com', 'qwe123@@', '두번째', NULL, NULL, 'Y', 'Y', '2022-01-09 23:45:22', '2022-02-28 10:43:52', 0, 0, 0),
+	(4, 'id0003', 'id0003@gmail.com', 'qwe123!!', '고영희', NULL, NULL, 'Y', 'Y', '2022-01-10 22:01:07', '2022-02-28 10:44:17', 0, 0, 0),
 	(5, 'id0004', 'id0004@gmail.com', 'qwe123!!', '사번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:05:04', '2022-02-24 09:56:03', 0, 0, 0),
 	(6, 'id0005', 'id0005@gmail.com', 'qwe123!!', '오번', NULL, NULL, 'Y', 'Y', '2022-01-10 22:08:47', '2022-01-17 00:19:54', 0, 0, 0),
 	(7, 'id0006', 'id0006@gmail.com', 'qwe123!!', '육번', NULL, NULL, 'N', 'N', '2022-01-10 22:14:10', '2022-01-17 00:19:54', 0, 0, 0),
@@ -122,8 +122,30 @@ DELETE FROM `notification`;
 INSERT INTO `notification` (`noti_no`, `id_no`, `noti_title`, `noti_text`, `noti_date`, `noti_status`) VALUES
 	(1, 3, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-23 09:48:30', 1),
 	(1, 4, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-24 09:57:16', 1),
-	(2, 4, '첫번 째', '첫번 째', '2022-02-24 10:02:03', 0);
+	(2, 4, '첫번 째', '첫번 째', '2022-02-24 10:02:03', 1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+
+-- 테이블 rdbooks.test 구조 내보내기
+DROP TABLE IF EXISTS `test`;
+CREATE TABLE IF NOT EXISTS `test` (
+  `t` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 rdbooks.test:~0 rows (대략적) 내보내기
+DELETE FROM `test`;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` (`t`) VALUES
+	('https://active.ridibooks.com/ridibooks_top_banner/20211229101547_1640740547185.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211226145408_1640498048095.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211124173939_1637743179827.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211215020525_1639501525772.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211201113233_1638325953584.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211217093606_1639701366901.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211227101820_1640567900464.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211224141014_1640322614798.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211216172659_1639643219461.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211214105436_1639446876116.jpg');
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

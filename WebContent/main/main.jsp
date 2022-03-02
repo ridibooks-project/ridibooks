@@ -10,9 +10,6 @@
 
 %> --%>
 
-<%
-
-%>
 
 
 <link href="./css/normal_style.css" rel="stylesheet" type="text/css">

@@ -167,18 +167,22 @@ public class BookDAO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				BookDTO book = new BookDTO();
 				
 				book = new BookDTO();
 				
+//				book.setBook_name(rs.getString("book_name"));
+//				book.setBook_no(rs.getInt("book_no"));
+//				book.setBook_image(rs.getString("book_image"));
+//				book.setBuyprice(rs.getInt("buyprice"));
+//				book.setRentprice(rs.getInt("rentprice"));
+//				book.setIntroduction(rs.getString("introduction"));
+//				book.setCategory_no(rs.getInt("category_no"));
+				
 				book.setBook_name(rs.getString("book_name"));
-				book.setBook_no(rs.getInt("book_no"));
 				book.setBook_image(rs.getString("book_image"));
 				book.setBuyprice(rs.getInt("buyprice"));
-				book.setRentprice(rs.getInt("rentprice"));
-				book.setIntroduction(rs.getString("introduction"));
-				book.setCategory_no(rs.getInt("category_no"));
 				
 				bookList.add(book);
 			}
@@ -230,7 +234,7 @@ public class BookDAO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				BookDTO book = new BookDTO();
 				
 				book = new BookDTO();
@@ -292,7 +296,7 @@ public class BookDAO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				BookDTO book = new BookDTO();
 				
 				book = new BookDTO();
@@ -336,4 +340,5 @@ public class BookDAO {
 		}
 		return bookList;
 	}
+	
 }
