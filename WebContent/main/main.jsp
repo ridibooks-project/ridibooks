@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="book.BookDTO" %>
+<%@ page import="main.EventDTO" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%-- <%
@@ -9,8 +10,6 @@
 	ArrayList<BookDTO> BestList = (ArrayList<BookDTO>) request.getAttribute("BestList");
 
 %> --%>
-
-
 
 <link href="./css/normal_style.css" rel="stylesheet" type="text/css">
 
@@ -23,6 +22,20 @@
        	<div class="ev_sw_wrapper">
            	<div class="event_box swiper-container">
                	<div class="event_wrapper swiper-wrapper">
+               	
+               	<script>
+		    		$.ajax({
+		    			url: "http://localhost/ridibooks.com/event/controller",
+		    			type: "GET",
+		    			success: function(){
+		    				ArrayList<EventDTO> event = (ArrayList<EventDTO>) request.getAttribute("eventList");
+		    			},
+		    			error: function(){
+		    			}
+		    		});
+			    </script>
+               	
+               	
                		<!-- 이벤트 슬라이드 컨텐츠 -->
                    	<div class="event_slide event1 swiper-slide">
                        	<img src="https://active.ridibooks.com/ridibooks_top_banner/20211229101547_1640740547185.jpg" alt="">
@@ -1612,10 +1625,10 @@
     <script src="./js/swiper-bundle.min.js"></script>
     <script src="./js/swiper-bundle.js"></script>
     <script src="./js/fontawesome.js" crossorigin="anonymous"></script>
-<!--     <script src="./js/notPosition.js"></script> -->
     <script src="./js/slide_tab.js"></script>
     <script src="./js/starPoint.js"></script>
     <script src="./js/rem_recent_search.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

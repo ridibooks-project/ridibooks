@@ -64,6 +64,28 @@ INSERT INTO `cart` (`c_no`, `id_no`, `book_no`, `c_date`) VALUES
 	(3, 5, 1, '2022-02-24 09:55:50');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
+-- 테이블 rdbooks.event 구조 내보내기
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE IF NOT EXISTS `event` (
+  `event_url` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 rdbooks.event:~10 rows (대략적) 내보내기
+DELETE FROM `event`;
+/*!40000 ALTER TABLE `event` DISABLE KEYS */;
+INSERT INTO `event` (`event_url`) VALUES
+	('https://active.ridibooks.com/ridibooks_top_banner/20211229101547_1640740547185.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211226145408_1640498048095.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211124173939_1637743179827.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211215020525_1639501525772.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211201113233_1638325953584.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211217093606_1639701366901.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211227101820_1640567900464.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211224141014_1640322614798.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211216172659_1639643219461.jpg'),
+	('https://active.ridibooks.com/ridibooks_top_banner/20211214105436_1639446876116.jpg');
+/*!40000 ALTER TABLE `event` ENABLE KEYS */;
+
 -- 테이블 rdbooks.memberinfo 구조 내보내기
 DROP TABLE IF EXISTS `memberinfo`;
 CREATE TABLE IF NOT EXISTS `memberinfo` (
@@ -124,28 +146,6 @@ INSERT INTO `notification` (`noti_no`, `id_no`, `noti_title`, `noti_text`, `noti
 	(1, 4, '매주 화요일마다 위클리 쿠폰!', '클릭 시 10% 할인 쿠폰 이벤트 페이지로 연결됩니다.', '2022-02-24 09:57:16', 1),
 	(2, 4, '첫번 째', '첫번 째', '2022-02-24 10:02:03', 1);
 /*!40000 ALTER TABLE `notification` ENABLE KEYS */;
-
--- 테이블 rdbooks.test 구조 내보내기
-DROP TABLE IF EXISTS `test`;
-CREATE TABLE IF NOT EXISTS `test` (
-  `t` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- 테이블 데이터 rdbooks.test:~0 rows (대략적) 내보내기
-DELETE FROM `test`;
-/*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` (`t`) VALUES
-	('https://active.ridibooks.com/ridibooks_top_banner/20211229101547_1640740547185.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211226145408_1640498048095.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211124173939_1637743179827.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211215020525_1639501525772.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211201113233_1638325953584.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211217093606_1639701366901.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211227101820_1640567900464.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211224141014_1640322614798.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211216172659_1639643219461.jpg'),
-	('https://active.ridibooks.com/ridibooks_top_banner/20211214105436_1639446876116.jpg');
-/*!40000 ALTER TABLE `test` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
