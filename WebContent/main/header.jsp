@@ -16,7 +16,7 @@
 	if(session.getAttribute("isLogin")==null || session.getAttribute("isLogin").equals(false)) {
 		confirm = "false";
 	}
-
+	
 	Map<String, String> activeMap = new HashMap<>();
 	activeMap.put("main", "main");
 	activeMap.put("romance", "romance");
@@ -116,7 +116,7 @@
 	                            <li>
 	                                <a class="login_btn" href="http://localhost/ridibooks.com/account/login.jsp">로그인</a>
 	                            </li>
-                        <%		
+                        <%
                         		} else {
                         %>
 	       
@@ -125,6 +125,7 @@
 	                            </li>
 	                            <li>
 	                                <a class="join_btn" href="#">내서재</a>
+	                            </li>
 	        			<%		
                         		}
                         %>
@@ -554,6 +555,5 @@
         }
     </script>
     
-    <script src="../js/jquery-3.6.0.min.js"></script>
     
 </body>

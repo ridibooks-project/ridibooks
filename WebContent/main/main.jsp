@@ -24,15 +24,23 @@
                	<div class="event_wrapper swiper-wrapper">
                	
                	<script>
-		    		$.ajax({
+               		/* $(document).ready(function(){
+               			alert("hi");
+               		}); */
+               			
+             
+		    		/* $.ajax({
 		    			url: "http://localhost/ridibooks.com/event/controller",
 		    			type: "GET",
 		    			success: function(){
 		    				ArrayList<EventDTO> event = (ArrayList<EventDTO>) request.getAttribute("eventList");
+		    				
+		    				for(int i=0; i<event.size(); i++) {
+		    				}
 		    			},
 		    			error: function(){
 		    			}
-		    		});
+		    		}); */
 			    </script>
                	
                	
@@ -1628,7 +1636,7 @@
     <script src="./js/slide_tab.js"></script>
     <script src="./js/starPoint.js"></script>
     <script src="./js/rem_recent_search.js"></script>
-    <script src="../js/jquery-3.6.0.min.js"></script>
+    
 
 </body>
 </html>
